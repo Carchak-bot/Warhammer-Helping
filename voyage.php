@@ -131,7 +131,11 @@ if (
     (isset($_POST["navigator"])) &&
     ($_POST["navigator"] == true)
 ) {
+    /**********************************************************************************************************************
+    ******************************************************************************************************************** */
     //Coté ou il y a un navigateur pour guider le vaisseau
+    /**********************************************************************************************************************
+    ******************************************************************************************************************** */
 
     $psyniscienceCheck1 = rand(1, 100);
     //Cartes Warp et bonus à la psyniscience
@@ -189,8 +193,10 @@ if (
     }
 
     //La chasse de la mauvaise chance
-
     echo badOmens($_POST["moral"], $_POST["leadership"], $_POST["socCptn"], $_POST["socSurnatCptn"]);
+
+    //Hallucinations
+    echo hallucinations($_POST["nombrePNJImportant"], $_POST["crewRating"]);
 
     //Localiser l'astronomican
     $psyniscienceCheck2 = rand(1, 100);
@@ -203,10 +209,10 @@ if (
         case 1:
         case 2:
         case 3:
-            //psyniscience +20
+            // psyniscience +20
             $bonus = 20;
-            psyniscienceAstro($_POST["psyniscience"], $_POST["per"], $psyniscienceCheck2, 
-            $psyniscienceCheck2Failed, $dureeEronner, $tempstrajettheorique, $bonus, $bonusNav);
+            $bonusNav = psyniscienceAstro($_POST["psyniscience"], $_POST["per"], $psyniscienceCheck2, $psyniscienceCheck2Failed, $dureeEronner, $tempstrajettheorique, $bonus);
+            echo $bonusNav;
             break;
         case 4:
         case 5:
@@ -214,31 +220,57 @@ if (
         case 7:
         case 8:
         case 10:
-            //psyniscience normale
+            // psyniscience normale
             $bonus = 0;
-            psyniscienceAstro($_POST["psyniscience"], $_POST["per"], $psyniscienceCheck2, 
-            $psyniscienceCheck2Failed, $dureeEronner, $tempstrajettheorique, $bonus, $bonusNav);
+            $bonusNav = psyniscienceAstro($_POST["psyniscience"], $_POST["per"], $psyniscienceCheck2, $psyniscienceCheck2Failed, $dureeEronner, $tempstrajettheorique, $bonus);
+            echo $bonusNav;
             break;
         case 9:
-            //psyniscience -20
+            // psyniscience -20
             $bonus = -20;
-            psyniscienceAstro($_POST["psyniscience"], $_POST["per"], $psyniscienceCheck2, 
-            $psyniscienceCheck2Failed, $dureeEronner, $tempstrajettheorique, $bonus, $bonusNav);
+            $bonusNav = psyniscienceAstro($_POST["psyniscience"], $_POST["per"], $psyniscienceCheck2, $psyniscienceCheck2Failed, $dureeEronner, $tempstrajettheorique, $bonus);
+            echo $bonusNav;
             break;
+    }
 
+    //Le voyage Warp [STEERING THE VESSEL]
+    $navigationCheck = rand(1, 100);
+    switch ($navigationCheck) {
+        case ($_POST["navWarp"] == "navWarpT"):
+            $psyniscienceCheck2result = (($per + $bonus) - $psyniscienceCheck2);
+            if ($psyniscienceCheck2result >= 0) {
+                $psyniscienceCheck2resultfinal = (($psyniscienceCheck2result / 10) + (floor($_POST["perSurnat"] / 2)));
+                echo "L'astronomican est trouvé avec ";
+                echo $psyniscienceCheck2resultfinal;
+                echo " degrés de réussites. <br><br>";
+                $bonusNav = 10;
+            } else {
+                $bonusNav = -20;
+                $psyniscienceCheck2Failed = floor(($psyniscienceCheck2result) / 10);
+                echo "L'astronomican n'est pas trouvé avec une totalité de ";
+                echo ($psyniscienceCheck2Failed / 10);
+                echo " degrés d'échec. <br><br>";
+            }
+            break;
+        
+        default:
+            # code...
+            break;
     }
 
 
-
 } else {
+    /**********************************************************************************************************************
+    ******************************************************************************************************************** */
     // Coté ou il n'y a pas de Navigateurs pour guider le vaisseau _____________________________________________________
+    /**********************************************************************************************************************
+    ******************************************************************************************************************** */
 
     //La chasse de la mauvaise chance
 
     echo badOmens($_POST["moral"], $_POST["leadership"], $_POST["socCptn"], $_POST["socSurnatCptn"]);
 
     //La translation
-
     $translationHardcore = rand(1, 10);
     if ($translationHardcore >= 6) {
         echo "Vous entrez dans le warp en pleine tempête warp. <br>";
@@ -246,54 +278,11 @@ if (
         echo "<br>";
     }
 
-
-    for ($i = 0; $i < $_POST["nombrePNJImportant"]; $i++) {
-        $hallucinationCheck = rand(1, 100);
-        switch ($hallucinationCheck) {
-            case ($hallucinationCheck > $_POST["crewRating"]):
-                echo "Le PNJ numéro ";
-                echo $i;
-                echo " a échoué son test de résistance mentale et est épris d'hallucinations jusqu'à ce qu'il ait une occasion 
-                de s'en débarasser.<br>";
-                $hallucinationCheckResult = floor($hallucinationCheck - $_POST["crewRating"]);
-                echo "Il a échoué avec ";
-                echo $hallucinationCheckResult;
-                echo " degré d'échecs et est atteins de l'hallucination : ";
-                $trueHallucination = rand(1, 100);
-                $trueHallucinationResult = $trueHallucination + $hallucinationCheckResult;
-                if (($trueHallucinationResult >= 1) && ($trueHallucinationResult <= 40)) {
-                    echo "Phobie ! <br><br>";
-                }
-                if (($trueHallucinationResult >= 41) && ($trueHallucinationResult <= 70)) {
-                    echo "Malignancy ! <br><br>";
-                }
-                if (($trueHallucinationResult >= 71) && ($trueHallucinationResult <= 90)) {
-                    echo "The Horror ! The Horror ! <br><br>";
-                }
-                if (($trueHallucinationResult >= 91) && ($trueHallucinationResult <= 110)) {
-                    echo "The Flesh is Weak ! <br><br>";
-                }
-                if (($trueHallucinationResult >= 111) && ($trueHallucinationResult <= 130)) {
-                    echo "Mutants, Mutants everywhere ! <br><br>";
-                }
-                if (($trueHallucinationResult >= 131) && ($trueHallucinationResult <= 150)) {
-                    echo "Rêves de corruptions ! <br><br>";
-                }
-                if (($trueHallucinationResult >= 151) && ($trueHallucinationResult <= 170)) {
-                    echo "Désolation et désespoir. <br><br>";
-                }
-                if ($trueHallucinationResult >= 171) {
-                    echo "Désillusion infernale. <br><br>";
-                }
-                break;
-            case ($hallucinationCheck <= $_POST["crewRating"]):
-                echo "Le PNJ numéro ";
-                echo $i;
-                echo " a réussi son test et donc n'est atteins d'aucunes hallucinations.. Pour l'instant.<br><br>";
-                break;
-        }
-    }
-
+    //Bad Omens
+    echo badOmens($_POST["moral"], $_POST["leadership"], $_POST["socCptn"], $_POST["socSurnatCptn"]);
+    
+    //Hallucinations Warp ?
+    echo hallucinations($_POST["nombrePNJImportant"], $_POST["crewRating"]);
 
     // Le voyage
     $tempstrajetabsolu = ($tempstrajettheorique * 4);

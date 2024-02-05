@@ -1,6 +1,61 @@
 <?php
 //____________________________________________________________________________________________
-//Warding Bad Luck
+//             Hallucinations
+//____________________________________________________________________________________________
+
+function hallucinations($nbrPNJImportant, $crewRating)
+{
+    for ($i = 0; $i < $nbrPNJImportant; $i++) {
+        $hallucinationCheck = rand(1, 100);
+        switch ($hallucinationCheck) {
+            case ($hallucinationCheck > $crewRating):
+                echo "Le PNJ numéro ";
+                echo $i;
+                echo " a échoué son test de résistance mentale et est épris d'hallucinations jusqu'à ce qu'il ait une occasion 
+                de s'en débarasser.<br>";
+                $hallucinationCheckResult = floor(($hallucinationCheck - $crewRating) / 10 );
+                echo "Il a échoué avec <b>";
+                echo $hallucinationCheckResult;
+                echo "</b> degré d'échecs et est atteins de l'hallucination : ";
+                $trueHallucination = rand(1, 100);
+                $trueHallucinationResult = $trueHallucination + $hallucinationCheckResult;
+                if (($trueHallucinationResult >= 1) && ($trueHallucinationResult <= 40)) {
+                    echo "Phobie ! <br><br>";
+                }
+                if (($trueHallucinationResult >= 41) && ($trueHallucinationResult <= 70)) {
+                    echo "Malignancy ! <br><br>";
+                }
+                if (($trueHallucinationResult >= 71) && ($trueHallucinationResult <= 90)) {
+                    echo "The Horror ! The Horror ! <br><br>";
+                }
+                if (($trueHallucinationResult >= 91) && ($trueHallucinationResult <= 110)) {
+                    echo "The Flesh is Weak ! <br><br>";
+                }
+                if (($trueHallucinationResult >= 111) && ($trueHallucinationResult <= 130)) {
+                    echo "Mutants, Mutants everywhere ! <br><br>";
+                }
+                if (($trueHallucinationResult >= 131) && ($trueHallucinationResult <= 150)) {
+                    echo "Rêves de corruptions ! <br><br>";
+                }
+                if (($trueHallucinationResult >= 151) && ($trueHallucinationResult <= 170)) {
+                    echo "Désolation et désespoir. <br><br>";
+                }
+                if ($trueHallucinationResult >= 171) {
+                    echo "Désillusion infernale. <br><br>";
+                }
+                break;
+            case ($hallucinationCheck <= $crewRating):
+                echo "Le PNJ numéro ";
+                echo $i;
+                echo " a réussi son test et donc n'est atteins d'aucunes hallucinations.. Pour l'instant.<br><br>";
+                break;
+        }
+    }
+}
+
+//____________________________________________________________________________________________
+//             Warding Bad Luck
+//____________________________________________________________________________________________
 
 function badOmens($moral, $leadership, $socCptn, $socSurnatCptn)
 {
@@ -368,7 +423,7 @@ function psyniscienceNav($psyniscience, $per, $chartsFinished, $psyniscienceChec
     }
 }
 
-function psyniscienceAstro($psyniscience, $per, $psyniscienceCheck2, $psyniscienceCheck2Failed, $dureeEronner, $tempstrajettheorique, $bonus, $bonusNav)
+function psyniscienceAstro($psyniscience, $per, $psyniscienceCheck2, $psyniscienceCheck2Failed, $dureeEronner, $tempstrajettheorique, $bonus)
 {
     //Psyniscience pour l'astronomican
     switch ($psyniscienceCheck2) {
@@ -383,10 +438,9 @@ function psyniscienceAstro($psyniscience, $per, $psyniscienceCheck2, $psyniscien
             } else {
                 $bonusNav = -20;
                 $psyniscienceCheck2Failed = floor(($psyniscienceCheck2result) / 10);
-                echo $psyniscienceCheck2;
-                echo "<br>";
-                echo $psyniscienceCheck2Failed;
-                echo "<br>";
+                echo "L'astronomican n'est pas trouvé avec une totalité de ";
+                echo ($psyniscienceCheck2Failed / 10);
+                echo " degrés d'échec. <br><br>";
             }
             break;
         case ($psyniscience == "psyniscience+10"):
@@ -400,6 +454,9 @@ function psyniscienceAstro($psyniscience, $per, $psyniscienceCheck2, $psyniscien
             } else {
                 $bonusNav = -20;
                 $psyniscienceCheck2Failed = floor(($psyniscienceCheck2 - $psyniscienceCheck2result) / 10);
+                echo "L'astronomican n'est pas trouvé avec une totalité de ";
+                echo ($psyniscienceCheck2Failed / 10);
+                echo " degrés d'échec. <br><br>";
             }
             break;
         case ($psyniscience == "psyniscience+20"):
@@ -413,6 +470,9 @@ function psyniscienceAstro($psyniscience, $per, $psyniscienceCheck2, $psyniscien
             } else {
                 $bonusNav = -20;
                 $psyniscienceCheck2Failed = floor(($psyniscienceCheck2 - $psyniscienceCheck2result) / 10);
+                echo "L'astronomican n'est pas trouvé avec une totalité de ";
+                echo ($psyniscienceCheck2Failed / 10);
+                echo " degrés d'échec. <br><br>";
             }
             break;
         case ($psyniscience == "psyniscience+30"):
@@ -426,7 +486,11 @@ function psyniscienceAstro($psyniscience, $per, $psyniscienceCheck2, $psyniscien
             } else {
                 $bonusNav = -20;
                 $psyniscienceCheck2Failed = floor(($psyniscienceCheck2 - $psyniscienceCheck2result) / 10);
+                echo "L'astronomican n'est pas trouvé avec une totalité de ";
+                echo ($psyniscienceCheck2Failed / 10);
+                echo " degrés d'échec. <br><br>";
             }
             break;
     }
+    return $bonusNav;
 }

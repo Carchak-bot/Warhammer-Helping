@@ -22,6 +22,8 @@ $psyniscienceCheck2result = 0;
 $psyniscienceCheck2resultfinal = 0;
 $psyniscienceCheck2Failed = 0;
 
+$navigationCheck = 0;
+
 $charts = 0;
 $chartsFinished = 0;
 
