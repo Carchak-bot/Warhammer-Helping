@@ -126,7 +126,9 @@ function badOmens($moral, $leadership, $socCptn, $socSurnatCptn)
     }
 }
 
+//____________________________________________________________________________________________
 // Fonction Rencontres Warp :
+//____________________________________________________________________________________________
 
 function rencontres($tempstrajetabsolu, $frequenceRencontre, $badOmens)
 {
@@ -203,7 +205,9 @@ function rencontres($tempstrajetabsolu, $frequenceRencontre, $badOmens)
 }
 
 
+//____________________________________________________________________________________________
 // Fonction Tempête Warp :
+//____________________________________________________________________________________________
 
 function tempete($gellarFieldDamaged, $gellarFieldOffline)
 {
@@ -234,7 +238,9 @@ function tempete($gellarFieldDamaged, $gellarFieldOffline)
     return $text;
 }
 
+//____________________________________________________________________________________________
 // Fonction Récifs Aethériques ____________________________________________________
+//____________________________________________________________________________________________
 
 function recifs($gellarFieldDamaged, $gellarFieldOffline)
 {
@@ -256,12 +262,16 @@ function recifs($gellarFieldDamaged, $gellarFieldOffline)
     return $text;
 }
 
+
+//____________________________________________________________________________________________
 // Fonction Incursions Warp 
 /* Si cet effet se manifeste à bord d'un vaisseau, 
             rouler une fois les dés sur la <b>table 2-8 Incursions Warp</b> (voir page 33)
             et appliquez le résultat. Réduisez le résultat du lancé de dé par -30 si le champs de 
             Geller est complètement fonctionnel (jusqu'à un minimum de 01). Ajoutez +30 au résultat
             du jet si le champs de Geller est éteins. */
+//____________________________________________________________________________________________
+
 
 function incursion($gellarFieldOffline, $gellarFieldDamaged)
 {
@@ -305,7 +315,11 @@ function incursion($gellarFieldOffline, $gellarFieldDamaged)
     return $text;
 }
 
+
+//____________________________________________________________________________________________
 // Fonction brèche Warp
+//____________________________________________________________________________________________
+
 
 function breche()
 {

@@ -59,8 +59,18 @@ $severlyOffCourse = 0;
 
 $bonus = 0;
 $bonusNav = 0;
+$bonusNav2 = 0;
+$bonusNav3 = 0;
+$bonusNav4 = 0;
+$bonusNav5 = 0;
+$bonusNavSemiFinal = 0;
+$bonusNavFinal = 0;
+
+$champsDeGalere = 0;
 
 $dgtsCrits = 0;
 $dgts = 0;
 $d10 = 0;
 $d5 = 0;
+
+$per = $_POST["per"];

@@ -14,7 +14,53 @@ require "fonctions.php";
 echo "<b>Coté MJ :</b> <br>";
 
 // echo $_POST["gellarFieldDamaged"];
-// echo $_POST["gellarFieldOffline"];
+//Prise en compte des composants de vaisseaux
+
+//Champs de Geller
+switch ($champsDeGalere) {
+    case 1:
+        //Warpsbane Hull
+        $bonusNav2 = 10;
+        //Devra faire rouler une deuxième fois sur les Warp Encounters
+        break;
+    case 2:
+        //Mezoa Geller Void Integrant
+        //-5 to Warp Travel Encounters
+    case 3:
+        //Belecane Pattern 90.r Gellar Field
+        $bonusNav2 = 10;
+        //+20 Table des rencontres warp
+        break;
+}
+//Passerelles
+switch ($passerelle) {
+    case 1:
+        $bonusCommand = 5;
+        break;
+    case 2:
+        //Effet special en cas de critical hit
+        break;
+    case 3:
+        $bonusPilotage = 5;
+        $bonusNav3 = 5;
+        break;
+    case 4:
+        $bonusCommand = 10;
+        $bonusPilotage = 5;
+        $bonusNav3 = 5;
+        break;
+}
+
+//Autres
+if (($_POST["warpSextant"] == "yes")) {
+    $bonusNav4 = 20;
+    $temp = $per;
+    $per = $temp + 20;
+}
+
+if (($_POST["runecaster"] == "yes")) {
+    $bonusNav5 = 20;
+}
 
 //Prise en compte du champs de Geller endommagé
 
@@ -158,7 +204,7 @@ if (
     echo "[";
     echo $psyniscienceCheck1;
     echo "] ! <br>";
-    psyniscienceNav($_POST["psyniscience"], $_POST["per"], $chartsFinished, $psyniscienceCheck1, 
+    psyniscienceNav($_POST["psyniscience"], $per, $chartsFinished, $psyniscienceCheck1, 
     $dureeEronner, $tempstrajettheorique);
     echo "<br>";
 
@@ -179,7 +225,7 @@ if (
         echo "[";
         echo $psyniscienceCheck1;
         echo "] ! <br>";
-        psyniscienceNav($_POST["psyniscience"], $_POST["per"], $chartsFinished, $psyniscienceCheck1, 
+        psyniscienceNav($_POST["psyniscience"], $per, $chartsFinished, $psyniscienceCheck1, 
         $dureeEronner, $tempstrajettheorique);
     }
 
@@ -211,7 +257,7 @@ if (
         case 3:
             // psyniscience +20
             $bonus = 20;
-            $bonusNav = psyniscienceAstro($_POST["psyniscience"], $_POST["per"], $psyniscienceCheck2, $psyniscienceCheck2Failed, $dureeEronner, $tempstrajettheorique, $bonus);
+            $bonusNav = psyniscienceAstro($_POST["psyniscience"], $per, $psyniscienceCheck2, $psyniscienceCheck2Failed, $dureeEronner, $tempstrajettheorique, $bonus);
             echo $bonusNav;
             break;
         case 4:
@@ -222,40 +268,55 @@ if (
         case 10:
             // psyniscience normale
             $bonus = 0;
-            $bonusNav = psyniscienceAstro($_POST["psyniscience"], $_POST["per"], $psyniscienceCheck2, $psyniscienceCheck2Failed, $dureeEronner, $tempstrajettheorique, $bonus);
+            $bonusNav = psyniscienceAstro($_POST["psyniscience"], $per, $psyniscienceCheck2, $psyniscienceCheck2Failed, $dureeEronner, $tempstrajettheorique, $bonus);
             echo $bonusNav;
             break;
         case 9:
             // psyniscience -20
             $bonus = -20;
-            $bonusNav = psyniscienceAstro($_POST["psyniscience"], $_POST["per"], $psyniscienceCheck2, $psyniscienceCheck2Failed, $dureeEronner, $tempstrajettheorique, $bonus);
+            $bonusNav = psyniscienceAstro($_POST["psyniscience"], $per, $psyniscienceCheck2, $psyniscienceCheck2Failed, $dureeEronner, $tempstrajettheorique, $bonus);
             echo $bonusNav;
             break;
     }
 
     //Le voyage Warp [STEERING THE VESSEL]
     $navigationCheck = rand(1, 100);
+
+    //Validation Bonus des cartes et autres
+    $bonusNavSemiFinal = $bonusNav + $bonusNav2 + $bonusNav3 + $bonusNav4 + $bonusNav5;
+    //Cartes
+    if ($_POST["warpCharts"] == "yes") {
+        if ($_POST["warpChartsCreator"] == "yes") {
+            $bonusNavFinal = $bonusNavSemiFinal + 10 + 10;
+        } elseif ($_POST["warpChartsCreator"] == "no") {
+            $bonusNavFinal = $bonusNavSemiFinal + 10;
+        }
+    } elseif ($_POST["warpCharts"] == "yesDetailed") {
+        if ($_POST["warpChartsCreator"] == "yes") {
+            $bonusNavFinal = $bonusNavSemiFinal + 20 + 10;
+        } elseif ($_POST["warpChartsCreator"] == "no") {
+            $bonusNavFinal = $bonusNavSemiFinal + 20;
+        }
+    }
+
     switch ($navigationCheck) {
         case ($_POST["navWarp"] == "navWarpT"):
-            $psyniscienceCheck2result = (($per + $bonus) - $psyniscienceCheck2);
-            if ($psyniscienceCheck2result >= 0) {
-                $psyniscienceCheck2resultfinal = (($psyniscienceCheck2result / 10) + (floor($_POST["perSurnat"] / 2)));
-                echo "L'astronomican est trouvé avec ";
-                echo $psyniscienceCheck2resultfinal;
+            $navigationCheckResult = (($_POST["int"] + $bonusNavFinal) - $navigationCheck);
+
+            if ($navigationCheckResult >= 0) {
+                $navigationCheckResultFinal = (($navigationCheckResult / 10) + (floor($_POST["intSurnat"] / 2)));
+                echo "Le test de navigation est réussi avec ";
+                echo $navigationCheckResultFinal;
                 echo " degrés de réussites. <br><br>";
-                $bonusNav = 10;
+                echo "Le voyage durera";
             } else {
-                $bonusNav = -20;
-                $psyniscienceCheck2Failed = floor(($psyniscienceCheck2result) / 10);
-                echo "L'astronomican n'est pas trouvé avec une totalité de ";
-                echo ($psyniscienceCheck2Failed / 10);
+                $navigationCheckResultFailed = floor(($navigationCheckResult) / 10);
+                echo "Le test de navigation est échec avec ";
+                echo ($navigationCheckResultFailed / 10);
                 echo " degrés d'échec. <br><br>";
             }
             break;
-        
-        default:
-            # code...
-            break;
+
     }
 
 
