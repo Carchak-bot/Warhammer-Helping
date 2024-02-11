@@ -17,6 +17,7 @@ echo "<b>Coté MJ :</b> <br>";
 //Prise en compte des composants de vaisseaux
 
 //Champs de Geller
+/*
 switch ($champsDeGalere) {
     case 1:
         //Warpsbane Hull
@@ -60,7 +61,7 @@ if (($_POST["warpSextant"] == "yes")) {
 
 if (($_POST["runecaster"] == "yes")) {
     $bonusNav5 = 20;
-}
+} */
 
 //Prise en compte du champs de Geller endommagé
 
@@ -258,7 +259,6 @@ if (
             // psyniscience +20
             $bonus = 20;
             $bonusNav = psyniscienceAstro($_POST["psyniscience"], $per, $psyniscienceCheck2, $psyniscienceCheck2Failed, $dureeEronner, $tempstrajettheorique, $bonus);
-            echo $bonusNav;
             break;
         case 4:
         case 5:
@@ -269,19 +269,17 @@ if (
             // psyniscience normale
             $bonus = 0;
             $bonusNav = psyniscienceAstro($_POST["psyniscience"], $per, $psyniscienceCheck2, $psyniscienceCheck2Failed, $dureeEronner, $tempstrajettheorique, $bonus);
-            echo $bonusNav;
             break;
         case 9:
             // psyniscience -20
             $bonus = -20;
             $bonusNav = psyniscienceAstro($_POST["psyniscience"], $per, $psyniscienceCheck2, $psyniscienceCheck2Failed, $dureeEronner, $tempstrajettheorique, $bonus);
-            echo $bonusNav;
             break;
     }
 
     //Le voyage Warp [STEERING THE VESSEL]
     $navigationCheck = rand(1, 100);
-
+    echo "[".$navigationCheck."] !<br><br>";
     //Validation Bonus des cartes et autres
     $bonusNavSemiFinal = $bonusNav + $bonusNav2 + $bonusNav3 + $bonusNav4 + $bonusNav5;
     //Cartes
@@ -308,7 +306,28 @@ if (
                 echo "Le test de navigation est réussi avec ";
                 echo $navigationCheckResultFinal;
                 echo " degrés de réussites. <br><br>";
-                echo "Le voyage durera";
+                switch ($navigationCheckResultFinal) {
+                    case $navigationCheckResultFinal >= 3:
+                        echo "Le voyage durera ";
+                        echo floor($tempstrajettheorique / 4);
+                        echo "Jours grâce à la bonne guidance du navigateur.";
+                        break;
+                    case $navigationCheckResultFinal < 3:
+                        echo "Le voyage durera ";
+                        echo floor($tempstrajettheorique / 2);
+                        echo "Jours grâce à la bonne guidance du navigateur.";
+                        break;
+                    case $navigationCheckResultFinal < 2:
+                        echo "Le voyage durera ";
+                        echo floor($tempstrajettheorique * 0.75);
+                        echo "Jours grâce à la bonne guidance du navigateur.";
+                        break;
+                    case $navigationCheckResultFinal < 1:
+                        echo "Le voyage durera ";
+                        echo $tempstrajettheorique;
+                        echo "Jours grâce à la bonne guidance du navigateur.";
+                        break;
+                }
             } else {
                 $navigationCheckResultFailed = floor(($navigationCheckResult) / 10);
                 echo "Le test de navigation est échec avec ";
@@ -316,7 +335,15 @@ if (
                 echo " degrés d'échec. <br><br>";
             }
             break;
-
+        case ($_POST["navWarp"] == "navWarp+10"):
+            //Copier le truc d'en haut
+            break;
+        case ($_POST["navWarp"] == "navWarp+20"):
+            //Copier le truc d'en haut
+            break;
+        case ($_POST["navWarp"] == "navWarp+30"):
+            //Copier le truc d'en haut
+            break;
     }
 
 

@@ -60,7 +60,7 @@
           <div>
             <h4>Votre compétence de navigation Warp :</h4>
             <label for="navWarpT"></label>
-            <input name="navWarp" type="radio" value="nawWarpT" required />
+            <input name="navWarp" type="radio" value="navWarpT" required />
             Trained<br />
             <label for="navWarp+10"></label>
             <input name="navWarp" type="radio" value="navWarp+10" required />
