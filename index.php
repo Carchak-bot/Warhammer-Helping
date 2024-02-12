@@ -1,3 +1,15 @@
+<?php 
+  require "fonctions.php";
+  
+  $systems = selectDatabase('SELECT * FROM systeme');
+
+  foreach ($systems as $systems) {
+    ?>
+        <p><?php echo $systems['Nom']; ?></p>
+    <?php
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
   <head>
