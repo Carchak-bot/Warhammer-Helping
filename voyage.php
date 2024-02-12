@@ -296,7 +296,8 @@ if (
         }
     }
     //Test du Navigateur
-    echo navigation($_POST["navWarp"], $_POST["int"], $bonusNavFinal, $tempstrajettheorique, $tempstrajetabsolu );
+    $tempstrajetfinal = navigation($_POST["navWarp"], $_POST["int"], $bonusNavFinal, $tempstrajettheorique, $tempstrajetabsolu );
+    $tempstrajetabsolu = $tempstrajetfinal;
 
     //Fonction de rencontres Warp appellant les 3 paramètres externes
     echo rencontres($tempstrajetabsolu, $frequenceRencontre, $badOmens, $per, $_POST["psyniscience"]);

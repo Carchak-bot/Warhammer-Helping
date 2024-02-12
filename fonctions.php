@@ -126,6 +126,310 @@ function badOmens($moral, $leadership, $socCptn, $socSurnatCptn)
     }
 }
 
+function psyniscienceNavFailed($psyniscienceCheckFailed, $dureeEronner, $tempstrajettheorique)
+{
+    switch ($psyniscienceCheckFailed) {
+        case ($psyniscienceCheckFailed == 1):
+            $dureeEronner = ($tempstrajettheorique * 1);
+            echo "Le navigateur n'est pas sûr de la clareté de l'Astronomican pour cette route. Selon ses prédictions le voyage devrait prendre [";
+            echo $dureeEronner;
+            echo "] jours.";
+            break;
+        case ($psyniscienceCheckFailed == 2):
+            $dureeEronner = ($tempstrajettheorique / 2);
+            echo "Le navigateur n'est pas sûr de la clareté de l'Astronomican pour cette route. Selon ses prédictions le voyage devrait prendre [";
+            echo $dureeEronner;
+            echo "] jours.";
+            break;
+        case ($psyniscienceCheckFailed == 3):
+            $dureeEronner = ($tempstrajettheorique * 2);
+            echo "Le navigateur n'est pas sûr de la clareté de l'Astronomican pour cette route. Selon ses prédictions le voyage devrait prendre [";
+            echo $dureeEronner;
+            echo "] jours.";
+            break;
+        case ($psyniscienceCheckFailed == 4):
+            $dureeEronner = ($tempstrajettheorique * 3);
+            echo "Le navigateur croit que l'Astronomican est obscurcit pour cette route. Selon ses prédictions le voyage devrait prendre [";
+            echo $dureeEronner;
+            echo "] jours.";
+            break;
+        case ($psyniscienceCheckFailed == 5):
+            $dureeEronner = ($tempstrajettheorique * 3);
+            echo "Le navigateur croit que l'Astronomican est obscurcit pour cette route. Selon ses prédictions le voyage devrait prendre [";
+            echo $dureeEronner;
+            echo "] jours.";
+            break;
+    }
+}
+
+function psyniscienceNav($psyniscience, $per, $chartsFinished, $psyniscienceCheck1, $dureeEronner, $tempstrajettheorique)
+{
+    //Psyniscience pour les augures
+    switch ($psyniscienceCheck1) {
+        case ($psyniscience == "psyniscienceT"):
+            $psyniscienceCheck1result = (($per + $chartsFinished) - $psyniscienceCheck1);
+            if ($psyniscienceCheck1result >= 0) {
+                $psyniscienceCheck1resultfinal = (($psyniscienceCheck1result / 10) + (floor($_POST["perSurnat"] / 2)));
+                echo "Les augures sont bien interprêtés, le navigateur et sa suite peuvent avoir accès au résultat
+                du calcul de la durée du voyage Warp. <br>";
+                echo "Les augures sont interprêtés avec ";
+                echo $psyniscienceCheck1resultfinal;
+                echo " degrés de réussites. <br><br>";
+            } else {
+                $psyniscienceCheckFailed = rand(1, 5);
+                psyniscienceNavFailed($psyniscienceCheckFailed, $dureeEronner, $tempstrajettheorique);
+            }
+            break;
+        case ($psyniscience == "psyniscience+10"):
+            $psyniscienceCheck1result = (($per + 10 + $chartsFinished) - $psyniscienceCheck1);
+            if ($psyniscienceCheck1result >= 0) {
+                $psyniscienceCheck1resultfinal = (($psyniscienceCheck1result / 10) + (floor($_POST["perSurnat"] / 2)));
+                echo "Les augures sont bien interprêtés, le navigateur et sa suite peuvent avoir accès au résultat
+                du calcul de la durée du voyage Warp. <br>";
+                echo "Les augures sont interprêtés avec ";
+                echo $psyniscienceCheck1resultfinal;
+                echo " degrés de réussites. <br><br>";
+            } else {
+                $psyniscienceCheckFailed = rand(1, 5);
+                psyniscienceNavFailed($psyniscienceCheckFailed, $dureeEronner, $tempstrajettheorique);
+            }
+            break;
+        case ($psyniscience == "psyniscience+20"):
+            $psyniscienceCheck1result = (($per + 20 + $chartsFinished) - $psyniscienceCheck1);
+            if ($psyniscienceCheck1result >= 0) {
+                $psyniscienceCheck1resultfinal = (($psyniscienceCheck1result / 10) + (floor($_POST["perSurnat"] / 2)));
+                echo "Les augures sont bien interprêtés, le navigateur et sa suite peuvent avoir accès au résultat
+                du calcul de la durée du voyage Warp. <br>";
+                echo "Les augures sont interprêtés avec ";
+                echo $psyniscienceCheck1resultfinal;
+                echo " degrés de réussites. <br><br>";
+            } else {
+                $psyniscienceCheckFailed = rand(1, 5);
+                psyniscienceNavFailed($psyniscienceCheckFailed, $dureeEronner, $tempstrajettheorique);
+            }
+            break;
+        case ($psyniscience == "psyniscience+30"):
+            $psyniscienceCheck1result = (($per + 30 + $chartsFinished) - $psyniscienceCheck1);
+            if ($psyniscienceCheck1result >= 0) {
+                $psyniscienceCheck1resultfinal = (($psyniscienceCheck1result / 10) + (floor($_POST["perSurnat"] / 2)));
+                echo "Les augures sont bien interprêtés, le navigateur et sa suite peuvent avoir accès au résultat
+                du calcul de la durée du voyage Warp. <br>";
+                echo "Les augures sont interprêtés avec ";
+                echo $psyniscienceCheck1resultfinal;
+                echo " degrés de réussites. <br><br>";
+            } else {
+                $psyniscienceCheckFailed = rand(1, 5);
+                psyniscienceNavFailed($psyniscienceCheckFailed, $dureeEronner, $tempstrajettheorique);
+            }
+            break;
+    }
+}
+
+function psyniscienceAstro($psyniscience, $per, $psyniscienceCheck2, $psyniscienceCheck2Failed, $dureeEronner, $tempstrajettheorique, $bonus)
+{
+    //Psyniscience pour l'astronomican
+    switch ($psyniscienceCheck2) {
+        case ($psyniscience == "psyniscienceT"):
+            $psyniscienceCheck2result = (($per + $bonus) - $psyniscienceCheck2);
+            if ($psyniscienceCheck2result >= 0) {
+                $psyniscienceCheck2resultfinal = (($psyniscienceCheck2result / 10) + (floor($_POST["perSurnat"] / 2)));
+                echo "L'astronomican est trouvé avec ";
+                echo $psyniscienceCheck2resultfinal;
+                echo " degrés de réussites. <br><br>";
+                $bonusNav = 10;
+            } else {
+                $bonusNav = -20;
+                $psyniscienceCheck2Failed = floor(($psyniscienceCheck2result) / 10);
+                echo "L'astronomican n'est pas trouvé avec une totalité de ";
+                echo ($psyniscienceCheck2Failed / 10);
+                echo " degrés d'échec. <br><br>";
+            }
+            break;
+        case ($psyniscience == "psyniscience+10"):
+            $psyniscienceCheck2result = (($per + 10 + $bonus) - $psyniscienceCheck2);
+            if ($psyniscienceCheck2result >= 0) {
+                $psyniscienceCheck2resultfinal = (($psyniscienceCheck2result / 10) + (floor($_POST["perSurnat"] / 2)));
+                echo "L'astronomican est trouvé avec ";
+                echo $psyniscienceCheck2resultfinal;
+                echo " degrés de réussites. <br><br>";
+                $bonusNav = 10;
+            } else {
+                $bonusNav = -20;
+                $psyniscienceCheck2Failed = floor(($psyniscienceCheck2 - $psyniscienceCheck2result) / 10);
+                echo "L'astronomican n'est pas trouvé avec une totalité de ";
+                echo ($psyniscienceCheck2Failed / 10);
+                echo " degrés d'échec. <br><br>";
+            }
+            break;
+        case ($psyniscience == "psyniscience+20"):
+            $psyniscienceCheck2result = (($per + 20 + $bonus) - $psyniscienceCheck2);
+            if ($psyniscienceCheck2result >= 0) {
+                $psyniscienceCheck2resultfinal = (($psyniscienceCheck2result / 10) + (floor($_POST["perSurnat"] / 2)));
+                echo "L'astronomican est trouvé avec ";
+                echo $psyniscienceCheck2resultfinal;
+                echo " degrés de réussites. <br><br>";
+                $bonusNav = 10;
+            } else {
+                $bonusNav = -20;
+                $psyniscienceCheck2Failed = floor(($psyniscienceCheck2 - $psyniscienceCheck2result) / 10);
+                echo "L'astronomican n'est pas trouvé avec une totalité de ";
+                echo ($psyniscienceCheck2Failed / 10);
+                echo " degrés d'échec. <br><br>";
+            }
+            break;
+        case ($psyniscience == "psyniscience+30"):
+            $psyniscienceCheck2result = (($per + 30 + $bonus) - $psyniscienceCheck2);
+            if ($psyniscienceCheck2result >= 0) {
+                $psyniscienceCheck2resultfinal = (($psyniscienceCheck2result / 10) + (floor($_POST["perSurnat"] / 2)));
+                echo "L'astronomican est trouvé avec ";
+                echo $psyniscienceCheck2resultfinal;
+                echo " degrés de réussites. <br><br>";
+                $bonusNav = 10;
+            } else {
+                $bonusNav = -20;
+                $psyniscienceCheck2Failed = floor(($psyniscienceCheck2 - $psyniscienceCheck2result) / 10);
+                echo "L'astronomican n'est pas trouvé avec une totalité de ";
+                echo ($psyniscienceCheck2Failed / 10);
+                echo " degrés d'échec. <br><br>";
+            }
+            break;
+    }
+    return $bonusNav;
+}
+
+
+/************************************************************************************************************************************
+ ***************************************   Navigation Warp   ************************************************************************
+ ************************************************************************************************************************************/
+function resultatNavWarp($tempstrajettheorique, $tempstrajetabsolu, $navigationCheckResult)
+{
+    if ($navigationCheckResult >= 0) {
+        $navigationCheckResultFinal = (($navigationCheckResult / 10) + (floor($_POST["intSurnat"] / 2)));
+        echo "Le test de navigation est réussi avec ";
+        echo $navigationCheckResultFinal;
+        echo " degrés de réussites. <br><br>";
+        switch ($navigationCheckResultFinal) {
+            case $navigationCheckResultFinal >= 3:
+                echo "Le voyage durera ";
+                $tempstrajetabsolu = floor($tempstrajettheorique / 4);
+                echo $tempstrajetabsolu;
+                echo "Jours grâce à la bonne guidance du navigateur.";
+                return $tempstrajetabsolu;
+            case $navigationCheckResultFinal < 3:
+                echo "Le voyage durera ";
+                $tempstrajetabsolu = floor($tempstrajettheorique / 2);
+                echo $tempstrajetabsolu;
+                echo "Jours grâce à la bonne guidance du navigateur.";
+                return $tempstrajetabsolu;
+            case $navigationCheckResultFinal < 2:
+                echo "Le voyage durera ";
+                $tempstrajetabsolu = floor($tempstrajettheorique * 0.75);
+                echo $tempstrajetabsolu;
+                echo "Jours grâce à la bonne guidance du navigateur.";
+                return $tempstrajetabsolu;
+            case $navigationCheckResultFinal < 1:
+                echo "Le voyage durera ";
+                $tempstrajetabsolu = $tempstrajettheorique;
+                echo $tempstrajetabsolu;
+                echo "Jours grâce à la bonne guidance du navigateur.";
+                return $tempstrajetabsolu;
+        }
+    } else {
+        $navigationCheckResultFailed = floor(($navigationCheckResult) / 10);
+        echo "Le test de navigation est échec avec ";
+        echo ($navigationCheckResultFailed / 10);
+        echo " degrés d'échec. <br><br>";
+        switch ($navigationCheckResultFailed) {
+            case $navigationCheckResultFailed >= 2:
+                echo "Le voyage durera ";
+                $tempstrajetabsolu = floor($tempstrajettheorique * 4);
+                echo $tempstrajetabsolu;
+                echo "Jours à cause de la mauvaise guidance du navigateur.";
+                return $tempstrajetabsolu;
+            case $navigationCheckResultFailed < 2:
+                echo "Le voyage durera ";
+                $tempstrajetabsolu = floor($tempstrajettheorique * 3);
+                echo $tempstrajetabsolu;
+                echo "Jours à cause de la mauvaise guidance du navigateur.";
+                return $tempstrajetabsolu;
+            case $navigationCheckResultFailed < 1:
+                echo "Le voyage durera ";
+                $tempstrajetabsolu = floor($tempstrajettheorique * 2);
+                echo $tempstrajetabsolu;
+                echo "Jours à cause de la mauvaise guidance du navigateur.";
+                return $tempstrajetabsolu;
+        }
+    }
+}
+function navigation($nav, $int, $bonusNavFinal, $tempstrajettheorique, $tempstrajetabsolu)
+{
+    $navigationCheck = rand(1, 100);
+    echo "[".$navigationCheck."] !<br>";
+
+    switch ($navigationCheck) {
+        case ($nav == "navWarpT"):
+            $navigationCheckResult = (($int + $bonusNavFinal) - $navigationCheck);
+            $tempstrajetfinal = resultatNavWarp($tempstrajettheorique, $tempstrajetabsolu, $navigationCheckResult);
+            return $tempstrajetfinal;
+        case ($nav == "navWarp+10"):
+            $navigationCheckResult = (($int + $bonusNavFinal + 10) - $navigationCheck);
+            $tempstrajetfinal = resultatNavWarp($tempstrajettheorique, $tempstrajetabsolu, $navigationCheckResult);
+            return $tempstrajetfinal;
+        case ($nav == "navWarp+20"):
+            $navigationCheckResult = (($int + $bonusNavFinal + 20) - $navigationCheck);
+            $tempstrajetfinal = resultatNavWarp($tempstrajettheorique, $tempstrajetabsolu, $navigationCheckResult);
+            return $tempstrajetfinal;
+        case ($nav == "navWarp+30"):
+            $navigationCheckResult = (($int + $bonusNavFinal + 30) - $navigationCheck);
+            $tempstrajetfinal = resultatNavWarp($tempstrajettheorique, $tempstrajetabsolu, $navigationCheckResult);
+            return $tempstrajetfinal;
+    }
+}
+
+function reEntry($reEntry)
+{
+    if (($reEntry >= 1) && ($reEntry <= 25)) {
+        echo "Vous sortez du Warp avec un décallage de ";
+        $realSpaceDays = rand(1, 5);
+        echo " jours de voyage d'espace réel de votre destination.";
+    }
+    if (($reEntry >= 26) && ($reEntry <= 50)) {
+        echo "Vous sortez du Warp avec un décallage de ";
+        $realSpaceDays = rand(1, 10);
+        echo " jours de voyage d'espace réel de votre destination.";
+    }
+    if (($reEntry >= 51) && ($reEntry <= 75)) {
+        echo "Vous sortez du Warp au niveau de la localisation la plus proche avoisinant la destination.";
+    }
+    if (($reEntry >= 76) && ($reEntry <= 100)) {
+        echo "Vous sortez du Warp au niveau d'une localisation choisie au hasard avoisinant la destination dans la même région.";
+    }
+    if (($reEntry >= 101) && ($reEntry <= 120)) {
+        echo "Vous sortez du Warp au niveau d'une localisation choisie au hasard dans une région choisie au hasard 
+        avoisinant votre destination.";
+    }
+    if (($reEntry >= 121) && ($reEntry <= 140)) {
+        echo "Vous sortez du Warp au niveau d'une localisation choisie au hasard dans une région choisie au hasard 
+        dans le même secteur. ";
+        $realSpaceDays = rand(1, 5);
+        $beforeAfter = rand(0, 1);
+        if ($beforeAfter == 1) {
+            echo $realSpaceDays;
+            echo " ans après votre départ.";
+        }
+        if ($beforeAfter == 0) {
+            echo $realSpaceDays;
+            echo " ans avant votre départ.";
+        }
+    }
+    if ($reEntry >= 141) {
+        echo "Le vaisseau est perdu dans le Warp ! L'option la plus facile est pour le MJ de statuer que le vaisseau soit disparu
+        à tout jamais. Cependant s'il se sent capable de la tache, il peut dire qu'il réapparait dans un endroit complètement
+        différent de la galaxie, peut être quelques centaines voir milliers d'années dans le passé ou le futur- même si celà pourrait
+        dérailler sévèrement la campagne.";
+    }
+}
+
 //____________________________________________________________________________________________
 // Fonction Rencontres Warp :
 //____________________________________________________________________________________________
@@ -145,16 +449,16 @@ function detectionRencontre($psyniscience, $per, $psyniscienceCheck3)
 function trial($trial)
 {
     if (($trial >= 1) && ($trial <= 25)) {
-        # code...
+        return "pd";
     }
     if (($trial >= 26) && ($trial <= 50)) {
-        # code...
+        return "pd2";
     }
     if (($trial >= 51) && ($trial <= 75)) {
-        # code...
+        return "pd3";
     }
     if (($trial >= 76) && ($trial <= 100)) {
-        # code...
+        return "pd4";
     }
 }
 function rencontres($tempstrajetabsolu, $frequenceRencontre, $badOmens, $per, $psyniscience)
@@ -380,308 +684,4 @@ function breche()
     }
     $text .= "<br>";
     return $text;
-}
-
-function psyniscienceNavFailed($psyniscienceCheckFailed, $dureeEronner, $tempstrajettheorique)
-{
-    switch ($psyniscienceCheckFailed) {
-        case ($psyniscienceCheckFailed == 1):
-            $dureeEronner = ($tempstrajettheorique * 1);
-            echo "Le navigateur n'est pas sûr de la clareté de l'Astronomican pour cette route. Selon ses prédictions le voyage devrait prendre [";
-            echo $dureeEronner;
-            echo "] jours.";
-            break;
-        case ($psyniscienceCheckFailed == 2):
-            $dureeEronner = ($tempstrajettheorique / 2);
-            echo "Le navigateur n'est pas sûr de la clareté de l'Astronomican pour cette route. Selon ses prédictions le voyage devrait prendre [";
-            echo $dureeEronner;
-            echo "] jours.";
-            break;
-        case ($psyniscienceCheckFailed == 3):
-            $dureeEronner = ($tempstrajettheorique * 2);
-            echo "Le navigateur n'est pas sûr de la clareté de l'Astronomican pour cette route. Selon ses prédictions le voyage devrait prendre [";
-            echo $dureeEronner;
-            echo "] jours.";
-            break;
-        case ($psyniscienceCheckFailed == 4):
-            $dureeEronner = ($tempstrajettheorique * 3);
-            echo "Le navigateur croit que l'Astronomican est obscurcit pour cette route. Selon ses prédictions le voyage devrait prendre [";
-            echo $dureeEronner;
-            echo "] jours.";
-            break;
-        case ($psyniscienceCheckFailed == 5):
-            $dureeEronner = ($tempstrajettheorique * 3);
-            echo "Le navigateur croit que l'Astronomican est obscurcit pour cette route. Selon ses prédictions le voyage devrait prendre [";
-            echo $dureeEronner;
-            echo "] jours.";
-            break;
-    }
-}
-
-function psyniscienceNav($psyniscience, $per, $chartsFinished, $psyniscienceCheck1, $dureeEronner, $tempstrajettheorique)
-{
-    //Psyniscience pour les augures
-    switch ($psyniscienceCheck1) {
-        case ($psyniscience == "psyniscienceT"):
-            $psyniscienceCheck1result = (($per + $chartsFinished) - $psyniscienceCheck1);
-            if ($psyniscienceCheck1result >= 0) {
-                $psyniscienceCheck1resultfinal = (($psyniscienceCheck1result / 10) + (floor($_POST["perSurnat"] / 2)));
-                echo "Les augures sont bien interprêtés, le navigateur et sa suite peuvent avoir accès au résultat
-                du calcul de la durée du voyage Warp. <br>";
-                echo "Les augures sont interprêtés avec ";
-                echo $psyniscienceCheck1resultfinal;
-                echo " degrés de réussites. <br><br>";
-            } else {
-                $psyniscienceCheckFailed = rand(1, 5);
-                psyniscienceNavFailed($psyniscienceCheckFailed, $dureeEronner, $tempstrajettheorique);
-            }
-            break;
-        case ($psyniscience == "psyniscience+10"):
-            $psyniscienceCheck1result = (($per + 10 + $chartsFinished) - $psyniscienceCheck1);
-            if ($psyniscienceCheck1result >= 0) {
-                $psyniscienceCheck1resultfinal = (($psyniscienceCheck1result / 10) + (floor($_POST["perSurnat"] / 2)));
-                echo "Les augures sont bien interprêtés, le navigateur et sa suite peuvent avoir accès au résultat
-                du calcul de la durée du voyage Warp. <br>";
-                echo "Les augures sont interprêtés avec ";
-                echo $psyniscienceCheck1resultfinal;
-                echo " degrés de réussites. <br><br>";
-            } else {
-                $psyniscienceCheckFailed = rand(1, 5);
-                psyniscienceNavFailed($psyniscienceCheckFailed, $dureeEronner, $tempstrajettheorique);
-            }
-            break;
-        case ($psyniscience == "psyniscience+20"):
-            $psyniscienceCheck1result = (($per + 20 + $chartsFinished) - $psyniscienceCheck1);
-            if ($psyniscienceCheck1result >= 0) {
-                $psyniscienceCheck1resultfinal = (($psyniscienceCheck1result / 10) + (floor($_POST["perSurnat"] / 2)));
-                echo "Les augures sont bien interprêtés, le navigateur et sa suite peuvent avoir accès au résultat
-                du calcul de la durée du voyage Warp. <br>";
-                echo "Les augures sont interprêtés avec ";
-                echo $psyniscienceCheck1resultfinal;
-                echo " degrés de réussites. <br><br>";
-            } else {
-                $psyniscienceCheckFailed = rand(1, 5);
-                psyniscienceNavFailed($psyniscienceCheckFailed, $dureeEronner, $tempstrajettheorique);
-            }
-            break;
-        case ($psyniscience == "psyniscience+30"):
-            $psyniscienceCheck1result = (($per + 30 + $chartsFinished) - $psyniscienceCheck1);
-            if ($psyniscienceCheck1result >= 0) {
-                $psyniscienceCheck1resultfinal = (($psyniscienceCheck1result / 10) + (floor($_POST["perSurnat"] / 2)));
-                echo "Les augures sont bien interprêtés, le navigateur et sa suite peuvent avoir accès au résultat
-                du calcul de la durée du voyage Warp. <br>";
-                echo "Les augures sont interprêtés avec ";
-                echo $psyniscienceCheck1resultfinal;
-                echo " degrés de réussites. <br><br>";
-            } else {
-                $psyniscienceCheckFailed = rand(1, 5);
-                psyniscienceNavFailed($psyniscienceCheckFailed, $dureeEronner, $tempstrajettheorique);
-            }
-            break;
-    }
-}
-
-function psyniscienceAstro($psyniscience, $per, $psyniscienceCheck2, $psyniscienceCheck2Failed, $dureeEronner, $tempstrajettheorique, $bonus)
-{
-    //Psyniscience pour l'astronomican
-    switch ($psyniscienceCheck2) {
-        case ($psyniscience == "psyniscienceT"):
-            $psyniscienceCheck2result = (($per + $bonus) - $psyniscienceCheck2);
-            if ($psyniscienceCheck2result >= 0) {
-                $psyniscienceCheck2resultfinal = (($psyniscienceCheck2result / 10) + (floor($_POST["perSurnat"] / 2)));
-                echo "L'astronomican est trouvé avec ";
-                echo $psyniscienceCheck2resultfinal;
-                echo " degrés de réussites. <br><br>";
-                $bonusNav = 10;
-            } else {
-                $bonusNav = -20;
-                $psyniscienceCheck2Failed = floor(($psyniscienceCheck2result) / 10);
-                echo "L'astronomican n'est pas trouvé avec une totalité de ";
-                echo ($psyniscienceCheck2Failed / 10);
-                echo " degrés d'échec. <br><br>";
-            }
-            break;
-        case ($psyniscience == "psyniscience+10"):
-            $psyniscienceCheck2result = (($per + 10 + $bonus) - $psyniscienceCheck2);
-            if ($psyniscienceCheck2result >= 0) {
-                $psyniscienceCheck2resultfinal = (($psyniscienceCheck2result / 10) + (floor($_POST["perSurnat"] / 2)));
-                echo "L'astronomican est trouvé avec ";
-                echo $psyniscienceCheck2resultfinal;
-                echo " degrés de réussites. <br><br>";
-                $bonusNav = 10;
-            } else {
-                $bonusNav = -20;
-                $psyniscienceCheck2Failed = floor(($psyniscienceCheck2 - $psyniscienceCheck2result) / 10);
-                echo "L'astronomican n'est pas trouvé avec une totalité de ";
-                echo ($psyniscienceCheck2Failed / 10);
-                echo " degrés d'échec. <br><br>";
-            }
-            break;
-        case ($psyniscience == "psyniscience+20"):
-            $psyniscienceCheck2result = (($per + 20 + $bonus) - $psyniscienceCheck2);
-            if ($psyniscienceCheck2result >= 0) {
-                $psyniscienceCheck2resultfinal = (($psyniscienceCheck2result / 10) + (floor($_POST["perSurnat"] / 2)));
-                echo "L'astronomican est trouvé avec ";
-                echo $psyniscienceCheck2resultfinal;
-                echo " degrés de réussites. <br><br>";
-                $bonusNav = 10;
-            } else {
-                $bonusNav = -20;
-                $psyniscienceCheck2Failed = floor(($psyniscienceCheck2 - $psyniscienceCheck2result) / 10);
-                echo "L'astronomican n'est pas trouvé avec une totalité de ";
-                echo ($psyniscienceCheck2Failed / 10);
-                echo " degrés d'échec. <br><br>";
-            }
-            break;
-        case ($psyniscience == "psyniscience+30"):
-            $psyniscienceCheck2result = (($per + 30 + $bonus) - $psyniscienceCheck2);
-            if ($psyniscienceCheck2result >= 0) {
-                $psyniscienceCheck2resultfinal = (($psyniscienceCheck2result / 10) + (floor($_POST["perSurnat"] / 2)));
-                echo "L'astronomican est trouvé avec ";
-                echo $psyniscienceCheck2resultfinal;
-                echo " degrés de réussites. <br><br>";
-                $bonusNav = 10;
-            } else {
-                $bonusNav = -20;
-                $psyniscienceCheck2Failed = floor(($psyniscienceCheck2 - $psyniscienceCheck2result) / 10);
-                echo "L'astronomican n'est pas trouvé avec une totalité de ";
-                echo ($psyniscienceCheck2Failed / 10);
-                echo " degrés d'échec. <br><br>";
-            }
-            break;
-    }
-    return $bonusNav;
-}
-
-
-/************************************************************************************************************************************
- ***************************************   Navigation Warp   ************************************************************************
- ************************************************************************************************************************************/
-function resultatNavWarp($tempstrajettheorique, $tempstrajetabsolu, $navigationCheckResult)
-{
-    if ($navigationCheckResult >= 0) {
-        $navigationCheckResultFinal = (($navigationCheckResult / 10) + (floor($_POST["intSurnat"] / 2)));
-        echo "Le test de navigation est réussi avec ";
-        echo $navigationCheckResultFinal;
-        echo " degrés de réussites. <br><br>";
-        switch ($navigationCheckResultFinal) {
-            case $navigationCheckResultFinal >= 3:
-                echo "Le voyage durera ";
-                $tempstrajetabsolu = floor($tempstrajettheorique / 4);
-                echo $tempstrajetabsolu;
-                echo "Jours grâce à la bonne guidance du navigateur.";
-                break;
-            case $navigationCheckResultFinal < 3:
-                echo "Le voyage durera ";
-                $tempstrajetabsolu = floor($tempstrajettheorique / 2);
-                echo $tempstrajetabsolu;
-                echo "Jours grâce à la bonne guidance du navigateur.";
-                break;
-            case $navigationCheckResultFinal < 2:
-                echo "Le voyage durera ";
-                $tempstrajetabsolu = floor($tempstrajettheorique * 0.75);
-                echo $tempstrajetabsolu;
-                echo "Jours grâce à la bonne guidance du navigateur.";
-                break;
-            case $navigationCheckResultFinal < 1:
-                echo "Le voyage durera ";
-                $tempstrajetabsolu = $tempstrajettheorique;
-                echo $tempstrajetabsolu;
-                echo "Jours grâce à la bonne guidance du navigateur.";
-                break;
-        }
-    } else {
-        $navigationCheckResultFailed = floor(($navigationCheckResult) / 10);
-        echo "Le test de navigation est échec avec ";
-        echo ($navigationCheckResultFailed / 10);
-        echo " degrés d'échec. <br><br>";
-        switch ($navigationCheckResultFailed) {
-            case $navigationCheckResultFailed >= 2:
-                echo "Le voyage durera ";
-                $tempstrajetabsolu = floor($tempstrajettheorique * 4);
-                echo $tempstrajetabsolu;
-                echo "Jours à cause de la mauvaise guidance du navigateur.";
-                break;
-            case $navigationCheckResultFailed < 2:
-                echo "Le voyage durera ";
-                $tempstrajetabsolu = floor($tempstrajettheorique * 3);
-                echo $tempstrajetabsolu;
-                echo "Jours à cause de la mauvaise guidance du navigateur.";
-                break;
-            case $navigationCheckResultFailed < 1:
-                echo "Le voyage durera ";
-                $tempstrajetabsolu = floor($tempstrajettheorique * 2);
-                echo $tempstrajetabsolu;
-                echo "Jours à cause de la mauvaise guidance du navigateur.";
-                break;
-        }
-    }
-}
-function navigation($nav, $int, $bonusNavFinal, $tempstrajettheorique, $tempstrajetabsolu)
-{
-    $navigationCheck = rand(1, 100);
-    echo "[".$navigationCheck."] !<br><br>";
-
-    switch ($navigationCheck) {
-        case ($nav == "navWarpT"):
-            $navigationCheckResult = (($int + $bonusNavFinal) - $navigationCheck);
-            echo resultatNavWarp($tempstrajettheorique, $tempstrajetabsolu, $navigationCheckResult);
-            break;
-        case ($nav == "navWarp+10"):
-            $navigationCheckResult = (($int + $bonusNavFinal + 10) - $navigationCheck);
-            echo resultatNavWarp($tempstrajettheorique, $tempstrajetabsolu, $navigationCheckResult);
-            break;
-        case ($nav == "navWarp+20"):
-            $navigationCheckResult = (($int + $bonusNavFinal + 20) - $navigationCheck);
-            echo resultatNavWarp($tempstrajettheorique, $tempstrajetabsolu, $navigationCheckResult);
-            break;
-        case ($nav == "navWarp+30"):
-            $navigationCheckResult = (($int + $bonusNavFinal + 30) - $navigationCheck);
-            echo resultatNavWarp($tempstrajettheorique, $tempstrajetabsolu, $navigationCheckResult);
-            break;
-    }
-}
-
-function reEntry($reEntry)
-{
-    if (($reEntry >= 1) && ($reEntry <= 25)) {
-        echo "Vous sortez du Warp avec un décallage de ";
-        $realSpaceDays = rand(1, 5);
-        echo " jours de voyage d'espace réel de votre destination.";
-    }
-    if (($reEntry >= 26) && ($reEntry <= 50)) {
-        echo "Vous sortez du Warp avec un décallage de ";
-        $realSpaceDays = rand(1, 10);
-        echo " jours de voyage d'espace réel de votre destination.";
-    }
-    if (($reEntry >= 51) && ($reEntry <= 75)) {
-        echo "Vous sortez du Warp au niveau de la localisation la plus proche avoisinant la destination.";
-    }
-    if (($reEntry >= 76) && ($reEntry <= 100)) {
-        echo "Vous sortez du Warp au niveau d'une localisation choisie au hasard avoisinant la destination dans la même région.";
-    }
-    if (($reEntry >= 101) && ($reEntry <= 120)) {
-        echo "Vous sortez du Warp au niveau d'une localisation choisie au hasard dans une région choisie au hasard 
-        avoisinant votre destination.";
-    }
-    if (($reEntry >= 121) && ($reEntry <= 140)) {
-        echo "Vous sortez du Warp au niveau d'une localisation choisie au hasard dans une région choisie au hasard 
-        dans le même secteur. ";
-        $realSpaceDays = rand(1, 5);
-        $beforeAfter = rand(0, 1);
-        if ($beforeAfter == 1) {
-            echo $realSpaceDays;
-            echo " ans après votre départ.";
-        }
-        if ($beforeAfter == 0) {
-            echo $realSpaceDays;
-            echo " ans avant votre départ.";
-        }
-    }
-    if ($reEntry >= 141) {
-        echo "Le vaisseau est perdu dans le Warp ! L'option la plus facile est pour le MJ de statuer que le vaisseau soit disparu
-        à tout jamais. Cependant s'il se sent capable de la tache, il peut dire qu'il réapparait dans un endroit complètement
-        différent de la galaxie, peut être quelques centaines voir milliers d'années dans le passé ou le futur- même si celà pourrait
-        dérailler sévèrement la campagne.";
-    }
 }
