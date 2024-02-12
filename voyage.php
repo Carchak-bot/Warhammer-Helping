@@ -278,8 +278,7 @@ if (
     }
 
     //Le voyage Warp [STEERING THE VESSEL]
-    $navigationCheck = rand(1, 100);
-    echo "[".$navigationCheck."] !<br><br>";
+
     //Validation Bonus des cartes et autres
     $bonusNavSemiFinal = $bonusNav + $bonusNav2 + $bonusNav3 + $bonusNav4 + $bonusNav5;
     //Cartes
@@ -296,56 +295,16 @@ if (
             $bonusNavFinal = $bonusNavSemiFinal + 20;
         }
     }
+    //Test du Navigateur
+    echo navigation($_POST["navWarp"], $_POST["int"], $bonusNavFinal, $tempstrajettheorique, $tempstrajetabsolu );
 
-    switch ($navigationCheck) {
-        case ($_POST["navWarp"] == "navWarpT"):
-            $navigationCheckResult = (($_POST["int"] + $bonusNavFinal) - $navigationCheck);
+    //Fonction de rencontres Warp appellant les 3 paramètres externes
+    echo rencontres($tempstrajetabsolu, $frequenceRencontre, $badOmens);
 
-            if ($navigationCheckResult >= 0) {
-                $navigationCheckResultFinal = (($navigationCheckResult / 10) + (floor($_POST["intSurnat"] / 2)));
-                echo "Le test de navigation est réussi avec ";
-                echo $navigationCheckResultFinal;
-                echo " degrés de réussites. <br><br>";
-                switch ($navigationCheckResultFinal) {
-                    case $navigationCheckResultFinal >= 3:
-                        echo "Le voyage durera ";
-                        echo floor($tempstrajettheorique / 4);
-                        echo "Jours grâce à la bonne guidance du navigateur.";
-                        break;
-                    case $navigationCheckResultFinal < 3:
-                        echo "Le voyage durera ";
-                        echo floor($tempstrajettheorique / 2);
-                        echo "Jours grâce à la bonne guidance du navigateur.";
-                        break;
-                    case $navigationCheckResultFinal < 2:
-                        echo "Le voyage durera ";
-                        echo floor($tempstrajettheorique * 0.75);
-                        echo "Jours grâce à la bonne guidance du navigateur.";
-                        break;
-                    case $navigationCheckResultFinal < 1:
-                        echo "Le voyage durera ";
-                        echo $tempstrajettheorique;
-                        echo "Jours grâce à la bonne guidance du navigateur.";
-                        break;
-                }
-            } else {
-                $navigationCheckResultFailed = floor(($navigationCheckResult) / 10);
-                echo "Le test de navigation est échec avec ";
-                echo ($navigationCheckResultFailed / 10);
-                echo " degrés d'échec. <br><br>";
-            }
-            break;
-        case ($_POST["navWarp"] == "navWarp+10"):
-            //Copier le truc d'en haut
-            break;
-        case ($_POST["navWarp"] == "navWarp+20"):
-            //Copier le truc d'en haut
-            break;
-        case ($_POST["navWarp"] == "navWarp+30"):
-            //Copier le truc d'en haut
-            break;
-    }
+    //Resortir du Warp
 
+    
+    echo reEntry($reEntry);
 
 } else {
     /**********************************************************************************************************************
@@ -387,44 +346,5 @@ if (
     } else {
         $reEntry = rand(1, 100) + 75;
     }
-    if (($reEntry >= 1) && ($reEntry <= 25)) {
-        echo "Vous sortez du Warp avec un décallage de ";
-        $realSpaceDays = rand(1, 5);
-        echo " jours de voyage d'espace réel de votre destination.";
-    }
-    if (($reEntry >= 26) && ($reEntry <= 50)) {
-        echo "Vous sortez du Warp avec un décallage de ";
-        $realSpaceDays = rand(1, 10);
-        echo " jours de voyage d'espace réel de votre destination.";
-    }
-    if (($reEntry >= 51) && ($reEntry <= 75)) {
-        echo "Vous sortez du Warp au niveau de la localisation la plus proche avoisinant la destination.";
-    }
-    if (($reEntry >= 76) && ($reEntry <= 100)) {
-        echo "Vous sortez du Warp au niveau d'une localisation choisie au hasard avoisinant la destination dans la même région.";
-    }
-    if (($reEntry >= 101) && ($reEntry <= 120)) {
-        echo "Vous sortez du Warp au niveau d'une localisation choisie au hasard dans une région choisie au hasard 
-        avoisinant votre destination.";
-    }
-    if (($reEntry >= 121) && ($reEntry <= 140)) {
-        echo "Vous sortez du Warp au niveau d'une localisation choisie au hasard dans une région choisie au hasard 
-        dans le même secteur. ";
-        $realSpaceDays = rand(1, 5);
-        $beforeAfter = rand(0, 1);
-        if ($beforeAfter == 1) {
-            echo $realSpaceDays;
-            echo " ans après votre départ.";
-        }
-        if ($beforeAfter == 0) {
-            echo $realSpaceDays;
-            echo " ans avant votre départ.";
-        }
-    }
-    if ($reEntry >= 141) {
-        echo "Le vaisseau est perdu dans le Warp ! L'option la plus facile est pour le MJ de statuer que le vaisseau soit disparu
-        à tout jamais. Cependant s'il se sent capable de la tache, il peut dire qu'il réapparait dans un endroit complètement
-        différent de la galaxie, peut être quelques centaines voir milliers d'années dans le passé ou le futur- même si celà pourrait
-        dérailler sévèrement la campagne.";
-    }
+    echo reEntry($reEntry);
 }

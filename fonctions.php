@@ -159,6 +159,13 @@ function rencontres($tempstrajetabsolu, $frequenceRencontre, $badOmens)
             echo "Mirage de désillusion. Chaque explorateur et PNJ importants à bord doivent faire un test de Force Mentale (+0) et le réussir.
              Sinon ils seront affectés par une hallucination warp choisie au hasard. Si le champs de Geller est opérationnel chaques personnages
              reçoivent un bonus de (+30) au test de Force Mentale. S'il ne l'est pas le test subit un malus de (-30) à la place. <br>";
+             if (
+                (isset($_POST["navigator"])) &&
+                ($_POST["navigator"] == true)
+            ) {
+                //éviter la rencontre grâce au navigateur
+
+            }
         }
         if (($rencontresTirage >= 31) && ($rencontresTirage <= 40)) {
             echo "Prédateurs psychiques ! <br> Si cet effet se manifeste à bord d'un vaisseau, rouler une fois les dés sur la 
@@ -507,4 +514,137 @@ function psyniscienceAstro($psyniscience, $per, $psyniscienceCheck2, $psyniscien
             break;
     }
     return $bonusNav;
+}
+
+
+/************************************************************************************************************************************
+ ***************************************   Navigation Warp   ************************************************************************
+ ************************************************************************************************************************************/
+function resultatNavWarp($tempstrajettheorique, $tempstrajetabsolu, $navigationCheckResult)
+{
+    if ($navigationCheckResult >= 0) {
+        $navigationCheckResultFinal = (($navigationCheckResult / 10) + (floor($_POST["intSurnat"] / 2)));
+        echo "Le test de navigation est réussi avec ";
+        echo $navigationCheckResultFinal;
+        echo " degrés de réussites. <br><br>";
+        switch ($navigationCheckResultFinal) {
+            case $navigationCheckResultFinal >= 3:
+                echo "Le voyage durera ";
+                $tempstrajetabsolu = floor($tempstrajettheorique / 4);
+                echo $tempstrajetabsolu;
+                echo "Jours grâce à la bonne guidance du navigateur.";
+                break;
+            case $navigationCheckResultFinal < 3:
+                echo "Le voyage durera ";
+                $tempstrajetabsolu = floor($tempstrajettheorique / 2);
+                echo $tempstrajetabsolu;
+                echo "Jours grâce à la bonne guidance du navigateur.";
+                break;
+            case $navigationCheckResultFinal < 2:
+                echo "Le voyage durera ";
+                $tempstrajetabsolu = floor($tempstrajettheorique * 0.75);
+                echo $tempstrajetabsolu;
+                echo "Jours grâce à la bonne guidance du navigateur.";
+                break;
+            case $navigationCheckResultFinal < 1:
+                echo "Le voyage durera ";
+                $tempstrajetabsolu = $tempstrajettheorique;
+                echo $tempstrajetabsolu;
+                echo "Jours grâce à la bonne guidance du navigateur.";
+                break;
+        }
+    } else {
+        $navigationCheckResultFailed = floor(($navigationCheckResult) / 10);
+        echo "Le test de navigation est échec avec ";
+        echo ($navigationCheckResultFailed / 10);
+        echo " degrés d'échec. <br><br>";
+        switch ($navigationCheckResultFailed) {
+            case $navigationCheckResultFailed >= 2:
+                echo "Le voyage durera ";
+                $tempstrajetabsolu = floor($tempstrajettheorique * 4);
+                echo $tempstrajetabsolu;
+                echo "Jours à cause de la mauvaise guidance du navigateur.";
+                break;
+            case $navigationCheckResultFailed < 2:
+                echo "Le voyage durera ";
+                $tempstrajetabsolu = floor($tempstrajettheorique * 3);
+                echo $tempstrajetabsolu;
+                echo "Jours à cause de la mauvaise guidance du navigateur.";
+                break;
+            case $navigationCheckResultFailed < 1:
+                echo "Le voyage durera ";
+                $tempstrajetabsolu = floor($tempstrajettheorique * 2);
+                echo $tempstrajetabsolu;
+                echo "Jours à cause de la mauvaise guidance du navigateur.";
+                break;
+        }
+    }
+}
+function navigation($nav, $int, $bonusNavFinal, $tempstrajettheorique, $tempstrajetabsolu)
+{
+    $navigationCheck = rand(1, 100);
+    echo "[".$navigationCheck."] !<br><br>";
+
+    switch ($navigationCheck) {
+        case ($nav == "navWarpT"):
+            $navigationCheckResult = (($int + $bonusNavFinal) - $navigationCheck);
+            echo resultatNavWarp($tempstrajettheorique, $tempstrajetabsolu, $navigationCheckResult);
+            break;
+        case ($nav == "navWarp+10"):
+            $navigationCheckResult = (($int + $bonusNavFinal + 10) - $navigationCheck);
+            echo resultatNavWarp($tempstrajettheorique, $tempstrajetabsolu, $navigationCheckResult);
+            break;
+        case ($nav == "navWarp+20"):
+            $navigationCheckResult = (($int + $bonusNavFinal + 20) - $navigationCheck);
+            echo resultatNavWarp($tempstrajettheorique, $tempstrajetabsolu, $navigationCheckResult);
+            break;
+        case ($nav == "navWarp+30"):
+            $navigationCheckResult = (($int + $bonusNavFinal + 30) - $navigationCheck);
+            echo resultatNavWarp($tempstrajettheorique, $tempstrajetabsolu, $navigationCheckResult);
+            break;
+    }
+}
+
+function reEntry($reEntry)
+{
+    if (($reEntry >= 1) && ($reEntry <= 25)) {
+        echo "Vous sortez du Warp avec un décallage de ";
+        $realSpaceDays = rand(1, 5);
+        echo " jours de voyage d'espace réel de votre destination.";
+    }
+    if (($reEntry >= 26) && ($reEntry <= 50)) {
+        echo "Vous sortez du Warp avec un décallage de ";
+        $realSpaceDays = rand(1, 10);
+        echo " jours de voyage d'espace réel de votre destination.";
+    }
+    if (($reEntry >= 51) && ($reEntry <= 75)) {
+        echo "Vous sortez du Warp au niveau de la localisation la plus proche avoisinant la destination.";
+    }
+    if (($reEntry >= 76) && ($reEntry <= 100)) {
+        echo "Vous sortez du Warp au niveau d'une localisation choisie au hasard avoisinant la destination dans la même région.";
+    }
+    if (($reEntry >= 101) && ($reEntry <= 120)) {
+        echo "Vous sortez du Warp au niveau d'une localisation choisie au hasard dans une région choisie au hasard 
+        avoisinant votre destination.";
+    }
+    if (($reEntry >= 121) && ($reEntry <= 140)) {
+        echo "Vous sortez du Warp au niveau d'une localisation choisie au hasard dans une région choisie au hasard 
+        dans le même secteur. ";
+        $realSpaceDays = rand(1, 5);
+        $beforeAfter = rand(0, 1);
+        if ($beforeAfter == 1) {
+            echo $realSpaceDays;
+            echo " ans après votre départ.";
+        }
+        if ($beforeAfter == 0) {
+            echo $realSpaceDays;
+            echo " ans avant votre départ.";
+        }
+    }
+    if ($reEntry >= 141) {
+        echo "Le vaisseau est perdu dans le Warp ! L'option la plus facile est pour le MJ de statuer que le vaisseau soit disparu
+        à tout jamais. Cependant s'il se sent capable de la tache, il peut dire qu'il réapparait dans un endroit complètement
+        différent de la galaxie, peut être quelques centaines voir milliers d'années dans le passé ou le futur- même si celà pourrait
+        dérailler sévèrement la campagne.";
+    }
 }
