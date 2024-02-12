@@ -129,8 +129,35 @@ function badOmens($moral, $leadership, $socCptn, $socSurnatCptn)
 //____________________________________________________________________________________________
 // Fonction Rencontres Warp :
 //____________________________________________________________________________________________
-
-function rencontres($tempstrajetabsolu, $frequenceRencontre, $badOmens)
+function detectionRencontre($psyniscience, $per, $psyniscienceCheck3)
+{
+    switch ($psyniscienceCheck3) {
+        case $psyniscience == 'psyniscienceT':
+            return ($per + 10) - $psyniscienceCheck3;
+        case $psyniscience == 'psyniscience+10':
+            return ($per + 10 + 10) - $psyniscienceCheck3;
+        case $psyniscience == 'psyniscience+20':
+            return ($per + 20 + 10) - $psyniscienceCheck3;
+        case $psyniscience == 'psyniscience+30':
+            return ($per + 30 + 10) - $psyniscienceCheck3;    
+    }
+}
+function trial($trial)
+{
+    if (($trial >= 1) && ($trial <= 25)) {
+        # code...
+    }
+    if (($trial >= 26) && ($trial <= 50)) {
+        # code...
+    }
+    if (($trial >= 51) && ($trial <= 75)) {
+        # code...
+    }
+    if (($trial >= 76) && ($trial <= 100)) {
+        # code...
+    }
+}
+function rencontres($tempstrajetabsolu, $frequenceRencontre, $badOmens, $per, $psyniscience)
 {
     $rencontresNombre = floor($tempstrajetabsolu / $frequenceRencontre);
     echo "Il y aura ";
@@ -139,9 +166,6 @@ function rencontres($tempstrajetabsolu, $frequenceRencontre, $badOmens)
 
     for ($i = 1; $i <= $rencontresNombre; $i++) {
         $rencontresTirage = rand(1, 100);
-        echo "[";
-        echo $rencontresTirage;
-        echo "] ";
         if ($badOmens == 1) {
             if (
                 ($rencontresTirage == 9) | ($rencontresTirage == 19) | ($rencontresTirage == 29) | ($rencontresTirage == 39) |
@@ -156,15 +180,28 @@ function rencontres($tempstrajetabsolu, $frequenceRencontre, $badOmens)
              personnages souffrant d'halucinations warp peut essayer de s'en débarasser à nouveau. <br>";
         }
         if (($rencontresTirage >= 21) && ($rencontresTirage <= 30)) {
-            echo "Mirage de désillusion. Chaque explorateur et PNJ importants à bord doivent faire un test de Force Mentale (+0) et le réussir.
-             Sinon ils seront affectés par une hallucination warp choisie au hasard. Si le champs de Geller est opérationnel chaques personnages
-             reçoivent un bonus de (+30) au test de Force Mentale. S'il ne l'est pas le test subit un malus de (-30) à la place. <br>";
-             if (
+            if (
                 (isset($_POST["navigator"])) &&
                 ($_POST["navigator"] == true)
             ) {
                 //éviter la rencontre grâce au navigateur
-
+                //Psyniscience pour détecter
+                $psyniscienceCheck3 = rand(1, 100);
+                $psyniscienceCheck3result = detectionRencontre($psyniscience, $per, $psyniscienceCheck3);
+                if ($psyniscienceCheck3result >= 0) {
+                    $trial = rand(1, 100);
+                    $trialFailed = trial($trial);
+                } else {
+                    $trialFailed = 1;
+                }
+                if ($trialFailed == 0) {
+                    echo "Un Mirage de désillusion a été évité avec succès.";
+                } else {
+                    echo "[".$rencontresTirage."] Mirage de désillusion. Chaque explorateur et PNJ importants à bord doivent faire un test de Force Mentale (+0) et le réussir.
+                 Sinon ils seront affectés par une hallucination warp choisie au hasard. Si le champs de Geller est opérationnel chaques personnages
+                 reçoivent un bonus de (+30) au test de Force Mentale. S'il ne l'est pas le test subit un malus de (-30) à la place. <br>";
+                }
+                
             }
         }
         if (($rencontresTirage >= 31) && ($rencontresTirage <= 40)) {
