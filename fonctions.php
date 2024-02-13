@@ -1,6 +1,7 @@
 <?php
 //____________________________________________________________________________________________
-//             Connexion Bdd
+//             Connexion Bdd.
+//             Appeler cette fonction pour effectuer la connexion avec la base de donnée.
 //____________________________________________________________________________________________
 function getDatabase() {
     try {
@@ -14,7 +15,8 @@ function getDatabase() {
 }
 
 //____________________________________________________________________________________________
-//Envois une requête type "Select" à la base de donnée et retourne le résultat dans un tableau.
+//          Récupération de données dans la Bdd.
+//          Envois une requête type "Select" à la base de donnée et retourne le résultat dans un tableau.
 //____________________________________________________________________________________________
 function selectDatabase($request){
     $PDOinstance = getDatabase();
@@ -24,6 +26,16 @@ function selectDatabase($request){
 
     $PDOinstance = Null;
     return $tab;
+}
+
+//____________________________________________________________________________________________
+//          Manipule la Bdd.
+//          Fonction permettant les manipulations directes sur la base de donnée, comme l'ajout ou la suppression de données.
+//____________________________________________________________________________________________
+function manipDb($request){
+    $PDOinstance = getDatabase();
+    $PDOinstance->exec($request);
+    $PDOinstance = Null;
 }
 
 //____________________________________________________________________________________________
