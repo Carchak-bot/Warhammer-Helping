@@ -10,22 +10,22 @@ ob_start();
         <div>
             <h4>Votre valeur de Force :</h4>
             <input type="text" name="s" placeholder="Force" />
-            <input type="text" name="sSurnat" placeholder="Force surnaturelle" /><br />
+            <input type="text" name="sSurnat" placeholder="Force surnaturelle" value="0"/><br />
             <h4>Votre valeur d'Endurance :</h4>
             <input type="text" name="t" placeholder="Endurance" />
-            <input type="text" name="tSurnat" placeholder="Endurance surnaturelle" /><br />
+            <input type="text" name="tSurnat" placeholder="Endurance surnaturelle" value="0"/><br />
             <h4>Votre valeur d'Intelligence :</h4>
             <input type="text" name="int" placeholder="Intelligence" />
-            <input type="text" name="intSurnat" placeholder="Intelligence surnaturelle" /><br />
+            <input type="text" name="intSurnat" placeholder="Intelligence surnaturelle" value="0"/><br />
             <h4>Votre valeur de Perception :</h4>
             <input type="text" name="per" placeholder="Perception" />
-            <input type="text" name="perSurnat" placeholder="Perception surnaturelle" /><br />
+            <input type="text" name="perSurnat" placeholder="Perception surnaturelle" value="0"/><br />
             <h4>Votre valeur de Force mentale :</h4>
             <input type="text" name="wp" placeholder="Force-mentale" />
-            <input type="text" name="wpSurnat" placeholder="Force-mentale surnaturelle" /><br />
+            <input type="text" name="wpSurnat" placeholder="Force-mentale surnaturelle" value="0"/><br />
             <h4>Votre valeur de Sociabilité :</h4>
             <input type="text" name="soc" placeholder="Sociabilité" />
-            <input type="text" name="socSurnat" placeholder="Sociabilité surnaturelle" /><br />
+            <input type="text" name="socSurnat" placeholder="Sociabilité surnaturelle" value="0"/><br />
         </div>
         <div>
             <h4>Votre compétence de navigation Warp :</h4>
@@ -98,13 +98,13 @@ ob_start();
         </div>
         <div>
             <h4>Valeur de Moral actuel du Vaisseau</h4>
-            <input type="text" name="moral" placeholder="Moral actuel" />
+            <input type="text" name="moral" placeholder="Moral actuel" value="100"/>
             <h4>Valeur de caractéristique de l'équipage</h4>
             <input type="text" name="crewRating" placeholder="Niveau moyen de l'équipage" />
-            <input type="text" name="nombrePNJImportant" placeholder="Nombre de PNJ nommés et importants" /><br />
+            <input type="text" name="nombrePNJImportant" placeholder="Nombre de PNJ nommés et importants" value="0"/><br />
             <h4>Valeur de Sociabilité du Capitaine/Missionnaire:</h4>
             <input type="text" name="socCptn" placeholder="Sociabilité" />
-            <input type="text" name="socSurnatCptn" placeholder="Sociabilité surnaturelle" /><br />
+            <input type="text" name="socSurnatCptn" placeholder="Sociabilité surnaturelle" value="0"/><br />
             <h4>Sa compétence (Command / Charm):</h4>
             <label for="leadershipT"></label>
             <input name="leadership" type="radio" value="leadershipT" required />
