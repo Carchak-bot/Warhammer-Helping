@@ -1,5 +1,5 @@
 <?php
-require './../Modele/modele.php';
+require './../Warhammer-Helping/Modele/modele.php';
 
 function acceuil()
 {

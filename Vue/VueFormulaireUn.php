@@ -6,7 +6,7 @@ ob_start();
     <h1>Générateur de Voyage Warp pour la gamme FFG</h1>
 </header>
 <article>
-    <form class="wrapper" action="./../voyage.php" method="POST">
+    <form class="wrapper" action="./../Warhammer-Helping/voyage.php" method="POST">
         <div>
             <h4>Votre valeur de Force :</h4>
             <input type="text" name="s" placeholder="Force" />
