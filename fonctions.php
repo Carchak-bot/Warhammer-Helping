@@ -509,11 +509,15 @@ function rencontres($tempstrajetabsolu, $frequenceRencontre, $badOmens, $per, $p
             }
         }
         if (($rencontresTirage >= 31) && ($rencontresTirage <= 40)) {
-            echo "Prédateurs psychiques ! <br> Si cet effet se manifeste à bord d'un vaisseau, rouler une fois les dés sur la 
+            if ($trialFailed == 0) {
+                echo "Des Prédateurs psychiques ont été évités.";
+            } else {
+                echo "Prédateurs psychiques ! <br> Si cet effet se manifeste à bord d'un vaisseau, rouler une fois les dés sur la 
             <b>table 2-8 Incursions Warp</b> (voir page 33) et appliquez le résultat. Réduisez le résultat du lancé de dé par -30 si 
             le champs de Geller est complètement fonctionnel (jusqu'à un minimum de 01). Ajoutez +30 au résultat du jet si le champs 
             de Geller est éteins. <br>";
-            echo incursion($_POST["gellarFieldOffline"], $_POST["gellarFieldDamaged"]);
+                echo incursion($_POST["gellarFieldOffline"], $_POST["gellarFieldDamaged"]);
+            }
         }
         if (($rencontresTirage >= 41) && ($rencontresTirage <= 50)) {
             echo "Stase ! <br> Si le navigateur ne peut pas guider le vaisseau pour éviter cette rencontre, le vaisseau se coince 
@@ -554,7 +558,7 @@ function rencontres($tempstrajetabsolu, $frequenceRencontre, $badOmens, $per, $p
 
 
 //____________________________________________________________________________________________
-// Fonction Tempête Warp :
+//______________________________ Fonction Tempête Warp : _____________________________________
 //____________________________________________________________________________________________
 
 function tempete($gellarFieldDamaged, $gellarFieldOffline)
@@ -587,7 +591,7 @@ function tempete($gellarFieldDamaged, $gellarFieldOffline)
 }
 
 //____________________________________________________________________________________________
-// Fonction Récifs Aethériques ____________________________________________________
+//________________________ Fonction Récifs Aethériques _______________________________________
 //____________________________________________________________________________________________
 
 function recifs($gellarFieldDamaged, $gellarFieldOffline)
