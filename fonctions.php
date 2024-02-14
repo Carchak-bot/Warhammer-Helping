@@ -38,6 +38,13 @@ function manipDb($request){
     $PDOinstance = Null;
 }
 
+function verifUser($user, $mdp){
+    $request = "SELECT Nom_de_compte, Mot_de_passe FROM `compte` WHERE Nom_de_compte = '" + $user + "' and Mot_de_passe = '" + $mdp + "';";
+    $tab = selectDatabase($request);
+
+    if ($tab);
+}
+
 //____________________________________________________________________________________________
 //             Hallucinations
 //____________________________________________________________________________________________
