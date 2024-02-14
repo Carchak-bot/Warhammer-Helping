@@ -2,3 +2,5 @@
 require './../Warhammer-Helping/Controlleur/controlleur.php';
       
 acceuilNonInscrit();
+
+//acceuilInscrit();
