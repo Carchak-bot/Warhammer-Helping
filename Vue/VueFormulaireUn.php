@@ -118,6 +118,22 @@ ob_start();
             <label for="leadership+30"></label>
             <input name="leadership" type="radio" value="leadership+30" required />
             +30<br />
+            <h4>Valeur de l'Agilité du Maître Timonier:</h4>
+            <input type="text" name="agiTimonier" placeholder="Agilité" />
+            <input type="text" name="agiSurnatTimonier" placeholder="Agilité Surnaturelle" value="0"/><br />
+            <h4>Sa compétence Pilotage (Vaisseaux spatiaux):</h4>
+            <label for="pilotT"></label>
+            <input name="pilot" type="radio" value="pilotT" required />
+            Trained<br />
+            <label for="pilot+10"></label>
+            <input name="pilot" type="radio" value="pilot+10" required />
+            +10<br />
+            <label for="pilot+20"></label>
+            <input name="pilot" type="radio" value="pilot+20" required />
+            +20<br />
+            <label for="pilot+30"></label>
+            <input name="pilot" type="radio" value="pilot+30" required />
+            +30<br />
         </div>
         <button type="submit">Voyager</button>
     </form>

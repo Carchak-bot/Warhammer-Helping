@@ -3,13 +3,12 @@
 //             Connexion Bdd.
 //             Appeler cette fonction pour effectuer la connexion avec la base de donnée.
 //____________________________________________________________________________________________
-function getDatabase() {
+function getDatabase()
+{
     try {
         $PDOinstance = new PDO('mysql:host=localhost;dbname=warp_travel;charset=utf8', 'root', '');
         return $PDOinstance;
-    } 
-    catch (Exception $e) 
-    {    
+    } catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());
     }
 }
@@ -18,7 +17,8 @@ function getDatabase() {
 //          Récupération de données dans la Bdd.
 //          Envois une requête type "Select" à la base de donnée et retourne le résultat dans un tableau.
 //____________________________________________________________________________________________
-function selectDatabase($request){
+function selectDatabase($request)
+{
     $PDOinstance = getDatabase();
     $query = $PDOinstance->prepare($request);
     $query->execute();
@@ -32,7 +32,8 @@ function selectDatabase($request){
 //          Manipule la Bdd.
 //          Fonction permettant les manipulations directes sur la base de donnée, comme l'ajout ou la suppression de données.
 //____________________________________________________________________________________________
-function manipDb($request){
+function manipDb($request)
+{
     $PDOinstance = getDatabase();
     $PDOinstance->exec($request);
     $PDOinstance = Null;
@@ -47,12 +48,12 @@ function hallucinations($nbrPNJImportant, $crewRating)
     for ($i = 0; $i < $nbrPNJImportant; $i++) {
         $hallucinationCheck = rand(1, 100);
         switch ($hallucinationCheck) {
-            case ($hallucinationCheck > $crewRating):
+            case($hallucinationCheck > $crewRating):
                 echo "Le PNJ numéro ";
                 echo $i;
                 echo " a échoué son test de résistance mentale et est épris d'hallucinations jusqu'à ce qu'il ait une occasion 
                 de s'en débarasser.<br>";
-                $hallucinationCheckResult = floor(($hallucinationCheck - $crewRating) / 10 );
+                $hallucinationCheckResult = floor(($hallucinationCheck - $crewRating) / 10);
                 echo "Il a échoué avec <b>";
                 echo $hallucinationCheckResult;
                 echo "</b> degré d'échecs et est atteins de l'hallucination : ";
@@ -83,7 +84,7 @@ function hallucinations($nbrPNJImportant, $crewRating)
                     echo "Désillusion infernale. <br><br>";
                 }
                 break;
-            case ($hallucinationCheck <= $crewRating):
+            case($hallucinationCheck <= $crewRating):
                 echo "Le PNJ numéro ";
                 echo $i;
                 echo " a réussi son test et donc n'est atteins d'aucunes hallucinations.. Pour l'instant.<br><br>";
@@ -109,7 +110,7 @@ function badOmens($moral, $leadership, $socCptn, $socSurnatCptn)
     } else {
         $leadershipCheck1 = rand(1, 100);
         switch ($leadershipCheck1) {
-            case ($leadership == "leadershipT"):
+            case($leadership == "leadershipT"):
                 $leadershipCheck1result = ($socCptn - $leadershipCheck1);
                 if ($leadershipCheck1result >= 0) {
                     $leadershipCheck1resultfinal = (($leadershipCheck1result / 10) + (floor($socSurnatCptn / 2)));
@@ -122,7 +123,7 @@ function badOmens($moral, $leadership, $socCptn, $socSurnatCptn)
                     $badOmens = 1;
                 }
                 break;
-            case ($leadership == "leadership+10"):
+            case($leadership == "leadership+10"):
                 $leadershipCheck1result = (($socCptn + 10) - $leadershipCheck1);
                 if ($leadershipCheck1result >= 0) {
                     $leadershipCheck1resultfinal = (($leadershipCheck1result / 10) + (floor($socSurnatCptn / 2)));
@@ -135,7 +136,7 @@ function badOmens($moral, $leadership, $socCptn, $socSurnatCptn)
                     $badOmens = 1;
                 }
                 break;
-            case ($leadership == "leadership+20"):
+            case($leadership == "leadership+20"):
                 $leadershipCheck1result = (($socCptn + 20) - $leadershipCheck1);
                 if ($leadershipCheck1result >= 0) {
                     $leadershipCheck1resultfinal = (($leadershipCheck1result / 10) + (floor($socSurnatCptn / 2)));
@@ -148,7 +149,7 @@ function badOmens($moral, $leadership, $socCptn, $socSurnatCptn)
                     $badOmens = 1;
                 }
                 break;
-            case ($leadership == "leadership+30"):
+            case($leadership == "leadership+30"):
                 $leadershipCheck1result = (($socCptn + 30) - $leadershipCheck1);
                 if ($leadershipCheck1result >= 0) {
                     $leadershipCheck1resultfinal = (($leadershipCheck1result / 10) + (floor($socSurnatCptn / 2)));
@@ -168,31 +169,31 @@ function badOmens($moral, $leadership, $socCptn, $socSurnatCptn)
 function psyniscienceNavFailed($psyniscienceCheckFailed, $dureeEronner, $tempstrajettheorique)
 {
     switch ($psyniscienceCheckFailed) {
-        case ($psyniscienceCheckFailed == 1):
+        case($psyniscienceCheckFailed == 1):
             $dureeEronner = ($tempstrajettheorique * 1);
             echo "Le navigateur n'est pas sûr de la clareté de l'Astronomican pour cette route. Selon ses prédictions le voyage devrait prendre [";
             echo $dureeEronner;
             echo "] jours.";
             break;
-        case ($psyniscienceCheckFailed == 2):
+        case($psyniscienceCheckFailed == 2):
             $dureeEronner = ($tempstrajettheorique / 2);
             echo "Le navigateur n'est pas sûr de la clareté de l'Astronomican pour cette route. Selon ses prédictions le voyage devrait prendre [";
             echo $dureeEronner;
             echo "] jours.";
             break;
-        case ($psyniscienceCheckFailed == 3):
+        case($psyniscienceCheckFailed == 3):
             $dureeEronner = ($tempstrajettheorique * 2);
             echo "Le navigateur n'est pas sûr de la clareté de l'Astronomican pour cette route. Selon ses prédictions le voyage devrait prendre [";
             echo $dureeEronner;
             echo "] jours.";
             break;
-        case ($psyniscienceCheckFailed == 4):
+        case($psyniscienceCheckFailed == 4):
             $dureeEronner = ($tempstrajettheorique * 3);
             echo "Le navigateur croit que l'Astronomican est obscurcit pour cette route. Selon ses prédictions le voyage devrait prendre [";
             echo $dureeEronner;
             echo "] jours.";
             break;
-        case ($psyniscienceCheckFailed == 5):
+        case($psyniscienceCheckFailed == 5):
             $dureeEronner = ($tempstrajettheorique * 3);
             echo "Le navigateur croit que l'Astronomican est obscurcit pour cette route. Selon ses prédictions le voyage devrait prendre [";
             echo $dureeEronner;
@@ -205,7 +206,7 @@ function psyniscienceNav($psyniscience, $per, $chartsFinished, $psyniscienceChec
 {
     //Psyniscience pour les augures
     switch ($psyniscienceCheck1) {
-        case ($psyniscience == "psyniscienceT"):
+        case($psyniscience == "psyniscienceT"):
             $psyniscienceCheck1result = (($per + $chartsFinished) - $psyniscienceCheck1);
             if ($psyniscienceCheck1result >= 0) {
                 $psyniscienceCheck1resultfinal = (($psyniscienceCheck1result / 10) + (floor($_POST["perSurnat"] / 2)));
@@ -219,7 +220,7 @@ function psyniscienceNav($psyniscience, $per, $chartsFinished, $psyniscienceChec
                 psyniscienceNavFailed($psyniscienceCheckFailed, $dureeEronner, $tempstrajettheorique);
             }
             break;
-        case ($psyniscience == "psyniscience+10"):
+        case($psyniscience == "psyniscience+10"):
             $psyniscienceCheck1result = (($per + 10 + $chartsFinished) - $psyniscienceCheck1);
             if ($psyniscienceCheck1result >= 0) {
                 $psyniscienceCheck1resultfinal = (($psyniscienceCheck1result / 10) + (floor($_POST["perSurnat"] / 2)));
@@ -233,7 +234,7 @@ function psyniscienceNav($psyniscience, $per, $chartsFinished, $psyniscienceChec
                 psyniscienceNavFailed($psyniscienceCheckFailed, $dureeEronner, $tempstrajettheorique);
             }
             break;
-        case ($psyniscience == "psyniscience+20"):
+        case($psyniscience == "psyniscience+20"):
             $psyniscienceCheck1result = (($per + 20 + $chartsFinished) - $psyniscienceCheck1);
             if ($psyniscienceCheck1result >= 0) {
                 $psyniscienceCheck1resultfinal = (($psyniscienceCheck1result / 10) + (floor($_POST["perSurnat"] / 2)));
@@ -247,7 +248,7 @@ function psyniscienceNav($psyniscience, $per, $chartsFinished, $psyniscienceChec
                 psyniscienceNavFailed($psyniscienceCheckFailed, $dureeEronner, $tempstrajettheorique);
             }
             break;
-        case ($psyniscience == "psyniscience+30"):
+        case($psyniscience == "psyniscience+30"):
             $psyniscienceCheck1result = (($per + 30 + $chartsFinished) - $psyniscienceCheck1);
             if ($psyniscienceCheck1result >= 0) {
                 $psyniscienceCheck1resultfinal = (($psyniscienceCheck1result / 10) + (floor($_POST["perSurnat"] / 2)));
@@ -268,7 +269,7 @@ function psyniscienceAstro($psyniscience, $per, $psyniscienceCheck2, $psyniscien
 {
     //Psyniscience pour l'astronomican
     switch ($psyniscienceCheck2) {
-        case ($psyniscience == "psyniscienceT"):
+        case($psyniscience == "psyniscienceT"):
             $psyniscienceCheck2result = (($per + $bonus) - $psyniscienceCheck2);
             if ($psyniscienceCheck2result >= 0) {
                 $psyniscienceCheck2resultfinal = (($psyniscienceCheck2result / 10) + (floor($_POST["perSurnat"] / 2)));
@@ -284,7 +285,7 @@ function psyniscienceAstro($psyniscience, $per, $psyniscienceCheck2, $psyniscien
                 echo " degrés d'échec. <br><br>";
             }
             break;
-        case ($psyniscience == "psyniscience+10"):
+        case($psyniscience == "psyniscience+10"):
             $psyniscienceCheck2result = (($per + 10 + $bonus) - $psyniscienceCheck2);
             if ($psyniscienceCheck2result >= 0) {
                 $psyniscienceCheck2resultfinal = (($psyniscienceCheck2result / 10) + (floor($_POST["perSurnat"] / 2)));
@@ -300,7 +301,7 @@ function psyniscienceAstro($psyniscience, $per, $psyniscienceCheck2, $psyniscien
                 echo " degrés d'échec. <br><br>";
             }
             break;
-        case ($psyniscience == "psyniscience+20"):
+        case($psyniscience == "psyniscience+20"):
             $psyniscienceCheck2result = (($per + 20 + $bonus) - $psyniscienceCheck2);
             if ($psyniscienceCheck2result >= 0) {
                 $psyniscienceCheck2resultfinal = (($psyniscienceCheck2result / 10) + (floor($_POST["perSurnat"] / 2)));
@@ -316,7 +317,7 @@ function psyniscienceAstro($psyniscience, $per, $psyniscienceCheck2, $psyniscien
                 echo " degrés d'échec. <br><br>";
             }
             break;
-        case ($psyniscience == "psyniscience+30"):
+        case($psyniscience == "psyniscience+30"):
             $psyniscienceCheck2result = (($per + 30 + $bonus) - $psyniscienceCheck2);
             if ($psyniscienceCheck2result >= 0) {
                 $psyniscienceCheck2resultfinal = (($psyniscienceCheck2result / 10) + (floor($_POST["perSurnat"] / 2)));
@@ -403,22 +404,22 @@ function resultatNavWarp($tempstrajettheorique, $tempstrajetabsolu, $navigationC
 function navigation($nav, $int, $bonusNavFinal, $tempstrajettheorique, $tempstrajetabsolu)
 {
     $navigationCheck = rand(1, 100);
-    echo "[".$navigationCheck."] !<br>";
+    echo "[" . $navigationCheck . "] !<br>";
 
     switch ($navigationCheck) {
-        case ($nav == "navWarpT"):
+        case($nav == "navWarpT"):
             $navigationCheckResult = (($int + $bonusNavFinal) - $navigationCheck);
             $tempstrajetfinal = resultatNavWarp($tempstrajettheorique, $tempstrajetabsolu, $navigationCheckResult);
             return $tempstrajetfinal;
-        case ($nav == "navWarp+10"):
+        case($nav == "navWarp+10"):
             $navigationCheckResult = (($int + $bonusNavFinal + 10) - $navigationCheck);
             $tempstrajetfinal = resultatNavWarp($tempstrajettheorique, $tempstrajetabsolu, $navigationCheckResult);
             return $tempstrajetfinal;
-        case ($nav == "navWarp+20"):
+        case($nav == "navWarp+20"):
             $navigationCheckResult = (($int + $bonusNavFinal + 20) - $navigationCheck);
             $tempstrajetfinal = resultatNavWarp($tempstrajettheorique, $tempstrajetabsolu, $navigationCheckResult);
             return $tempstrajetfinal;
-        case ($nav == "navWarp+30"):
+        case($nav == "navWarp+30"):
             $navigationCheckResult = (($int + $bonusNavFinal + 30) - $navigationCheck);
             $tempstrajetfinal = resultatNavWarp($tempstrajettheorique, $tempstrajetabsolu, $navigationCheckResult);
             return $tempstrajetfinal;
@@ -482,26 +483,265 @@ function detectionRencontre($psyniscience, $per, $psyniscienceCheck3)
         case $psyniscience == 'psyniscience+20':
             return ($per + 20 + 10) - $psyniscienceCheck3;
         case $psyniscience == 'psyniscience+30':
-            return ($per + 30 + 10) - $psyniscienceCheck3;    
+            return ($per + 30 + 10) - $psyniscienceCheck3;
     }
 }
-function trial($trial)
+
+//Les épreuves psychiques
+function trial($trial, $bonusTrial, $soc, $s, $t, $int, $nav, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5)
 {
     if (($trial >= 1) && ($trial <= 25)) {
-        return "pd";
+        //Tentation
+        $trialCheck = rand(1, 100);
+        switch ($trialCheck) {
+            case $nav == 'navWarpT':
+                $trialCheckResult = ($soc + $bonusNav2 + $bonusNav3 + $bonusNav4 + $bonusNav5 + $bonusTrial) - $trialCheck;
+                if ($trialCheckResult >= 0) {
+                    $trialFailed = 0;
+                } else {
+                    $trialFailed = 1;
+                }
+                return $trialFailed;
+            case $nav == 'navWarp+10':
+                $trialCheckResult = ($soc + $bonusNav2 + $bonusNav3 + $bonusNav4 + $bonusNav5 + $bonusTrial + 10) - $trialCheck;
+                if ($trialCheckResult >= 0) {
+                    $trialFailed = 0;
+                } else {
+                    $trialFailed = 1;
+                }
+                return $trialFailed;
+            case $nav == 'navWarp+20':
+                $trialCheckResult = ($soc + $bonusNav2 + $bonusNav3 + $bonusNav4 + $bonusNav5 + $bonusTrial + 20) - $trialCheck;
+                if ($trialCheckResult >= 0) {
+                    $trialFailed = 0;
+                } else {
+                    $trialFailed = 1;
+                }
+                return $trialFailed;
+            case $nav == 'navWarp+30':
+                $trialCheckResult = ($soc + $bonusNav2 + $bonusNav3 + $bonusNav4 + $bonusNav5 + $bonusTrial + 30) - $trialCheck;
+                if ($trialCheckResult >= 0) {
+                    $trialFailed = 0;
+                } else {
+                    $trialFailed = 1;
+                }
+                return $trialFailed;
+        }
     }
     if (($trial >= 26) && ($trial <= 50)) {
-        return "pd2";
+        //Concours de Force
+        $trialCheck = rand(1, 100);
+        switch ($trialCheck) {
+            case $nav == 'navWarpT':
+                $trialCheckResult = ($s + $bonusNav2 + $bonusNav3 + $bonusNav4 + $bonusNav5 + $bonusTrial) - $trialCheck;
+                if ($trialCheckResult >= 0) {
+                    $trialFailed = 0;
+                } else {
+                    $trialFailed = 1;
+                }
+                return $trialFailed;
+            case $nav == 'navWarp+10':
+                $trialCheckResult = ($s + $bonusNav2 + $bonusNav3 + $bonusNav4 + $bonusNav5 + $bonusTrial + 10) - $trialCheck;
+                if ($trialCheckResult >= 0) {
+                    $trialFailed = 0;
+                } else {
+                    $trialFailed = 1;
+                }
+                return $trialFailed;
+            case $nav == 'navWarp+20':
+                $trialCheckResult = ($s + $bonusNav2 + $bonusNav3 + $bonusNav4 + $bonusNav5 + $bonusTrial + 20) - $trialCheck;
+                if ($trialCheckResult >= 0) {
+                    $trialFailed = 0;
+                } else {
+                    $trialFailed = 1;
+                }
+                return $trialFailed;
+            case $nav == 'navWarp+30':
+                $trialCheckResult = ($s + $bonusNav2 + $bonusNav3 + $bonusNav4 + $bonusNav5 + $bonusTrial + 30) - $trialCheck;
+                if ($trialCheckResult >= 0) {
+                    $trialFailed = 0;
+                } else {
+                    $trialFailed = 1;
+                }
+                return $trialFailed;
+        }
     }
     if (($trial >= 51) && ($trial <= 75)) {
-        return "pd3";
+        //Epreuve de l'endurance
+        $trialCheck = rand(1, 100);
+        switch ($trialCheck) {
+            case $nav == 'navWarpT':
+                $trialCheckResult = ($t + $bonusNav2 + $bonusNav3 + $bonusNav4 + $bonusNav5 + $bonusTrial) - $trialCheck;
+                if ($trialCheckResult >= 0) {
+                    $trialFailed = 0;
+                } else {
+                    $trialFailed = 1;
+                }
+                return $trialFailed;
+            case $nav == 'navWarp+10':
+                $trialCheckResult = ($t + $bonusNav2 + $bonusNav3 + $bonusNav4 + $bonusNav5 + $bonusTrial + 10) - $trialCheck;
+                if ($trialCheckResult >= 0) {
+                    $trialFailed = 0;
+                } else {
+                    $trialFailed = 1;
+                }
+                return $trialFailed;
+            case $nav == 'navWarp+20':
+                $trialCheckResult = ($t + $bonusNav2 + $bonusNav3 + $bonusNav4 + $bonusNav5 + $bonusTrial + 20) - $trialCheck;
+                if ($trialCheckResult >= 0) {
+                    $trialFailed = 0;
+                } else {
+                    $trialFailed = 1;
+                }
+                return $trialFailed;
+            case $nav == 'navWarp+30':
+                $trialCheckResult = ($t + $bonusNav2 + $bonusNav3 + $bonusNav4 + $bonusNav5 + $bonusTrial + 30) - $trialCheck;
+                if ($trialCheckResult >= 0) {
+                    $trialFailed = 0;
+                } else {
+                    $trialFailed = 1;
+                }
+                return $trialFailed;
+        }
     }
     if (($trial >= 76) && ($trial <= 100)) {
-        return "pd4";
+        //Conundrum
+        $trialCheck = rand(1, 100);
+        switch ($trialCheck) {
+            case $nav == 'navWarpT':
+                $trialCheckResult = ($int + $bonusNav2 + $bonusNav3 + $bonusNav4 + $bonusNav5 + $bonusTrial) - $trialCheck;
+                if ($trialCheckResult >= 0) {
+                    $trialFailed = 0;
+                } else {
+                    $trialFailed = 1;
+                }
+                return $trialFailed;
+            case $nav == 'navWarp+10':
+                $trialCheckResult = ($int + $bonusNav2 + $bonusNav3 + $bonusNav4 + $bonusNav5 + $bonusTrial + 10) - $trialCheck;
+                if ($trialCheckResult >= 0) {
+                    $trialFailed = 0;
+                } else {
+                    $trialFailed = 1;
+                }
+                return $trialFailed;
+            case $nav == 'navWarp+20':
+                $trialCheckResult = ($int + $bonusNav2 + $bonusNav3 + $bonusNav4 + $bonusNav5 + $bonusTrial + 20) - $trialCheck;
+                if ($trialCheckResult >= 0) {
+                    $trialFailed = 0;
+                } else {
+                    $trialFailed = 1;
+                }
+                return $trialFailed;
+            case $nav == 'navWarp+30':
+                $trialCheckResult = ($int + $bonusNav2 + $bonusNav3 + $bonusNav4 + $bonusNav5 + $bonusTrial + 30) - $trialCheck;
+                if ($trialCheckResult >= 0) {
+                    $trialFailed = 0;
+                } else {
+                    $trialFailed = 1;
+                }
+                return $trialFailed;
+        }
     }
 }
-function rencontres($tempstrajetabsolu, $frequenceRencontre, $badOmens, $per, $psyniscience)
+
+
+function navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial)
 {
+    $navTrialCheck = rand(1, 100);
+    switch ($navTrialCheck) {
+        case($nav == "navWarpT"):
+            $navTrialCheckResult = (($int + $bonusNav2 + $bonusNav3 + $bonusNav4 + $bonusNav5 + $bonusTrial) - $navTrialCheck);
+            if ($navTrialCheckResult >= 0) {
+                $trialFailed = pilotage($agiTimonier, $pilotageTimonier);
+            } else {
+                $trialFailed = 1;
+            }
+            return $trialFailed;
+        case($nav == "navWarp+10"):
+            $navTrialCheckResult = (($int + $bonusNav2 + $bonusNav3 + $bonusNav4 + $bonusNav5 + $bonusTrial + 10) - $navTrialCheck);
+            if ($navTrialCheckResult >= 0) {
+                $trialFailed = pilotage($agiTimonier, $pilotageTimonier);
+            } else {
+                $trialFailed = 1;
+            }
+            return $trialFailed;
+        case($nav == "navWarp+20"):
+            $navTrialCheckResult = (($int + $bonusNav2 + $bonusNav3 + $bonusNav4 + $bonusNav5 + $bonusTrial + 20) - $navTrialCheck);
+            if ($navTrialCheckResult >= 0) {
+                $trialFailed = pilotage($agiTimonier, $pilotageTimonier);
+            } else {
+                $trialFailed = 1;
+            }
+            return $trialFailed;
+        case($nav == "navWarp+30"):
+            $navTrialCheckResult = (($int + $bonusNav2 + $bonusNav3 + $bonusNav4 + $bonusNav5 + $bonusTrial + 30) - $navTrialCheck);
+            if ($navTrialCheckResult >= 0) {
+                $trialFailed = pilotage($agiTimonier, $pilotageTimonier);
+            } else {
+                $trialFailed = 1;
+            }
+            return $trialFailed;
+    }
+}
+
+//Pilotage pour éviter les rencontres physiques
+function pilotage($agiTimonier, $pilotageTimonier)
+{
+    $pilotageCheck = rand(1, 100);
+    switch ($pilotageCheck) {
+        case $pilotageTimonier == 'pilotT':
+            $pilotageCheckResult = ($agiTimonier + 10) - $pilotageCheck;
+            if ($pilotageCheckResult >= 0) {
+                $trialFailed = 0;
+            } else {
+                $trialFailed = 1;
+            }
+            return $trialFailed;
+        case $pilotageTimonier == 'pilot+10':
+            $pilotageCheckResult = ($agiTimonier + 10 + 10) - $pilotageCheck;
+            if ($pilotageCheckResult >= 0) {
+                $trialFailed = 0;
+            } else {
+                $trialFailed = 1;
+            }
+            return $trialFailed;
+        case $pilotageTimonier == 'pilot+20':
+            $pilotageCheckResult = ($agiTimonier + 20 + 10) - $pilotageCheck;
+            if ($pilotageCheckResult >= 0) {
+                $trialFailed = 0;
+            } else {
+                $trialFailed = 1;
+            }
+            return $trialFailed;
+        case $pilotageTimonier == 'pilot+30':
+            $pilotageCheckResult = ($agiTimonier + 30 + 10) - $pilotageCheck;
+            if ($pilotageCheckResult >= 0) {
+                $trialFailed = 0;
+            } else {
+                $trialFailed = 1;
+            }
+            return $trialFailed;
+    }
+}
+
+function rencontres(
+    $tempstrajetabsolu,
+    $frequenceRencontre,
+    $badOmens,
+    $per,
+    $psyniscience,
+    $agiTimonier,
+    $pilotageTimonier,
+    $nav,
+    $int,
+    $bonusNav2,
+    $bonusNav3,
+    $bonusNav4,
+    $bonusNav5,
+    $soc,
+    $s,
+    $t
+) {
     $rencontresNombre = floor($tempstrajetabsolu / $frequenceRencontre);
     echo "Il y aura ";
     echo $rencontresNombre;
@@ -533,63 +773,264 @@ function rencontres($tempstrajetabsolu, $frequenceRencontre, $badOmens, $per, $p
                 $psyniscienceCheck3result = detectionRencontre($psyniscience, $per, $psyniscienceCheck3);
                 if ($psyniscienceCheck3result >= 0) {
                     $trial = rand(1, 100);
-                    $trialFailed = trial($trial);
+                    $bonusTrial = 20;
+                    $trialFailed = trial($trial, $bonusTrial, $soc, $s, $t, $int, $nav, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5);
+                } elseif (($psyniscienceCheck3result >= -1) && ($psyniscienceCheck3result < 0)) {
+                    $trial = rand(1, 100);
+                    $bonusTrial = 0;
+                    $trialFailed = trial($trial, $bonusTrial, $soc, $s, $t, $int, $nav, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5);
                 } else {
                     $trialFailed = 1;
                 }
                 if ($trialFailed == 0) {
                     echo "Un Mirage de désillusion a été évité avec succès.";
                 } else {
-                    echo "[".$rencontresTirage."] Mirage de désillusion. Chaque explorateur et PNJ importants à bord doivent faire un test de Force Mentale (+0) et le réussir.
+                    echo "[" . $rencontresTirage . "] Mirage de désillusion. Chaque explorateur et PNJ importants à bord doivent faire un test de Force Mentale (+0) et le réussir.
                  Sinon ils seront affectés par une hallucination warp choisie au hasard. Si le champs de Geller est opérationnel chaques personnages
                  reçoivent un bonus de (+30) au test de Force Mentale. S'il ne l'est pas le test subit un malus de (-30) à la place. <br>";
                 }
-                
+            } else {
+                echo "[" . $rencontresTirage . "] Mirage de désillusion. Chaque explorateur et PNJ importants à bord doivent faire un test de Force Mentale (+0) et le réussir.
+                 Sinon ils seront affectés par une hallucination warp choisie au hasard. Si le champs de Geller est opérationnel chaques personnages
+                 reçoivent un bonus de (+30) au test de Force Mentale. S'il ne l'est pas le test subit un malus de (-30) à la place. <br>";
             }
         }
         if (($rencontresTirage >= 31) && ($rencontresTirage <= 40)) {
-            if ($trialFailed == 0) {
-                echo "Des Prédateurs psychiques ont été évités.";
+            if (
+                (isset($_POST["navigator"])) &&
+                ($_POST["navigator"] == true)
+            ) {
+                //éviter la rencontre grâce au navigateur
+                //Psyniscience pour détecter
+                $psyniscienceCheck3 = rand(1, 100);
+                $psyniscienceCheck3result = detectionRencontre($psyniscience, $per, $psyniscienceCheck3);
+                if ($psyniscienceCheck3result >= 0) {
+                    $trial = rand(1, 100);
+                    $bonusTrial = 20;
+                    $trialFailed = trial($trial, $bonusTrial, $soc, $s, $t, $int, $nav, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5);
+                } elseif (($psyniscienceCheck3result >= -1) && ($psyniscienceCheck3result < 0)) {
+                    $trial = rand(1, 100);
+                    $bonusTrial = 0;
+                    $trialFailed = trial($trial, $bonusTrial, $soc, $s, $t, $int, $nav, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5);
+                } else {
+                    $trialFailed = 1;
+                }
+                if ($trialFailed == 0) {
+                    echo "Des Prédateurs psychiques ont été évités avec succès.";
+                } else {
+                    echo "[" . $rencontresTirage . "] Prédateurs psychiques ! <br> Si cet effet se manifeste à bord d'un vaisseau, rouler une fois les dés sur la 
+                <b>table 2-8 Incursions Warp</b> (voir page 33) et appliquez le résultat. Réduisez le résultat du lancé de dé par -30 si 
+                le champs de Geller est complètement fonctionnel (jusqu'à un minimum de 01). Ajoutez +30 au résultat du jet si le champs 
+                de Geller est éteins. <br>";
+                    echo incursion($_POST["gellarFieldOffline"], $_POST["gellarFieldDamaged"]);
+                }
             } else {
-                echo "Prédateurs psychiques ! <br> Si cet effet se manifeste à bord d'un vaisseau, rouler une fois les dés sur la 
-            <b>table 2-8 Incursions Warp</b> (voir page 33) et appliquez le résultat. Réduisez le résultat du lancé de dé par -30 si 
-            le champs de Geller est complètement fonctionnel (jusqu'à un minimum de 01). Ajoutez +30 au résultat du jet si le champs 
-            de Geller est éteins. <br>";
+                echo "[" . $rencontresTirage . "] Prédateurs psychiques ! <br> Si cet effet se manifeste à bord d'un vaisseau, rouler une fois les dés sur la 
+                <b>table 2-8 Incursions Warp</b> (voir page 33) et appliquez le résultat. Réduisez le résultat du lancé de dé par -30 si 
+                le champs de Geller est complètement fonctionnel (jusqu'à un minimum de 01). Ajoutez +30 au résultat du jet si le champs 
+                de Geller est éteins. <br>";
                 echo incursion($_POST["gellarFieldOffline"], $_POST["gellarFieldDamaged"]);
             }
         }
         if (($rencontresTirage >= 41) && ($rencontresTirage <= 50)) {
-            echo "Stase ! <br> Si le navigateur ne peut pas guider le vaisseau pour éviter cette rencontre, le vaisseau se coince 
+            if (
+                (isset($_POST["navigator"])) &&
+                ($_POST["navigator"] == true)
+            ) {
+                //éviter la rencontre grâce au navigateur
+                //Psyniscience pour détecter
+                $psyniscienceCheck3 = rand(1, 100);
+                $psyniscienceCheck3result = detectionRencontre($psyniscience, $per, $psyniscienceCheck3);
+                if ($psyniscienceCheck3result >= 0) {
+                    $trial = rand(1, 100);
+                    $bonusTrial = 20;
+                    $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
+                } elseif (($psyniscienceCheck3result >= -1) && ($psyniscienceCheck3result < 0)) {
+                    $trial = rand(1, 100);
+                    $bonusTrial = 0;
+                    $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
+                } else {
+                    $trialFailed = 1;
+                }
+                if ($trialFailed == 0) {
+                    echo "Une stase de vaisseau a été évitée avec succès.";
+                } else {
+                    echo "Stase ! <br> Si le navigateur ne peut pas guider le vaisseau pour éviter cette rencontre, le vaisseau se coince 
             dans une fissure Warp avant de dériver une fois libéré, ajoutant 1d5 jours au voyage. <br>";
+                }
+            } else {
+                echo "Stase ! <br> Si le navigateur ne peut pas guider le vaisseau pour éviter cette rencontre, le vaisseau se coince 
+            dans une fissure Warp avant de dériver une fois libéré, ajoutant 1d5 jours au voyage. <br>";
+            }
         }
         if (($rencontresTirage >= 51) && ($rencontresTirage <= 60)) {
             echo "Combustion Inhumaine spontanée ! <br> Le MJ choisit un des composants du vaisseau lors de cette rencontre. Celui 
             ci prend immédiatement feu de manire inexpliquée. Voir les règles sur les incendies p.222 du livre de base. <br>";
         }
         if (($rencontresTirage >= 61) && ($rencontresTirage <= 70)) {
-            echo "Tempête Warp ! <br> Si le Navigateur ne peut pas guider le vaisseau pour éviter cette rencontre, le vaisseau 
-            est donc frappé de plein fouet par une tempête Warp. <br>";
-            echo tempete($_POST["gellarFieldDamaged"], $_POST["gellarFieldOffline"]);
+            if (
+                (isset($_POST["navigator"])) &&
+                ($_POST["navigator"] == true)
+            ) {
+                //éviter la rencontre grâce au navigateur
+                //Psyniscience pour détecter
+                $psyniscienceCheck3 = rand(1, 100);
+                $psyniscienceCheck3result = detectionRencontre($psyniscience, $per, $psyniscienceCheck3);
+                if ($psyniscienceCheck3result >= 0) {
+                    $trial = rand(1, 100);
+                    $bonusTrial = 20;
+                    $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
+                } elseif (($psyniscienceCheck3result >= -1) && ($psyniscienceCheck3result < 0)) {
+                    $trial = rand(1, 100);
+                    $bonusTrial = 0;
+                    $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
+                } else {
+                    $trialFailed = 1;
+                }
+                if ($trialFailed == 0) {
+                    echo "Une tempête Warp a été évitée avec succès.";
+                } else {
+                    echo "Tempête Warp ! <br> Si le Navigateur ne peut pas guider le vaisseau pour éviter cette rencontre, le vaisseau 
+                    est donc frappé de plein fouet par une tempête Warp. <br>";
+                    echo tempete($_POST["gellarFieldDamaged"], $_POST["gellarFieldOffline"]);
+                }
+            } else {
+                echo "Tempête Warp ! <br> Si le Navigateur ne peut pas guider le vaisseau pour éviter cette rencontre, le vaisseau 
+                est donc frappé de plein fouet par une tempête Warp. <br>";
+                echo tempete($_POST["gellarFieldDamaged"], $_POST["gellarFieldOffline"]);
+            }
         }
         if (($rencontresTirage >= 71) && ($rencontresTirage <= 80)) {
-            echo "Récifs Aethériques ! <br> Si le Navigateur ne peut pas guider ce vaisseau pour éviter cette rencontre, 
+            if (
+                (isset($_POST["navigator"])) &&
+                ($_POST["navigator"] == true)
+            ) {
+                //éviter la rencontre grâce au navigateur
+                //Psyniscience pour détecter
+                $psyniscienceCheck3 = rand(1, 100);
+                $psyniscienceCheck3result = detectionRencontre($psyniscience, $per, $psyniscienceCheck3);
+                if ($psyniscienceCheck3result >= 0) {
+                    $trial = rand(1, 100);
+                    $bonusTrial = 20;
+                    $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
+                } elseif (($psyniscienceCheck3result >= -1) && ($psyniscienceCheck3result < 0)) {
+                    $trial = rand(1, 100);
+                    $bonusTrial = 0;
+                    $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
+                } else {
+                    $trialFailed = 1;
+                }
+                if ($trialFailed == 0) {
+                    echo "Un Récif Aethérique a été évité avec succès.";
+                } else {
+                    echo "Récifs Aethériques ! <br> Si le Navigateur ne peut pas guider ce vaisseau pour éviter cette rencontre, 
             la coque du vaisseau sera érraflée par des morceaux tordus et coupants de la fausse réalité. <br>";
-            echo recifs($_POST["gellarFieldDamaged"], $_POST["gellarFieldOffline"]);
+                    echo recifs($_POST["gellarFieldDamaged"], $_POST["gellarFieldOffline"]);
+                }
+            } else {
+                echo "Récifs Aethériques ! <br> Si le Navigateur ne peut pas guider ce vaisseau pour éviter cette rencontre, 
+                la coque du vaisseau sera érraflée par des morceaux tordus et coupants de la fausse réalité. <br>";
+                echo recifs($_POST["gellarFieldDamaged"], $_POST["gellarFieldOffline"]);
+            }
         }
         if (($rencontresTirage >= 81) && ($rencontresTirage <= 90)) {
-            echo "Brèche Warp ! <br> Si le Navigateur ne peut pas contourner cette rencontre, le vaisseau s'enfonce dans 
+            if (
+                (isset($_POST["navigator"])) &&
+                ($_POST["navigator"] == true)
+            ) {
+                //éviter la rencontre grâce au navigateur
+                //Psyniscience pour détecter
+                $psyniscienceCheck3 = rand(1, 100);
+                $psyniscienceCheck3result = detectionRencontre($psyniscience, $per, $psyniscienceCheck3);
+                if ($psyniscienceCheck3result >= 0) {
+                    $trial = rand(1, 100);
+                    $bonusTrial = 20;
+                    $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
+                } elseif (($psyniscienceCheck3result >= -1) && ($psyniscienceCheck3result < 0)) {
+                    $trial = rand(1, 100);
+                    $bonusTrial = 0;
+                    $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
+                } else {
+                    $trialFailed = 1;
+                }
+                if ($trialFailed == 0) {
+                    echo "Une Brèche Warp a été évitée avec succès.";
+                } else {
+                    echo "Brèche Warp ! <br> Si le Navigateur ne peut pas contourner cette rencontre, le vaisseau s'enfonce dans 
             une nébuleuse de non-réalitée. <br>";
-            echo breche();
+                    echo breche();
+                }
+            } else {
+                echo "Brèche Warp ! <br> Si le Navigateur ne peut pas contourner cette rencontre, le vaisseau s'enfonce dans 
+                une nébuleuse de non-réalitée. <br>";
+                echo breche();
+            }
         }
         if (($rencontresTirage >= 91) && ($rencontresTirage <= 100)) {
-            echo "Trou temporel ! <br> Si le Navigateur ne peut pas diriger le vaisseau dans une autre direction que celle de cette 
-            rencontre, le vaisseau est aspiré en dehors du Warp et reviens dans la réalité. Il faut se référer à <b>Sortir du Warp</b> page 34 <br>";
-            $severlyOffCourse = 1;
+            if (
+                (isset($_POST["navigator"])) &&
+                ($_POST["navigator"] == true)
+            ) {
+                //éviter la rencontre grâce au navigateur
+                //Psyniscience pour détecter
+                $psyniscienceCheck3 = rand(1, 100);
+                $psyniscienceCheck3result = detectionRencontre($psyniscience, $per, $psyniscienceCheck3);
+                if ($psyniscienceCheck3result >= 0) {
+                    $trial = rand(1, 100);
+                    $bonusTrial = 20;
+                    $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
+                } elseif (($psyniscienceCheck3result >= -1) && ($psyniscienceCheck3result < 0)) {
+                    $trial = rand(1, 100);
+                    $bonusTrial = 0;
+                    $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
+                } else {
+                    $trialFailed = 1;
+                }
+                if ($trialFailed == 0) {
+                    echo "Une Brèche Warp a été évitée avec succès.";
+                } else {
+                    echo "Trou temporel ! <br> Si le Navigateur ne peut pas diriger le vaisseau dans une autre direction que celle de cette 
+                rencontre, le vaisseau est aspiré en dehors du Warp et reviens dans la réalité. Il faut se référer à <b>Sortir du Warp</b> page 34 <br>";
+                    $severlyOffCourse = 1;
+                }
+            } else {
+                echo "Trou temporel ! <br> Si le Navigateur ne peut pas diriger le vaisseau dans une autre direction que celle de cette 
+                rencontre, le vaisseau est aspiré en dehors du Warp et reviens dans la réalité. Il faut se référer à <b>Sortir du Warp</b> page 34 <br>";
+                $severlyOffCourse = 1;
+            }
         }
         if ($rencontresTirage >= 100) {
-            echo "Trou temporel ! <br> Si le Navigateur ne peut pas diriger le vaisseau dans une autre direction que celle de cette 
-            rencontre, le vaisseau est aspiré en dehors du Warp et reviens dans la réalité. Il faut se référer à <b>Sortir du Warp</b> page 34 <br>";
-            $severlyOffCourse = 1;
+            if (
+                (isset($_POST["navigator"])) &&
+                ($_POST["navigator"] == true)
+            ) {
+                //éviter la rencontre grâce au navigateur
+                //Psyniscience pour détecter
+                $psyniscienceCheck3 = rand(1, 100);
+                $psyniscienceCheck3result = detectionRencontre($psyniscience, $per, $psyniscienceCheck3);
+                if ($psyniscienceCheck3result >= 0) {
+                    $trial = rand(1, 100);
+                    $bonusTrial = 20;
+                    $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
+                } elseif (($psyniscienceCheck3result >= -1) && ($psyniscienceCheck3result < 0)) {
+                    $trial = rand(1, 100);
+                    $bonusTrial = 0;
+                    $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
+                } else {
+                    $trialFailed = 1;
+                }
+                if ($trialFailed == 0) {
+                    echo "Une Brèche Warp a été évitée avec succès.";
+                } else {
+                    echo "Trou temporel ! <br> Si le Navigateur ne peut pas diriger le vaisseau dans une autre direction que celle de cette 
+                rencontre, le vaisseau est aspiré en dehors du Warp et reviens dans la réalité. Il faut se référer à <b>Sortir du Warp</b> page 34 <br>";
+                    $severlyOffCourse = 1;
+                }
+            } else {
+                echo "Trou temporel ! <br> Si le Navigateur ne peut pas diriger le vaisseau dans une autre direction que celle de cette 
+                rencontre, le vaisseau est aspiré en dehors du Warp et reviens dans la réalité. Il faut se référer à <b>Sortir du Warp</b> page 34 <br>";
+                $severlyOffCourse = 1;
+            }
         }
         echo "<br>";
     }

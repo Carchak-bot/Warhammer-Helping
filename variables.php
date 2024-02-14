@@ -79,3 +79,11 @@ $d10 = 0;
 $d5 = 0;
 
 $per = $_POST["per"];
+$soc = $_POST["soc"];
+$s = $_POST["s"];
+$t = $_POST["t"];
+$int = $_POST["int"];
+
+$agiTimonier = $_POST["agiTimonier"];
+$pilotage = $_POST["pilot"];
+
