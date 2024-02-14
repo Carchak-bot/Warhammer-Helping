@@ -353,25 +353,25 @@ function resultatNavWarp($tempstrajettheorique, $tempstrajetabsolu, $navigationC
                 echo "Le voyage durera ";
                 $tempstrajetabsolu = floor($tempstrajettheorique / 4);
                 echo $tempstrajetabsolu;
-                echo "Jours grâce à la bonne guidance du navigateur.";
+                echo " Jours grâce à la bonne guidance du navigateur. <br>";
                 return $tempstrajetabsolu;
             case $navigationCheckResultFinal < 3:
                 echo "Le voyage durera ";
                 $tempstrajetabsolu = floor($tempstrajettheorique / 2);
                 echo $tempstrajetabsolu;
-                echo "Jours grâce à la bonne guidance du navigateur.";
+                echo " Jours grâce à la bonne guidance du navigateur. <br>";
                 return $tempstrajetabsolu;
             case $navigationCheckResultFinal < 2:
                 echo "Le voyage durera ";
                 $tempstrajetabsolu = floor($tempstrajettheorique * 0.75);
                 echo $tempstrajetabsolu;
-                echo "Jours grâce à la bonne guidance du navigateur.";
+                echo " Jours grâce à la bonne guidance du navigateur. <br>";
                 return $tempstrajetabsolu;
             case $navigationCheckResultFinal < 1:
                 echo "Le voyage durera ";
                 $tempstrajetabsolu = $tempstrajettheorique;
                 echo $tempstrajetabsolu;
-                echo "Jours grâce à la bonne guidance du navigateur.";
+                echo " Jours grâce à la bonne guidance du navigateur. <br>";
                 return $tempstrajetabsolu;
         }
     } else {
@@ -384,19 +384,19 @@ function resultatNavWarp($tempstrajettheorique, $tempstrajetabsolu, $navigationC
                 echo "Le voyage durera ";
                 $tempstrajetabsolu = floor($tempstrajettheorique * 4);
                 echo $tempstrajetabsolu;
-                echo "Jours à cause de la mauvaise guidance du navigateur.";
+                echo " Jours à cause de la mauvaise guidance du navigateur. <br>";
                 return $tempstrajetabsolu;
             case $navigationCheckResultFailed < 2:
                 echo "Le voyage durera ";
                 $tempstrajetabsolu = floor($tempstrajettheorique * 3);
                 echo $tempstrajetabsolu;
-                echo "Jours à cause de la mauvaise guidance du navigateur.";
+                echo " Jours à cause de la mauvaise guidance du navigateur. <br>";
                 return $tempstrajetabsolu;
             case $navigationCheckResultFailed < 1:
                 echo "Le voyage durera ";
                 $tempstrajetabsolu = floor($tempstrajettheorique * 2);
                 echo $tempstrajetabsolu;
-                echo "Jours à cause de la mauvaise guidance du navigateur.";
+                echo " Jours à cause de la mauvaise guidance du navigateur. <br>";
                 return $tempstrajetabsolu;
         }
     }
@@ -772,18 +772,21 @@ function rencontres(
                 $psyniscienceCheck3 = rand(1, 100);
                 $psyniscienceCheck3result = detectionRencontre($psyniscience, $per, $psyniscienceCheck3);
                 if ($psyniscienceCheck3result >= 0) {
+                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger et a le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 20;
                     $trialFailed = trial($trial, $bonusTrial, $soc, $s, $t, $int, $nav, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5);
                 } elseif (($psyniscienceCheck3result >= -1) && ($psyniscienceCheck3result < 0)) {
+                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger juste à temps mais n'a pas le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 0;
                     $trialFailed = trial($trial, $bonusTrial, $soc, $s, $t, $int, $nav, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5);
                 } else {
+                    echo "[".$psyniscienceCheck3."] ! Le Navigateur ne détecte pas le danger et n'a pas le temps de se préparer. <br>";
                     $trialFailed = 1;
                 }
                 if ($trialFailed == 0) {
-                    echo "Un Mirage de désillusion a été évité avec succès.";
+                    echo "Un Mirage de désillusion a été évité avec succès. <br>";
                 } else {
                     echo "[" . $rencontresTirage . "] Mirage de désillusion. Chaque explorateur et PNJ importants à bord doivent faire un test de Force Mentale (+0) et le réussir.
                  Sinon ils seront affectés par une hallucination warp choisie au hasard. Si le champs de Geller est opérationnel chaques personnages
@@ -805,18 +808,21 @@ function rencontres(
                 $psyniscienceCheck3 = rand(1, 100);
                 $psyniscienceCheck3result = detectionRencontre($psyniscience, $per, $psyniscienceCheck3);
                 if ($psyniscienceCheck3result >= 0) {
+                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger et a le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 20;
                     $trialFailed = trial($trial, $bonusTrial, $soc, $s, $t, $int, $nav, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5);
                 } elseif (($psyniscienceCheck3result >= -1) && ($psyniscienceCheck3result < 0)) {
+                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger juste à temps mais n'a pas le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 0;
                     $trialFailed = trial($trial, $bonusTrial, $soc, $s, $t, $int, $nav, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5);
                 } else {
+                    echo "[".$psyniscienceCheck3."] ! Le Navigateur ne détecte pas le danger et n'a pas le temps de se préparer. <br>";
                     $trialFailed = 1;
                 }
                 if ($trialFailed == 0) {
-                    echo "Des Prédateurs psychiques ont été évités avec succès.";
+                    echo "Des Prédateurs psychiques ont été évités avec succès. <br>";
                 } else {
                     echo "[" . $rencontresTirage . "] Prédateurs psychiques ! <br> Si cet effet se manifeste à bord d'un vaisseau, rouler une fois les dés sur la 
                 <b>table 2-8 Incursions Warp</b> (voir page 33) et appliquez le résultat. Réduisez le résultat du lancé de dé par -30 si 
@@ -842,18 +848,21 @@ function rencontres(
                 $psyniscienceCheck3 = rand(1, 100);
                 $psyniscienceCheck3result = detectionRencontre($psyniscience, $per, $psyniscienceCheck3);
                 if ($psyniscienceCheck3result >= 0) {
+                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger et a le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 20;
                     $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
                 } elseif (($psyniscienceCheck3result >= -1) && ($psyniscienceCheck3result < 0)) {
+                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger juste à temps mais n'a pas le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 0;
                     $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
                 } else {
+                    echo "[".$psyniscienceCheck3."] ! Le Navigateur ne détecte pas le danger et n'a pas le temps de se préparer. <br>";
                     $trialFailed = 1;
                 }
                 if ($trialFailed == 0) {
-                    echo "Une stase de vaisseau a été évitée avec succès.";
+                    echo "Une Stase de Vaisseau a été évitée avec succès. <br>";
                 } else {
                     echo "Stase ! <br> Si le navigateur ne peut pas guider le vaisseau pour éviter cette rencontre, le vaisseau se coince 
             dans une fissure Warp avant de dériver une fois libéré, ajoutant 1d5 jours au voyage. <br>";
@@ -877,18 +886,21 @@ function rencontres(
                 $psyniscienceCheck3 = rand(1, 100);
                 $psyniscienceCheck3result = detectionRencontre($psyniscience, $per, $psyniscienceCheck3);
                 if ($psyniscienceCheck3result >= 0) {
+                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger et a le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 20;
                     $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
                 } elseif (($psyniscienceCheck3result >= -1) && ($psyniscienceCheck3result < 0)) {
+                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger juste à temps mais n'a pas le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 0;
                     $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
                 } else {
+                    echo "[".$psyniscienceCheck3."] ! Le Navigateur ne détecte pas le danger et n'a pas le temps de se préparer. <br>";
                     $trialFailed = 1;
                 }
                 if ($trialFailed == 0) {
-                    echo "Une tempête Warp a été évitée avec succès.";
+                    echo "Une Tempête Warp a été évitée avec succès. <br>";
                 } else {
                     echo "Tempête Warp ! <br> Si le Navigateur ne peut pas guider le vaisseau pour éviter cette rencontre, le vaisseau 
                     est donc frappé de plein fouet par une tempête Warp. <br>";
@@ -910,18 +922,21 @@ function rencontres(
                 $psyniscienceCheck3 = rand(1, 100);
                 $psyniscienceCheck3result = detectionRencontre($psyniscience, $per, $psyniscienceCheck3);
                 if ($psyniscienceCheck3result >= 0) {
+                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger et a le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 20;
                     $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
                 } elseif (($psyniscienceCheck3result >= -1) && ($psyniscienceCheck3result < 0)) {
+                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger juste à temps mais n'a pas le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 0;
                     $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
                 } else {
+                    echo "[".$psyniscienceCheck3."] ! Le Navigateur ne détecte pas le danger et n'a pas le temps de se préparer. <br>";
                     $trialFailed = 1;
                 }
                 if ($trialFailed == 0) {
-                    echo "Un Récif Aethérique a été évité avec succès.";
+                    echo "Un Récif Aethérique a été évité avec succès. <br>";
                 } else {
                     echo "Récifs Aethériques ! <br> Si le Navigateur ne peut pas guider ce vaisseau pour éviter cette rencontre, 
             la coque du vaisseau sera érraflée par des morceaux tordus et coupants de la fausse réalité. <br>";
@@ -943,18 +958,21 @@ function rencontres(
                 $psyniscienceCheck3 = rand(1, 100);
                 $psyniscienceCheck3result = detectionRencontre($psyniscience, $per, $psyniscienceCheck3);
                 if ($psyniscienceCheck3result >= 0) {
+                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger et a le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 20;
                     $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
                 } elseif (($psyniscienceCheck3result >= -1) && ($psyniscienceCheck3result < 0)) {
+                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger juste à temps mais n'a pas le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 0;
                     $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
                 } else {
+                    echo "[".$psyniscienceCheck3."] ! Le Navigateur ne détecte pas le danger et n'a pas le temps de se préparer. <br>";
                     $trialFailed = 1;
                 }
                 if ($trialFailed == 0) {
-                    echo "Une Brèche Warp a été évitée avec succès.";
+                    echo "Une Brèche Warp a été évitée avec succès. <br>";
                 } else {
                     echo "Brèche Warp ! <br> Si le Navigateur ne peut pas contourner cette rencontre, le vaisseau s'enfonce dans 
             une nébuleuse de non-réalitée. <br>";
@@ -976,18 +994,21 @@ function rencontres(
                 $psyniscienceCheck3 = rand(1, 100);
                 $psyniscienceCheck3result = detectionRencontre($psyniscience, $per, $psyniscienceCheck3);
                 if ($psyniscienceCheck3result >= 0) {
+                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger et a le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 20;
                     $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
                 } elseif (($psyniscienceCheck3result >= -1) && ($psyniscienceCheck3result < 0)) {
+                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger juste à temps mais n'a pas le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 0;
                     $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
                 } else {
+                    echo "[".$psyniscienceCheck3."] ! Le Navigateur ne détecte pas le danger et n'a pas le temps de se préparer. <br>";
                     $trialFailed = 1;
                 }
                 if ($trialFailed == 0) {
-                    echo "Une Brèche Warp a été évitée avec succès.";
+                    echo "Un Trou Temporel a été évité avec succès. <br>";
                 } else {
                     echo "Trou temporel ! <br> Si le Navigateur ne peut pas diriger le vaisseau dans une autre direction que celle de cette 
                 rencontre, le vaisseau est aspiré en dehors du Warp et reviens dans la réalité. Il faut se référer à <b>Sortir du Warp</b> page 34 <br>";
@@ -1009,18 +1030,21 @@ function rencontres(
                 $psyniscienceCheck3 = rand(1, 100);
                 $psyniscienceCheck3result = detectionRencontre($psyniscience, $per, $psyniscienceCheck3);
                 if ($psyniscienceCheck3result >= 0) {
+                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger et a le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 20;
                     $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
                 } elseif (($psyniscienceCheck3result >= -1) && ($psyniscienceCheck3result < 0)) {
+                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger juste à temps mais n'a pas le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 0;
                     $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
                 } else {
+                    echo "[".$psyniscienceCheck3."] ! Le Navigateur ne détecte pas le danger et n'a pas le temps de se préparer. <br>";
                     $trialFailed = 1;
                 }
                 if ($trialFailed == 0) {
-                    echo "Une Brèche Warp a été évitée avec succès.";
+                    echo "Un Trou Temporel a été évité avec succès. <br>";
                 } else {
                     echo "Trou temporel ! <br> Si le Navigateur ne peut pas diriger le vaisseau dans une autre direction que celle de cette 
                 rencontre, le vaisseau est aspiré en dehors du Warp et reviens dans la réalité. Il faut se référer à <b>Sortir du Warp</b> page 34 <br>";

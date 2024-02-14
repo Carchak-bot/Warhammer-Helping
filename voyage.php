@@ -300,8 +300,8 @@ if (
     $tempstrajetabsolu = $tempstrajetfinal;
 
     //Fonction de rencontres Warp appellant les 3 paramètres externes
-    echo rencontres($tempstrajetabsolu, $frequenceRencontre, $badOmens, $per, $_POST["psyniscience"], $agiTimonier, $pilotageTimonier,
-     $nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $soc, $s, $t);
+    echo rencontres($tempstrajetabsolu, $frequenceRencontre, $badOmens, $per, $_POST["psyniscience"], $_POST["agiTimonier"], $_POST["pilot"],
+    $_POST["navWarp"], $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $soc, $s, $t);
 
     //Resortir du Warp
 
@@ -340,7 +340,7 @@ if (
     echo "jours. <br> <br>";
 
     //Fonction de rencontres Warp appellant les 3 paramètres externes
-    echo rencontres($tempstrajetabsolu, $frequenceRencontre, $badOmens, $per, $_POST["psyniscience"], $agiTimonier, $pilotageTimonier,
+    echo rencontres($tempstrajetabsolu, $frequenceRencontre, $badOmens, $per, $_POST["psyniscience"], $_POST["agiTimonier"], $_POST["pilot"],
     $nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $soc, $s, $t);
 
     // Le vaisseau sort du Warp sans Navigateurs

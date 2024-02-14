@@ -84,6 +84,5 @@ $s = $_POST["s"];
 $t = $_POST["t"];
 $int = $_POST["int"];
 
-$agiTimonier = $_POST["agiTimonier"];
-$pilotage = $_POST["pilot"];
+
 
