@@ -8,27 +8,27 @@ ob_start();
 <article>
     <form class="wrapper" action="./../Warhammer-Helping/voyage.php" method="POST">
         <div>
-            <h4>Votre valeur de Force :</h4>
+            <h4>Valeur de Force du Navigateur :</h4>
             <input type="text" name="s" placeholder="Force" />
             <input type="text" name="sSurnat" placeholder="Force surnaturelle" value="0"/><br />
-            <h4>Votre valeur d'Endurance :</h4>
+            <h4>Valeur d'Endurance du Navigateur :</h4>
             <input type="text" name="t" placeholder="Endurance" />
             <input type="text" name="tSurnat" placeholder="Endurance surnaturelle" value="0"/><br />
-            <h4>Votre valeur d'Intelligence :</h4>
+            <h4>Valeur d'Intelligence du Navigateur :</h4>
             <input type="text" name="int" placeholder="Intelligence" />
             <input type="text" name="intSurnat" placeholder="Intelligence surnaturelle" value="0"/><br />
-            <h4>Votre valeur de Perception :</h4>
+            <h4>Valeur de Perception du Navigateur :</h4>
             <input type="text" name="per" placeholder="Perception" />
             <input type="text" name="perSurnat" placeholder="Perception surnaturelle" value="0"/><br />
-            <h4>Votre valeur de Force mentale :</h4>
+            <h4>Valeur de Force mentale du Navigateur :</h4>
             <input type="text" name="wp" placeholder="Force-mentale" />
             <input type="text" name="wpSurnat" placeholder="Force-mentale surnaturelle" value="0"/><br />
-            <h4>Votre valeur de Sociabilité :</h4>
+            <h4>Valeur de Sociabilité du Navigateur :</h4>
             <input type="text" name="soc" placeholder="Sociabilité" />
             <input type="text" name="socSurnat" placeholder="Sociabilité surnaturelle" value="0"/><br />
         </div>
         <div>
-            <h4>Votre compétence de navigation Warp :</h4>
+            <h4>Compétence de navigation Warp du Navigateur :</h4>
             <label for="navWarpT"></label>
             <input name="navWarp" type="radio" value="navWarpT" required />
             Trained<br />
@@ -41,7 +41,7 @@ ob_start();
             <label for="navWarp+30"></label>
             <input name="navWarp" type="radio" value="navWarp+30" required />
             +30<br />
-            <h4>Votre compétence de Psyniscience :</h4>
+            <h4>Compétence de Psyniscience du Navigateur :</h4>
             <label for="psyniscienceT"></label>
             <input name="psyniscience" type="radio" value="psyniscienceT" required />
             Trained<br />
@@ -97,12 +97,13 @@ ob_start();
             Oui<br />
         </div>
         <div>
-            <h4>Valeur de Moral actuel du Vaisseau</h4>
+            <h4>Valeur de Moral actuel du Vaisseau : </h4>
             <input type="text" name="moral" placeholder="Moral actuel" value="100"/>
-            <h4>Valeur de caractéristique de l'équipage</h4>
-            <input type="text" name="crewRating" placeholder="Niveau moyen de l'équipage" />
+            <h4>Valeur de caractéristique de l'équipage : </h4>
+            <input type="text" name="crewRating" placeholder="Niveau moyen de l'équipage" /><br />
+            <h4>Nombre de PNJ importants : </h4>
             <input type="text" name="nombrePNJImportant" placeholder="Nombre de PNJ nommés et importants" value="0"/><br />
-            <h4>Valeur de Sociabilité du Capitaine/Missionnaire:</h4>
+            <h4>Valeur de Sociabilité du Capitaine/Missionnaire :</h4>
             <input type="text" name="socCptn" placeholder="Sociabilité" />
             <input type="text" name="socSurnatCptn" placeholder="Sociabilité surnaturelle" value="0"/><br />
             <h4>Sa compétence (Command / Charm):</h4>
@@ -118,7 +119,7 @@ ob_start();
             <label for="leadership+30"></label>
             <input name="leadership" type="radio" value="leadership+30" required />
             +30<br />
-            <h4>Valeur de l'Agilité du Maître Timonier:</h4>
+            <h4>Valeur de l'Agilité du Maître Timonier :</h4>
             <input type="text" name="agiTimonier" placeholder="Agilité" />
             <input type="text" name="agiSurnatTimonier" placeholder="Agilité Surnaturelle" value="0"/><br />
             <h4>Sa compétence Pilotage (Vaisseaux spatiaux):</h4>

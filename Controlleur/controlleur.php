@@ -15,3 +15,13 @@ function campagneIn()
 {
     require './../Warhammer-Helping/Vue/VueCampagneManager.php';
 }
+
+function creationPerso()
+{
+    require './../Warhammer-Helping/Vue/VueCreationPersonnage.php';
+}
+
+function AjouterPerso()
+{
+    //Faire la fonction pour ajouter dans la BDD
+}

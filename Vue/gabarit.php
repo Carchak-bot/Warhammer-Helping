@@ -25,7 +25,7 @@
     </main>
     <footer>
         <article>
-            <h4>Fait par Carchak</h4>
+            <h4>Fait par Carchak & Kerabrim</h4>
         </article>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
