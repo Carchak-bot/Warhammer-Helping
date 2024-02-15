@@ -1,20 +1,28 @@
-<?php
-ob_start();
-?>
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./../assets/css/styleconnexion.css" />
+    <title>Warp Travel connexion</title>
+    <script src="./../assets/Js/Jquery.js"></script>
+    <script src="./../assets/Js/commandes.js"></script>
+</head>
+    <body>
+        <div id="container">
+ <!-- zone de connexion -->
+ 
+            <form>
+                <h1>Connexion</h1>
+ 
+                <label><b>Nom d'utilisateur</b></label>
+                <input type="text" placeholder="Entrer le nom d'utilisateur" id="user" required>
 
-<header>
-    <h1>Connexion</h1>
-</header>
-<article>
-    <form class="wrapper" action="./../Warhammer-Helping/voyage.php" method="POST">
-        <div>
-            <h4>Nom d'utilisateur :</h4>
-            <input type="text" name="Conn" required />
-            <h4>Mot de passe :</h4>
-            <input type="text" name="MDP" required />
+                <label><b>Mot de passe</b></label>
+                <input type="password" placeholder="Entrer le mot de passe" id="MDP" required>
+
+            <button type="button" id="conn">Connexion</button>
+            <a href="Inscription.php">Pas de compte ? S'inscrire</a>
+            </form>
         </div>
-        <button type="submit">Voyager</button>
-    </form>
-    <a href="inscription.php">Connexion</a>
-</article>
-<br />
+    </body>
+</html>
