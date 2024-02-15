@@ -1,4 +1,6 @@
 <?php
+require './../Warhammer-Helping/Modele/modele.php';
+
 //____________________________________________________________________________________________
 //             Hallucinations
 //____________________________________________________________________________________________
@@ -13,35 +15,75 @@ function hallucinations($nbrPNJImportant, $crewRating)
                 echo $i;
                 echo " a échoué son test de résistance mentale et est épris d'hallucinations jusqu'à ce qu'il ait une occasion 
                 de s'en débarasser.<br>";
-                $hallucinationCheckResult = floor(($hallucinationCheck - $crewRating) / 10);
+                $hallucinationCheckResult = floor(($hallucinationCheck - $crewRating));
                 echo "Il a échoué avec <b>";
-                echo $hallucinationCheckResult;
+                echo ($hallucinationCheckResult / 10);
                 echo "</b> degré d'échecs et est atteins de l'hallucination : ";
                 $trueHallucination = rand(1, 100);
                 $trueHallucinationResult = $trueHallucination + $hallucinationCheckResult;
                 if (($trueHallucinationResult >= 1) && ($trueHallucinationResult <= 40)) {
-                    echo "Phobie ! <br><br>";
+                    $request = "SELECT Designation FROM hallucination_warp WHERE Id=2";
+                    $designation = selectDatabase($request);
+                    echo $designation[0]["Designation"] . '<br>';
+                    $request = "SELECT Description FROM hallucination_warp WHERE Id=2";
+                    $description = selectDatabase($request);
+                    echo $description[0]["Description"] . '<br><br>';
                 }
                 if (($trueHallucinationResult >= 41) && ($trueHallucinationResult <= 70)) {
-                    echo "Malignancy ! <br><br>";
+                    $request = "SELECT Designation FROM hallucination_warp WHERE Id=3";
+                    $designation = selectDatabase($request);
+                    echo $designation[0]["Designation"] . '<br>';
+                    $request = "SELECT Description FROM hallucination_warp WHERE Id=3";
+                    $description = selectDatabase($request);
+                    echo $description[0]["Description"] . '<br><br>';
                 }
                 if (($trueHallucinationResult >= 71) && ($trueHallucinationResult <= 90)) {
-                    echo "The Horror ! The Horror ! <br><br>";
+                    $request = "SELECT Designation FROM hallucination_warp WHERE Id=4";
+                    $designation = selectDatabase($request);
+                    echo $designation[0]["Designation"] . '<br>';
+                    $request = "SELECT Description FROM hallucination_warp WHERE Id=4";
+                    $description = selectDatabase($request);
+                    echo $description[0]["Description"] . '<br><br>';
                 }
                 if (($trueHallucinationResult >= 91) && ($trueHallucinationResult <= 110)) {
-                    echo "The Flesh is Weak ! <br><br>";
+                    $request = "SELECT Designation FROM hallucination_warp WHERE Id=5";
+                    $designation = selectDatabase($request);
+                    echo $designation[0]["Designation"] . '<br>';
+                    $request = "SELECT Description FROM hallucination_warp WHERE Id=5";
+                    $description = selectDatabase($request);
+                    echo $description[0]["Description"] . '<br><br>';
                 }
                 if (($trueHallucinationResult >= 111) && ($trueHallucinationResult <= 130)) {
-                    echo "Mutants, Mutants everywhere ! <br><br>";
+                    $request = "SELECT Designation FROM hallucination_warp WHERE Id=6";
+                    $designation = selectDatabase($request);
+                    echo $designation[0]["Designation"] . '<br>';
+                    $request = "SELECT Description FROM hallucination_warp WHERE Id=6";
+                    $description = selectDatabase($request);
+                    echo $description[0]["Description"] . '<br><br>';
                 }
                 if (($trueHallucinationResult >= 131) && ($trueHallucinationResult <= 150)) {
-                    echo "Rêves de corruptions ! <br><br>";
+                    $request = "SELECT Designation FROM hallucination_warp WHERE Id=7";
+                    $designation = selectDatabase($request);
+                    echo $designation[0]["Designation"] . '<br>';
+                    $request = "SELECT Description FROM hallucination_warp WHERE Id=7";
+                    $description = selectDatabase($request);
+                    echo $description[0]["Description"] . '<br><br>';
                 }
                 if (($trueHallucinationResult >= 151) && ($trueHallucinationResult <= 170)) {
-                    echo "Désolation et désespoir. <br><br>";
+                    $request = "SELECT Designation FROM hallucination_warp WHERE Id=8";
+                    $designation = selectDatabase($request);
+                    echo $designation[0]["Designation"] . '<br>';
+                    $request = "SELECT Description FROM hallucination_warp WHERE Id=8";
+                    $description = selectDatabase($request);
+                    echo $description[0]["Description"] . '<br><br>';
                 }
                 if ($trueHallucinationResult >= 171) {
-                    echo "Désillusion infernale. <br><br>";
+                    $request = "SELECT Designation FROM hallucination_warp WHERE Id=9";
+                    $designation = selectDatabase($request);
+                    echo $designation[0]["Designation"] . '<br>';
+                    $request = "SELECT Description FROM hallucination_warp WHERE Id=9";
+                    $description = selectDatabase($request);
+                    echo $description[0]["Description"] . '<br><br>';
                 }
                 break;
             case($hallucinationCheck <= $crewRating):
@@ -386,6 +428,154 @@ function navigation($nav, $int, $bonusNavFinal, $tempstrajettheorique, $tempstra
     }
 }
 
+function courseCorrection($tempstrajettheorique, $tempstrajetfinal, $nav, $int, $bonusNavFinal)
+{
+    if ($tempstrajetfinal < ($tempstrajettheorique / 2) || $tempstrajetfinal > ($tempstrajettheorique * 2)) {
+        $navigationCheck = rand(1, 100);
+        echo "[" . $navigationCheck . "] !<br>";
+        switch ($navigationCheck) {
+            case($nav == "navWarpT"):
+                $navigationCheckResult = (($int + $bonusNavFinal - 20) - $navigationCheck);
+                if ($navigationCheckResult >= 0) {
+                    $severlyOffCourse = 0;
+                    $navigationCheck2 = rand(1, 100);
+                    echo "[" . $navigationCheck2 . "] !<br>";
+                    $navigationCheck2Result = (($int + $bonusNavFinal - 20) - $navigationCheck2);
+                    if ($navigationCheck2Result >= 0) {
+                        $slightlyOffCourse = 0;
+                        $onTarget = 1;
+                    } else {
+                        $slightlyOffCourse = 1;
+                        $onTarget = 0;
+                    }
+                } else {
+                    $severlyOffCourse = 1;
+                    $slightlyOffCourse = 0;
+                    $onTarget = 0;
+                }
+                break;
+            case($nav == "navWarp+10"):
+                $navigationCheckResult = (($int + $bonusNavFinal + 10 - 20) - $navigationCheck);
+                if ($navigationCheckResult >= 0) {
+                    $severlyOffCourse = 0;
+                    $navigationCheck2 = rand(1, 100);
+                    echo "[" . $navigationCheck2 . "] !<br>";
+                    $navigationCheck2Result = (($int + $bonusNavFinal + 10 - 20) - $navigationCheck2);
+                    if ($navigationCheck2Result >= 0) {
+                        $slightlyOffCourse = 0;
+                        $onTarget = 1;
+                    } else {
+                        $slightlyOffCourse = 1;
+                        $onTarget = 0;
+                    }
+                } else {
+                    $severlyOffCourse = 1;
+                    $slightlyOffCourse = 0;
+                    $onTarget = 0;
+                }
+                break;
+            case($nav == "navWarp+20"):
+                $navigationCheckResult = (($int + $bonusNavFinal + 20 - 20) - $navigationCheck);
+                if ($navigationCheckResult >= 0) {
+                    $severlyOffCourse = 0;
+                    $navigationCheck2 = rand(1, 100);
+                    echo "[" . $navigationCheck2 . "] !<br>";
+                    $navigationCheck2Result = (($int + $bonusNavFinal + 20 - 20) - $navigationCheck2);
+                    if ($navigationCheck2Result >= 0) {
+                        $slightlyOffCourse = 0;
+                        $onTarget = 1;
+                    } else {
+                        $slightlyOffCourse = 1;
+                        $onTarget = 0;
+                    }
+                } else {
+                    $severlyOffCourse = 1;
+                    $slightlyOffCourse = 0;
+                    $onTarget = 0;
+                }
+                break;
+            case($nav == "navWarp+30"):
+                $navigationCheckResult = (($int + $bonusNavFinal + 30 - 20) - $navigationCheck);
+                if ($navigationCheckResult >= 0) {
+                    $severlyOffCourse = 0;
+                    $navigationCheck2 = rand(1, 100);
+                    echo "[" . $navigationCheck2 . "] !<br>";
+                    $navigationCheck2Result = (($int + $bonusNavFinal + 30 - 20) - $navigationCheck2);
+                    if ($navigationCheck2Result >= 0) {
+                        $slightlyOffCourse = 0;
+                        $onTarget = 1;
+                    } else {
+                        $slightlyOffCourse = 1;
+                        $onTarget = 0;
+                    }
+                } else {
+                    $severlyOffCourse = 1;
+                    $slightlyOffCourse = 0;
+                    $onTarget = 0;
+                }
+                break;
+        }
+        $severlyOffCourse = 1;
+    } elseif ($tempstrajetfinal >= ($tempstrajettheorique / 2) || $tempstrajetfinal <= ($tempstrajettheorique * 2)) {
+        $navigationCheck = rand(1, 100);
+        echo "[" . $navigationCheck . "] !<br>";
+        switch ($navigationCheck) {
+            case($nav == "navWarpT"):
+                $navigationCheck2Result = (($int + $bonusNavFinal - 20) - $navigationCheck);
+                if ($navigationCheck2Result >= 0) {
+                    $slightlyOffCourse = 0;
+                    $onTarget = 1;
+                } else {
+                    $slightlyOffCourse = 1;
+                    $onTarget = 0;
+                }
+                break;
+            case($nav == "navWarp+10"):
+                $navigationCheck2Result = (($int + $bonusNavFinal + 10 - 20) - $navigationCheck);
+                if ($navigationCheck2Result >= 0) {
+                    $slightlyOffCourse = 0;
+                    $onTarget = 1;
+                } else {
+                    $slightlyOffCourse = 1;
+                    $onTarget = 0;
+                }
+                break;
+            case($nav == "navWarp+20"):
+                $navigationCheck2Result = (($int + $bonusNavFinal + 20 - 20) - $navigationCheck);
+                if ($navigationCheck2Result >= 0) {
+                    $slightlyOffCourse = 0;
+                    $onTarget = 1;
+                } else {
+                    $slightlyOffCourse = 1;
+                    $onTarget = 0;
+                }
+                break;
+            case($nav == "navWarp+30"):
+                $navigationCheck2Result = (($int + $bonusNavFinal + 30 - 20) - $navigationCheck);
+                if ($navigationCheck2Result >= 0) {
+                    $slightlyOffCourse = 0;
+                    $onTarget = 1;
+                } else {
+                    $slightlyOffCourse = 1;
+                    $onTarget = 0;
+                }
+                break;
+        }
+        $slightlyOffCourse = 1;
+    } else {
+        $onTarget = 1;
+    }
+
+    if ($onTarget == 1) {
+        $reEntry = 0;
+    } elseif ($slightlyOffCourse == 1) {
+        $reEntry = rand(1, 100);
+    } elseif ($severlyOffCourse == 1) {
+        $reEntry = (rand(1, 100) + 40);
+    }
+    return $reEntry;
+}
+
 function reEntry($reEntry)
 {
     if (($reEntry >= 1) && ($reEntry <= 25)) {
@@ -396,6 +586,7 @@ function reEntry($reEntry)
     if (($reEntry >= 26) && ($reEntry <= 50)) {
         echo "Vous sortez du Warp avec un décallage de ";
         $realSpaceDays = rand(1, 10);
+        echo $realSpaceDays;
         echo " jours de voyage d'espace réel de votre destination.";
     }
     if (($reEntry >= 51) && ($reEntry <= 75)) {
@@ -700,7 +891,12 @@ function rencontres(
     $bonusNav5,
     $soc,
     $s,
-    $t
+    $t,
+    $astronomicanPasPercu,
+    $psyniscienceCheck2Failed,
+    $dureeEronner,
+    $tempstrajettheorique,
+    $route
 ) {
     $rencontresNombre = floor($tempstrajetabsolu / $frequenceRencontre);
     echo "Il y aura ";
@@ -719,8 +915,51 @@ function rencontres(
             }
         }
         if (($rencontresTirage >= 1) && ($rencontresTirage <= 20)) {
-            echo "Tout va bien. Le navigateur peut tenter de localiser l'Astronomican à nouveau tandis que tout
-             personnages souffrant d'halucinations warp peut essayer de s'en débarasser à nouveau. <br>";
+            //Requête SQL pour afficher la description et la designation de la rencontre
+            $request = "SELECT Designation FROM rencontre_warp WHERE Id=1";
+            $designation = selectDatabase($request);
+            echo "[" . $rencontresTirage . "] !  ".$designation[0]["Designation"] . '<br>';
+            $request = "SELECT Description FROM rencontre_warp WHERE Id=1";
+            $description = selectDatabase($request);
+            echo $description[0]["Description"] . '<br>';
+            //Relance de la perception de l'astronomican si celle ci a été échouée précédement
+            if ($astronomicanPasPercu == 1) {
+                $psyniscienceCheck2 = rand(1, 100);
+                echo "[";
+                echo $psyniscienceCheck2;
+                echo "] ! <br>";
+                switch ($route) {
+                    case 1:
+                    case 2:
+                    case 3:
+                        // psyniscience +20
+                        $bonus = 20;
+                        $bonusNav = psyniscienceAstro($psyniscience, $per, $psyniscienceCheck2, $psyniscienceCheck2Failed, $dureeEronner, $tempstrajettheorique, $bonus);
+                        break;
+                    case 4:
+                    case 5:
+                    case 6:
+                    case 7:
+                    case 8:
+                    case 10:
+                        // psyniscience normale
+                        $bonus = 0;
+                        $bonusNav = psyniscienceAstro($psyniscience, $per, $psyniscienceCheck2, $psyniscienceCheck2Failed, $dureeEronner, $tempstrajettheorique, $bonus);
+                        break;
+                    case 9:
+                        // psyniscience -20
+                        $bonus = -20;
+                        $bonusNav = psyniscienceAstro($psyniscience, $per, $psyniscienceCheck2, $psyniscienceCheck2Failed, $dureeEronner, $tempstrajettheorique, $bonus);
+                        break;
+                }
+                //L'astronomican n'est pas vu
+                if ($bonusNav == - 20) {
+                    $astronomicanPasPercu = 1;
+                }
+                if ($bonusNav != - 20) {
+                    $astronomicanPasPercu = 0;
+                }
+            }
         }
         if (($rencontresTirage >= 21) && ($rencontresTirage <= 30)) {
             if (
@@ -732,30 +971,40 @@ function rencontres(
                 $psyniscienceCheck3 = rand(1, 100);
                 $psyniscienceCheck3result = detectionRencontre($psyniscience, $per, $psyniscienceCheck3);
                 if ($psyniscienceCheck3result >= 0) {
-                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger et a le temps de se préparer. <br>";
+                    echo "[" . $psyniscienceCheck3 . "] ! Le Navigateur détecte le danger et a le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 20;
                     $trialFailed = trial($trial, $bonusTrial, $soc, $s, $t, $int, $nav, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5);
                 } elseif (($psyniscienceCheck3result >= -1) && ($psyniscienceCheck3result < 0)) {
-                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger juste à temps mais n'a pas le temps de se préparer. <br>";
+                    echo "[" . $psyniscienceCheck3 . "] ! Le Navigateur détecte le danger juste à temps mais n'a pas le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 0;
                     $trialFailed = trial($trial, $bonusTrial, $soc, $s, $t, $int, $nav, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5);
                 } else {
-                    echo "[".$psyniscienceCheck3."] ! Le Navigateur ne détecte pas le danger et n'a pas le temps de se préparer. <br>";
+                    echo "[" . $psyniscienceCheck3 . "] ! Le Navigateur ne détecte pas le danger et n'a pas le temps de se préparer. <br>";
                     $trialFailed = 1;
                 }
                 if ($trialFailed == 0) {
-                    echo "Un Mirage de désillusion a été évité avec succès. <br>";
+                    $request = "SELECT Designation FROM rencontre_warp WHERE Id=2";
+                    $designation = selectDatabase($request);
+                    echo "[" . $rencontresTirage . "] ! Un ".$designation[0]["Designation"] . ' a été évité avec succès. <br>';
                 } else {
-                    echo "[" . $rencontresTirage . "] Mirage de désillusion. Chaque explorateur et PNJ importants à bord doivent faire un test de Force Mentale (+0) et le réussir.
-                 Sinon ils seront affectés par une hallucination warp choisie au hasard. Si le champs de Geller est opérationnel chaques personnages
-                 reçoivent un bonus de (+30) au test de Force Mentale. S'il ne l'est pas le test subit un malus de (-30) à la place. <br>";
+                    //Requête SQL pour afficher la description et la designation de la rencontre
+                    $request = "SELECT Designation FROM rencontre_warp WHERE Id=2";
+                    $designation = selectDatabase($request);
+                    echo "[" . $rencontresTirage . "] !  ".$designation[0]["Designation"] . '<br>';
+                    $request = "SELECT Description FROM rencontre_warp WHERE Id=2";
+                    $description = selectDatabase($request);
+                    echo $description[0]["Description"] . '<br>';
                 }
             } else {
-                echo "[" . $rencontresTirage . "] Mirage de désillusion. Chaque explorateur et PNJ importants à bord doivent faire un test de Force Mentale (+0) et le réussir.
-                 Sinon ils seront affectés par une hallucination warp choisie au hasard. Si le champs de Geller est opérationnel chaques personnages
-                 reçoivent un bonus de (+30) au test de Force Mentale. S'il ne l'est pas le test subit un malus de (-30) à la place. <br>";
+                //Requête SQL pour afficher la description et la designation de la rencontre
+                $request = "SELECT Designation FROM rencontre_warp WHERE Id=2";
+                $designation = selectDatabase($request);
+                echo "[" . $rencontresTirage . "] !  ".$designation[0]["Designation"] . '<br>';
+                $request = "SELECT Description FROM rencontre_warp WHERE Id=2";
+                $description = selectDatabase($request);
+                echo $description[0]["Description"] . '<br>';
             }
         }
         if (($rencontresTirage >= 31) && ($rencontresTirage <= 40)) {
@@ -768,33 +1017,41 @@ function rencontres(
                 $psyniscienceCheck3 = rand(1, 100);
                 $psyniscienceCheck3result = detectionRencontre($psyniscience, $per, $psyniscienceCheck3);
                 if ($psyniscienceCheck3result >= 0) {
-                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger et a le temps de se préparer. <br>";
+                    echo "[" . $psyniscienceCheck3 . "] ! Le Navigateur détecte le danger et a le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 20;
                     $trialFailed = trial($trial, $bonusTrial, $soc, $s, $t, $int, $nav, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5);
                 } elseif (($psyniscienceCheck3result >= -1) && ($psyniscienceCheck3result < 0)) {
-                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger juste à temps mais n'a pas le temps de se préparer. <br>";
+                    echo "[" . $psyniscienceCheck3 . "] ! Le Navigateur détecte le danger juste à temps mais n'a pas le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 0;
                     $trialFailed = trial($trial, $bonusTrial, $soc, $s, $t, $int, $nav, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5);
                 } else {
-                    echo "[".$psyniscienceCheck3."] ! Le Navigateur ne détecte pas le danger et n'a pas le temps de se préparer. <br>";
+                    echo "[" . $psyniscienceCheck3 . "] ! Le Navigateur ne détecte pas le danger et n'a pas le temps de se préparer. <br>";
                     $trialFailed = 1;
                 }
                 if ($trialFailed == 0) {
-                    echo "Des Prédateurs psychiques ont été évités avec succès. <br>";
+                    $request = "SELECT Designation FROM rencontre_warp WHERE Id=3";
+                    $designation = selectDatabase($request);
+                    echo "[" . $rencontresTirage . "] ! Des ".$designation[0]["Designation"] . ' ont été évité avec succès. <br>';
                 } else {
-                    echo "[" . $rencontresTirage . "] Prédateurs psychiques ! <br> Si cet effet se manifeste à bord d'un vaisseau, rouler une fois les dés sur la 
-                <b>table 2-8 Incursions Warp</b> (voir page 33) et appliquez le résultat. Réduisez le résultat du lancé de dé par -30 si 
-                le champs de Geller est complètement fonctionnel (jusqu'à un minimum de 01). Ajoutez +30 au résultat du jet si le champs 
-                de Geller est éteins. <br>";
+                    //Requête SQL pour afficher la description et la designation de la rencontre
+                    $request = "SELECT Designation FROM rencontre_warp WHERE Id=3";
+                    $designation = selectDatabase($request);
+                    echo "[" . $rencontresTirage . "] !  ".$designation[0]["Designation"] . '<br>';
+                    $request = "SELECT Description FROM rencontre_warp WHERE Id=3";
+                    $description = selectDatabase($request);
+                    echo $description[0]["Description"] . '<br>';
                     echo incursion($_POST["gellarFieldOffline"], $_POST["gellarFieldDamaged"]);
                 }
             } else {
-                echo "[" . $rencontresTirage . "] Prédateurs psychiques ! <br> Si cet effet se manifeste à bord d'un vaisseau, rouler une fois les dés sur la 
-                <b>table 2-8 Incursions Warp</b> (voir page 33) et appliquez le résultat. Réduisez le résultat du lancé de dé par -30 si 
-                le champs de Geller est complètement fonctionnel (jusqu'à un minimum de 01). Ajoutez +30 au résultat du jet si le champs 
-                de Geller est éteins. <br>";
+                //Requête SQL pour afficher la description et la designation de la rencontre
+                $request = "SELECT Designation FROM rencontre_warp WHERE Id=3";
+                $designation = selectDatabase($request);
+                echo "[" . $rencontresTirage . "] !  ".$designation[0]["Designation"] . '<br>';
+                $request = "SELECT Description FROM rencontre_warp WHERE Id=3";
+                $description = selectDatabase($request);
+                echo $description[0]["Description"] . '<br>';
                 echo incursion($_POST["gellarFieldOffline"], $_POST["gellarFieldDamaged"]);
             }
         }
@@ -808,33 +1065,50 @@ function rencontres(
                 $psyniscienceCheck3 = rand(1, 100);
                 $psyniscienceCheck3result = detectionRencontre($psyniscience, $per, $psyniscienceCheck3);
                 if ($psyniscienceCheck3result >= 0) {
-                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger et a le temps de se préparer. <br>";
+                    echo "[" . $psyniscienceCheck3 . "] ! Le Navigateur détecte le danger et a le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 20;
                     $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
                 } elseif (($psyniscienceCheck3result >= -1) && ($psyniscienceCheck3result < 0)) {
-                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger juste à temps mais n'a pas le temps de se préparer. <br>";
+                    echo "[" . $psyniscienceCheck3 . "] ! Le Navigateur détecte le danger juste à temps mais n'a pas le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 0;
                     $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
                 } else {
-                    echo "[".$psyniscienceCheck3."] ! Le Navigateur ne détecte pas le danger et n'a pas le temps de se préparer. <br>";
+                    echo "[" . $psyniscienceCheck3 . "] ! Le Navigateur ne détecte pas le danger et n'a pas le temps de se préparer. <br>";
                     $trialFailed = 1;
                 }
                 if ($trialFailed == 0) {
-                    echo "Une Stase de Vaisseau a été évitée avec succès. <br>";
+                    $request = "SELECT Designation FROM rencontre_warp WHERE Id=4";
+                    $designation = selectDatabase($request);
+                    echo "[" . $rencontresTirage . "] ! Une ".$designation[0]["Designation"] . ' a été évitée avec succès. <br>';
                 } else {
-                    echo "Stase ! <br> Si le navigateur ne peut pas guider le vaisseau pour éviter cette rencontre, le vaisseau se coince 
-            dans une fissure Warp avant de dériver une fois libéré, ajoutant 1d5 jours au voyage. <br>";
+                    //Requête SQL pour afficher la description et la designation de la rencontre
+                    $request = "SELECT Designation FROM rencontre_warp WHERE Id=4";
+                    $designation = selectDatabase($request);
+                    echo "[" . $rencontresTirage . "] !  ".$designation[0]["Designation"] . '<br>';
+                    $request = "SELECT Description FROM rencontre_warp WHERE Id=4";
+                    $description = selectDatabase($request);
+                    echo $description[0]["Description"] . '<br>';
                 }
             } else {
-                echo "Stase ! <br> Si le navigateur ne peut pas guider le vaisseau pour éviter cette rencontre, le vaisseau se coince 
-            dans une fissure Warp avant de dériver une fois libéré, ajoutant 1d5 jours au voyage. <br>";
+                //Requête SQL pour afficher la description et la designation de la rencontre
+                $request = "SELECT Designation FROM rencontre_warp WHERE Id=4";
+                $designation = selectDatabase($request);
+                echo "[" . $rencontresTirage . "] !  ".$designation[0]["Designation"] . '<br>';
+                $request = "SELECT Description FROM rencontre_warp WHERE Id=4";
+                $description = selectDatabase($request);
+                echo $description[0]["Description"] . '<br>';
             }
         }
         if (($rencontresTirage >= 51) && ($rencontresTirage <= 60)) {
-            echo "Combustion Inhumaine spontanée ! <br> Le MJ choisit un des composants du vaisseau lors de cette rencontre. Celui 
-            ci prend immédiatement feu de manire inexpliquée. Voir les règles sur les incendies p.222 du livre de base. <br>";
+            //Requête SQL pour afficher la description et la designation de la rencontre
+            $request = "SELECT Designation FROM rencontre_warp WHERE Id=5";
+            $designation = selectDatabase($request);
+            echo "[" . $rencontresTirage . "] !  ".$designation[0]["Designation"] . '<br>';
+            $request = "SELECT Description FROM rencontre_warp WHERE Id=5";
+            $description = selectDatabase($request);
+            echo $description[0]["Description"] . '<br>';
         }
         if (($rencontresTirage >= 61) && ($rencontresTirage <= 70)) {
             if (
@@ -846,29 +1120,41 @@ function rencontres(
                 $psyniscienceCheck3 = rand(1, 100);
                 $psyniscienceCheck3result = detectionRencontre($psyniscience, $per, $psyniscienceCheck3);
                 if ($psyniscienceCheck3result >= 0) {
-                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger et a le temps de se préparer. <br>";
+                    echo "[" . $psyniscienceCheck3 . "] ! Le Navigateur détecte le danger et a le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 20;
                     $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
                 } elseif (($psyniscienceCheck3result >= -1) && ($psyniscienceCheck3result < 0)) {
-                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger juste à temps mais n'a pas le temps de se préparer. <br>";
+                    echo "[" . $psyniscienceCheck3 . "] ! Le Navigateur détecte le danger juste à temps mais n'a pas le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 0;
                     $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
                 } else {
-                    echo "[".$psyniscienceCheck3."] ! Le Navigateur ne détecte pas le danger et n'a pas le temps de se préparer. <br>";
+                    echo "[" . $psyniscienceCheck3 . "] ! Le Navigateur ne détecte pas le danger et n'a pas le temps de se préparer. <br>";
                     $trialFailed = 1;
                 }
                 if ($trialFailed == 0) {
-                    echo "Une Tempête Warp a été évitée avec succès. <br>";
+                    $request = "SELECT Designation FROM rencontre_warp WHERE Id=6";
+                    $designation = selectDatabase($request);
+                    echo "[" . $rencontresTirage . "] ! Une ".$designation[0]["Designation"] . ' a été évitée avec succès. <br>';
                 } else {
-                    echo "Tempête Warp ! <br> Si le Navigateur ne peut pas guider le vaisseau pour éviter cette rencontre, le vaisseau 
-                    est donc frappé de plein fouet par une tempête Warp. <br>";
+                    //Requête SQL pour afficher la description et la designation de la rencontre
+                    $request = "SELECT Designation FROM rencontre_warp WHERE Id=6";
+                    $designation = selectDatabase($request);
+                    echo "[" . $rencontresTirage . "] !  ".$designation[0]["Designation"] . '<br>';
+                    $request = "SELECT Description FROM rencontre_warp WHERE Id=6";
+                    $description = selectDatabase($request);
+                    echo $description[0]["Description"] . '<br>';
                     echo tempete($_POST["gellarFieldDamaged"], $_POST["gellarFieldOffline"]);
                 }
             } else {
-                echo "Tempête Warp ! <br> Si le Navigateur ne peut pas guider le vaisseau pour éviter cette rencontre, le vaisseau 
-                est donc frappé de plein fouet par une tempête Warp. <br>";
+                //Requête SQL pour afficher la description et la designation de la rencontre
+                $request = "SELECT Designation FROM rencontre_warp WHERE Id=6";
+                $designation = selectDatabase($request);
+                echo "[" . $rencontresTirage . "] !  ".$designation[0]["Designation"] . '<br>';
+                $request = "SELECT Description FROM rencontre_warp WHERE Id=6";
+                $description = selectDatabase($request);
+                echo $description[0]["Description"] . '<br>';
                 echo tempete($_POST["gellarFieldDamaged"], $_POST["gellarFieldOffline"]);
             }
         }
@@ -882,29 +1168,41 @@ function rencontres(
                 $psyniscienceCheck3 = rand(1, 100);
                 $psyniscienceCheck3result = detectionRencontre($psyniscience, $per, $psyniscienceCheck3);
                 if ($psyniscienceCheck3result >= 0) {
-                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger et a le temps de se préparer. <br>";
+                    echo "[" . $psyniscienceCheck3 . "] ! Le Navigateur détecte le danger et a le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 20;
                     $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
                 } elseif (($psyniscienceCheck3result >= -1) && ($psyniscienceCheck3result < 0)) {
-                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger juste à temps mais n'a pas le temps de se préparer. <br>";
+                    echo "[" . $psyniscienceCheck3 . "] ! Le Navigateur détecte le danger juste à temps mais n'a pas le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 0;
                     $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
                 } else {
-                    echo "[".$psyniscienceCheck3."] ! Le Navigateur ne détecte pas le danger et n'a pas le temps de se préparer. <br>";
+                    echo "[" . $psyniscienceCheck3 . "] ! Le Navigateur ne détecte pas le danger et n'a pas le temps de se préparer. <br>";
                     $trialFailed = 1;
                 }
                 if ($trialFailed == 0) {
-                    echo "Un Récif Aethérique a été évité avec succès. <br>";
+                    $request = "SELECT Designation FROM rencontre_warp WHERE Id=7";
+                    $designation = selectDatabase($request);
+                    echo "[" . $rencontresTirage . "] ! Un ".$designation[0]["Designation"] . ' a été évité avec succès. <br>';
                 } else {
-                    echo "Récifs Aethériques ! <br> Si le Navigateur ne peut pas guider ce vaisseau pour éviter cette rencontre, 
-            la coque du vaisseau sera érraflée par des morceaux tordus et coupants de la fausse réalité. <br>";
+                    //Requête SQL pour afficher la description et la designation de la rencontre
+                    $request = "SELECT Designation FROM rencontre_warp WHERE Id=7";
+                    $designation = selectDatabase($request);
+                    echo "[" . $rencontresTirage . "] !  ".$designation[0]["Designation"] . '<br>';
+                    $request = "SELECT Description FROM rencontre_warp WHERE Id=7";
+                    $description = selectDatabase($request);
+                    echo $description[0]["Description"] . '<br>';
                     echo recifs($_POST["gellarFieldDamaged"], $_POST["gellarFieldOffline"]);
                 }
             } else {
-                echo "Récifs Aethériques ! <br> Si le Navigateur ne peut pas guider ce vaisseau pour éviter cette rencontre, 
-                la coque du vaisseau sera érraflée par des morceaux tordus et coupants de la fausse réalité. <br>";
+                //Requête SQL pour afficher la description et la designation de la rencontre
+                $request = "SELECT Designation FROM rencontre_warp WHERE Id=7";
+                $designation = selectDatabase($request);
+                echo "[" . $rencontresTirage . "] !  ".$designation[0]["Designation"] . '<br>';
+                $request = "SELECT Description FROM rencontre_warp WHERE Id=7";
+                $description = selectDatabase($request);
+                echo $description[0]["Description"] . '<br>';
                 echo recifs($_POST["gellarFieldDamaged"], $_POST["gellarFieldOffline"]);
             }
         }
@@ -918,33 +1216,45 @@ function rencontres(
                 $psyniscienceCheck3 = rand(1, 100);
                 $psyniscienceCheck3result = detectionRencontre($psyniscience, $per, $psyniscienceCheck3);
                 if ($psyniscienceCheck3result >= 0) {
-                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger et a le temps de se préparer. <br>";
+                    echo "[" . $psyniscienceCheck3 . "] ! Le Navigateur détecte le danger et a le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 20;
                     $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
                 } elseif (($psyniscienceCheck3result >= -1) && ($psyniscienceCheck3result < 0)) {
-                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger juste à temps mais n'a pas le temps de se préparer. <br>";
+                    echo "[" . $psyniscienceCheck3 . "] ! Le Navigateur détecte le danger juste à temps mais n'a pas le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 0;
                     $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
                 } else {
-                    echo "[".$psyniscienceCheck3."] ! Le Navigateur ne détecte pas le danger et n'a pas le temps de se préparer. <br>";
+                    echo "[" . $psyniscienceCheck3 . "] ! Le Navigateur ne détecte pas le danger et n'a pas le temps de se préparer. <br>";
                     $trialFailed = 1;
                 }
                 if ($trialFailed == 0) {
-                    echo "Une Brèche Warp a été évitée avec succès. <br>";
+                    $request = "SELECT Designation FROM rencontre_warp WHERE Id=8";
+                    $designation = selectDatabase($request);
+                    echo "[" . $rencontresTirage . "] ! Une ".$designation[0]["Designation"] . ' a été évitée avec succès. <br>';
                 } else {
-                    echo "Brèche Warp ! <br> Si le Navigateur ne peut pas contourner cette rencontre, le vaisseau s'enfonce dans 
-            une nébuleuse de non-réalitée. <br>";
+                    //Requête SQL pour afficher la description et la designation de la rencontre
+                    $request = "SELECT Designation FROM rencontre_warp WHERE Id=8";
+                    $designation = selectDatabase($request);
+                    echo "[" . $rencontresTirage . "] !  ".$designation[0]["Designation"] . '<br>';
+                    $request = "SELECT Description FROM rencontre_warp WHERE Id=8";
+                    $description = selectDatabase($request);
+                    echo $description[0]["Description"] . '<br>';
                     echo breche();
                 }
             } else {
-                echo "Brèche Warp ! <br> Si le Navigateur ne peut pas contourner cette rencontre, le vaisseau s'enfonce dans 
-                une nébuleuse de non-réalitée. <br>";
+                //Requête SQL pour afficher la description et la designation de la rencontre
+                $request = "SELECT Designation FROM rencontre_warp WHERE Id=8";
+                $designation = selectDatabase($request);
+                echo "[" . $rencontresTirage . "] !  ".$designation[0]["Designation"] . '<br>';
+                $request = "SELECT Description FROM rencontre_warp WHERE Id=8";
+                $description = selectDatabase($request);
+                echo $description[0]["Description"] . '<br>';
                 echo breche();
             }
         }
-        if (($rencontresTirage >= 91) && ($rencontresTirage <= 100)) {
+        if (($rencontresTirage >= 91)) {
             if (
                 (isset($_POST["navigator"])) &&
                 ($_POST["navigator"] == true)
@@ -954,65 +1264,41 @@ function rencontres(
                 $psyniscienceCheck3 = rand(1, 100);
                 $psyniscienceCheck3result = detectionRencontre($psyniscience, $per, $psyniscienceCheck3);
                 if ($psyniscienceCheck3result >= 0) {
-                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger et a le temps de se préparer. <br>";
+                    echo "[" . $psyniscienceCheck3 . "] ! Le Navigateur détecte le danger et a le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 20;
                     $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
                 } elseif (($psyniscienceCheck3result >= -1) && ($psyniscienceCheck3result < 0)) {
-                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger juste à temps mais n'a pas le temps de se préparer. <br>";
+                    echo "[" . $psyniscienceCheck3 . "] ! Le Navigateur détecte le danger juste à temps mais n'a pas le temps de se préparer. <br>";
                     $trial = rand(1, 100);
                     $bonusTrial = 0;
                     $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
                 } else {
-                    echo "[".$psyniscienceCheck3."] ! Le Navigateur ne détecte pas le danger et n'a pas le temps de se préparer. <br>";
+                    echo "[" . $psyniscienceCheck3 . "] ! Le Navigateur ne détecte pas le danger et n'a pas le temps de se préparer. <br>";
                     $trialFailed = 1;
                 }
                 if ($trialFailed == 0) {
-                    echo "Un Trou Temporel a été évité avec succès. <br>";
+                    $request = "SELECT Designation FROM rencontre_warp WHERE Id=9";
+                    $designation = selectDatabase($request);
+                    echo "[" . $rencontresTirage . "] ! Une ".$designation[0]["Designation"] . ' a été évitée avec succès. <br>';
                 } else {
-                    echo "Trou temporel ! <br> Si le Navigateur ne peut pas diriger le vaisseau dans une autre direction que celle de cette 
-                rencontre, le vaisseau est aspiré en dehors du Warp et reviens dans la réalité. Il faut se référer à <b>Sortir du Warp</b> page 34 <br>";
+                    //Requête SQL pour afficher la description et la designation de la rencontre
+                    $request = "SELECT Designation FROM rencontre_warp WHERE Id=9";
+                    $designation = selectDatabase($request);
+                    echo "[" . $rencontresTirage . "] !  ".$designation[0]["Designation"] . '<br>';
+                    $request = "SELECT Description FROM rencontre_warp WHERE Id=9";
+                    $description = selectDatabase($request);
+                    echo $description[0]["Description"] . '<br>';
                     $severlyOffCourse = 1;
                 }
             } else {
-                echo "Trou temporel ! <br> Si le Navigateur ne peut pas diriger le vaisseau dans une autre direction que celle de cette 
-                rencontre, le vaisseau est aspiré en dehors du Warp et reviens dans la réalité. Il faut se référer à <b>Sortir du Warp</b> page 34 <br>";
-                $severlyOffCourse = 1;
-            }
-        }
-        if ($rencontresTirage >= 100) {
-            if (
-                (isset($_POST["navigator"])) &&
-                ($_POST["navigator"] == true)
-            ) {
-                //éviter la rencontre grâce au navigateur
-                //Psyniscience pour détecter
-                $psyniscienceCheck3 = rand(1, 100);
-                $psyniscienceCheck3result = detectionRencontre($psyniscience, $per, $psyniscienceCheck3);
-                if ($psyniscienceCheck3result >= 0) {
-                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger et a le temps de se préparer. <br>";
-                    $trial = rand(1, 100);
-                    $bonusTrial = 20;
-                    $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
-                } elseif (($psyniscienceCheck3result >= -1) && ($psyniscienceCheck3result < 0)) {
-                    echo "[".$psyniscienceCheck3."] ! Le Navigateur détecte le danger juste à temps mais n'a pas le temps de se préparer. <br>";
-                    $trial = rand(1, 100);
-                    $bonusTrial = 0;
-                    $trialFailed = navTrial($nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $agiTimonier, $pilotageTimonier, $bonusTrial);
-                } else {
-                    echo "[".$psyniscienceCheck3."] ! Le Navigateur ne détecte pas le danger et n'a pas le temps de se préparer. <br>";
-                    $trialFailed = 1;
-                }
-                if ($trialFailed == 0) {
-                    echo "Un Trou Temporel a été évité avec succès. <br>";
-                } else {
-                    echo "Trou temporel ! <br> Si le Navigateur ne peut pas diriger le vaisseau dans une autre direction que celle de cette 
-                rencontre, le vaisseau est aspiré en dehors du Warp et reviens dans la réalité. Il faut se référer à <b>Sortir du Warp</b> page 34 <br>";
-                    $severlyOffCourse = 1;
-                }
-            } else {
-                echo "Trou temporel ! <br> Si le Navigateur ne peut pas diriger le vaisseau dans une autre direction que celle de cette 
-                rencontre, le vaisseau est aspiré en dehors du Warp et reviens dans la réalité. Il faut se référer à <b>Sortir du Warp</b> page 34 <br>";
+                //Requête SQL pour afficher la description et la designation de la rencontre
+                $request = "SELECT Designation FROM rencontre_warp WHERE Id=9";
+                $designation = selectDatabase($request);
+                echo "[" . $rencontresTirage . "] !  ".$designation[0]["Designation"] . '<br>';
+                $request = "SELECT Description FROM rencontre_warp WHERE Id=9";
+                $description = selectDatabase($request);
+                echo $description[0]["Description"] . '<br>';
                 $severlyOffCourse = 1;
             }
         }
@@ -1108,25 +1394,58 @@ function incursion($gellarFieldOffline, $gellarFieldDamaged)
     $text .= $incursionsWarp;
     $text .= "] ";
     if (($incursionsWarp >= 0) && ($incursionsWarp <= 20)) {
-        $text .= "Essaim de Cruauté ! <br>";
+        //Requête SQL pour afficher la description et la designation des incursions
+        $request = "SELECT Designation FROM incursion_warp WHERE Id=2";
+        $designation = selectDatabase($request);
+        $text .= $designation[0]["Designation"] . '<br>';
+        $request = "SELECT Description FROM incursion_warp WHERE Id=2";
+        $description = selectDatabase($request);
+        $text .= $description[0]["Description"] . '<br>';
     }
     if (($incursionsWarp >= 21) && ($incursionsWarp <= 40)) {
-        $text .= "Possession ! <br>";
+        //Requête SQL pour afficher la description et la designation des incursions
+        $request = "SELECT Designation FROM incursion_warp WHERE Id=3";
+        $designation = selectDatabase($request);
+        $text .= $designation[0]["Designation"] . '<br>';
+        $request = "SELECT Description FROM incursion_warp WHERE Id=3";
+        $description = selectDatabase($request);
+        $text .= $description[0]["Description"] . '<br>';
     }
     if (($incursionsWarp >= 41) && ($incursionsWarp <= 60)) {
-        $text .= "Plague of Madness ! <br>";
+        //Requête SQL pour afficher la description et la designation des incursions
+        $request = "SELECT Designation FROM incursion_warp WHERE Id=4";
+        $designation = selectDatabase($request);
+        $text .= $designation[0]["Designation"] . '<br>';
+        $request = "SELECT Description FROM incursion_warp WHERE Id=4";
+        $description = selectDatabase($request);
+        $text .= $description[0]["Description"] . '<br>';
     }
     if (($incursionsWarp >= 61) && ($incursionsWarp <= 80)) {
-        $text .= "Daemonic Incursion ! <br>";
+        //Requête SQL pour afficher la description et la designation des incursions
+        $request = "SELECT Designation FROM incursion_warp WHERE Id=5";
+        $designation = selectDatabase($request);
+        $text .= $designation[0]["Designation"] . '<br>';
+        $request = "SELECT Description FROM incursion_warp WHERE Id=5";
+        $description = selectDatabase($request);
+        $text .= $description[0]["Description"] . '<br>';
     }
     if (($incursionsWarp >= 81) && ($incursionsWarp <= 90)) {
-        $text .= "Warp Sickness ! <br>";
+        //Requête SQL pour afficher la description et la designation des incursions
+        $request = "SELECT Designation FROM incursion_warp WHERE Id=6";
+        $designation = selectDatabase($request);
+        $text .= $designation[0]["Designation"] . '<br>';
+        $request = "SELECT Description FROM incursion_warp WHERE Id=6";
+        $description = selectDatabase($request);
+        $text .= $description[0]["Description"] . '<br>';
     }
-    if (($incursionsWarp >= 91) && ($incursionsWarp <= 100)) {
-        $text .= "Warp Monster ! <br>";
-    }
-    if ($incursionsWarp >= 101) {
-        $text .= "Warp Monster ! <br>";
+    if (($incursionsWarp >= 91)) {
+        //Requête SQL pour afficher la description et la designation des incursions
+        $request = "SELECT Designation FROM incursion_warp WHERE Id=7";
+        $designation = selectDatabase($request);
+        $text .= $designation[0]["Designation"] . '<br>';
+        $request = "SELECT Description FROM incursion_warp WHERE Id=7";
+        $description = selectDatabase($request);
+        $text .= $description[0]["Description"] . '<br>';
     }
     return $text;
 }

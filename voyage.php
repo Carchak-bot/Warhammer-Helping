@@ -179,22 +179,22 @@ if (
     ($_POST["navigator"] == true)
 ) {
     /**********************************************************************************************************************
-    ******************************************************************************************************************** */
+     ******************************************************************************************************************** */
     //Coté ou il y a un navigateur pour guider le vaisseau
     /**********************************************************************************************************************
-    ******************************************************************************************************************** */
+     ******************************************************************************************************************** */
 
     $psyniscienceCheck1 = rand(1, 100);
     //Cartes Warp et bonus à la psyniscience
     switch ($charts) {
-        case ($_POST["warpCharts"] == "none"):
+        case($_POST["warpCharts"] == "none"):
             $charts = 0;
-        case ($_POST["warpCharts"] == "yes"):
+        case($_POST["warpCharts"] == "yes"):
             $charts = 10;
             if (($_POST["warpChartsCreator"] == "yes")) {
                 $chartsFinished = $charts + 10;
             }
-        case ($_POST["warpCharts"] == "yesDetailed"):
+        case($_POST["warpCharts"] == "yesDetailed"):
             $charts = 20;
             if (($_POST["warpChartsCreator"] == "yes")) {
                 $chartsFinished = $charts + 10;
@@ -205,8 +205,14 @@ if (
     echo "[";
     echo $psyniscienceCheck1;
     echo "] ! <br>";
-    psyniscienceNav($_POST["psyniscience"], $per, $chartsFinished, $psyniscienceCheck1, 
-    $dureeEronner, $tempstrajettheorique);
+    psyniscienceNav(
+        $_POST["psyniscience"],
+        $per,
+        $chartsFinished,
+        $psyniscienceCheck1,
+        $dureeEronner,
+        $tempstrajettheorique
+    );
     echo "<br>";
 
     while (
@@ -226,14 +232,22 @@ if (
         echo "[";
         echo $psyniscienceCheck1;
         echo "] ! <br>";
-        psyniscienceNav($_POST["psyniscience"], $per, $chartsFinished, $psyniscienceCheck1, 
-        $dureeEronner, $tempstrajettheorique);
+        psyniscienceNav(
+            $_POST["psyniscience"],
+            $per,
+            $chartsFinished,
+            $psyniscienceCheck1,
+            $dureeEronner,
+            $tempstrajettheorique
+        );
     }
 
     //Se protéger des mauvaises marées
 
-    if (isset($_POST["illTidings"]) && 
-        ($_POST["illTidings"] == true)) {
+    if (
+        isset($_POST["illTidings"]) &&
+        ($_POST["illTidings"] == true)
+    ) {
         $badTidings = 0;
     } else {
         $badTidings = 1;
@@ -276,6 +290,10 @@ if (
             $bonusNav = psyniscienceAstro($_POST["psyniscience"], $per, $psyniscienceCheck2, $psyniscienceCheck2Failed, $dureeEronner, $tempstrajettheorique, $bonus);
             break;
     }
+    //L'astronomican n'est pas vu
+    if ($bonusNav == -20) {
+        $astronomicanPasPercu = 1;
+    }
 
     //Le voyage Warp [STEERING THE VESSEL]
 
@@ -296,24 +314,50 @@ if (
         }
     }
     //Test du Navigateur
-    $tempstrajetfinal = navigation($_POST["navWarp"], $_POST["int"], $bonusNavFinal, $tempstrajettheorique, $tempstrajetabsolu );
+    $tempstrajetfinal = navigation($_POST["navWarp"], $_POST["int"], $bonusNavFinal, $tempstrajettheorique, $tempstrajetabsolu);
     $tempstrajetabsolu = $tempstrajetfinal;
 
     //Fonction de rencontres Warp appellant les 3 paramètres externes
-    echo rencontres($tempstrajetabsolu, $frequenceRencontre, $badOmens, $per, $_POST["psyniscience"], $_POST["agiTimonier"], $_POST["pilot"],
-    $_POST["navWarp"], $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $soc, $s, $t);
+    echo rencontres(
+        $tempstrajetabsolu,
+        $frequenceRencontre,
+        $badOmens,
+        $per,
+        $_POST["psyniscience"],
+        $_POST["agiTimonier"],
+        $_POST["pilot"],
+        $_POST["navWarp"],
+        $int,
+        $bonusNav2,
+        $bonusNav3,
+        $bonusNav4,
+        $bonusNav5,
+        $soc,
+        $s,
+        $t,
+        $astronomicanPasPercu,
+        $psyniscienceCheck2Failed,
+        $dureeEronner,
+        $tempstrajettheorique,
+        $route
+    );
 
     //Resortir du Warp
+    $reEntry = courseCorrection($tempstrajettheorique, $tempstrajetfinal, $_POST["navWarp"], $_POST["int"], $bonusNavFinal);
+    if ($reEntry == 0) {
+        echo "Le vaisseau arrive à sa destination avec succès dans le temps final désiré.";
+    } else {
+        echo reEntry($reEntry);
+    }
 
     
-    echo reEntry($reEntry);
 
 } else {
     /**********************************************************************************************************************
-    ******************************************************************************************************************** */
+     ******************************************************************************************************************** */
     // Coté ou il n'y a pas de Navigateurs pour guider le vaisseau _____________________________________________________
     /**********************************************************************************************************************
-    ******************************************************************************************************************** */
+     ******************************************************************************************************************** */
 
     //La chasse de la mauvaise chance
 
@@ -329,7 +373,7 @@ if (
 
     //Bad Omens
     echo badOmens($_POST["moral"], $_POST["leadership"], $_POST["socCptn"], $_POST["socSurnatCptn"]);
-    
+
     //Hallucinations Warp ?
     echo hallucinations($_POST["nombrePNJImportant"], $_POST["crewRating"]);
 
@@ -340,8 +384,29 @@ if (
     echo "jours. <br> <br>";
 
     //Fonction de rencontres Warp appellant les 3 paramètres externes
-    echo rencontres($tempstrajetabsolu, $frequenceRencontre, $badOmens, $per, $_POST["psyniscience"], $_POST["agiTimonier"], $_POST["pilot"],
-    $nav, $int, $bonusNav2, $bonusNav3, $bonusNav4, $bonusNav5, $soc, $s, $t);
+    echo rencontres(
+        $tempstrajetabsolu,
+        $frequenceRencontre,
+        $badOmens,
+        $per,
+        $_POST["psyniscience"],
+        $_POST["agiTimonier"],
+        $_POST["pilot"],
+        $nav,
+        $int,
+        $bonusNav2,
+        $bonusNav3,
+        $bonusNav4,
+        $bonusNav5,
+        $soc,
+        $s,
+        $t,
+        $astronomicanPasPercu,
+        $psyniscienceCheck2Failed,
+        $dureeEronner,
+        $tempstrajettheorique,
+        $route
+    );
 
     // Le vaisseau sort du Warp sans Navigateurs
     if ($severlyOffCourse == 1) {

@@ -84,5 +84,5 @@ $s = $_POST["s"];
 $t = $_POST["t"];
 $int = $_POST["int"];
 
-
+$astronomicanPasPercu = 0;
 
