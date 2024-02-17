@@ -33,9 +33,9 @@ function selectDatabase($request)
 //          Manipule la Bdd.
 //          Fonction permettant les manipulations directes sur la base de donnée, comme l'ajout ou la suppression de données.
 //____________________________________________________________________________________________
-function manipDb($request)
-{
+function manipDb($request){
     $PDOinstance = getDatabase();
-    $PDOinstance->exec($request);
+    $query= $PDOinstance->prepare($request);
+    $query->execute();
     $PDOinstance = Null;
 }

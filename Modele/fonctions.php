@@ -1,5 +1,5 @@
 <?php
-require './../Warhammer-Helping/Modele/modele.php';
+require 'modele.php';
 
 //____________________________________________________________________________________________
 //             Hallucinations

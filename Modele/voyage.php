@@ -1,4 +1,3 @@
-````
 <?php
 
 // Fichiers PHP inclus

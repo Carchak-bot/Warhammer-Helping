@@ -18,10 +18,10 @@ function campagneIn()
 
 function creationPerso()
 {
-    require './../Warhammer-Helping/Vue/VueCreationPersonnage.php';
+    require './../Warhammer-Helping/Vue/VuePersoCreation.php';
 }
 
-function AjouterPerso()
+function detailsPerso()
 {
-    //Faire la fonction pour ajouter dans la BDD
+    require './../Warhammer-Helping/Vue/VuePersoDetails.php';    
 }

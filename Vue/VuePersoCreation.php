@@ -3,7 +3,7 @@ ob_start();
 ?>
 
 
-<form form class="wrapper" action="./../Warhammer-Helping/index.php?action=creaPerso" method="POST">
+<form form class="wrapper" action="./../Warhammer-Helping/Controlleur/gestionPerso.php?action=creaPerso" method="POST">
     <div>
         <h4>Nom du Personnage :</h4>
         <input type="text" name="nom" placeholder="Nom"><br>
@@ -22,6 +22,9 @@ ob_start();
         <h4>Valeur d'Endurance du Personnage :</h4>
         <input type="text" name="t" placeholder="Endurance" />
         <input type="text" name="tSurnat" placeholder="Endurance surnaturelle" /><br />
+        <h4>Valeur de l'Agilité du Personnage :</h4>
+        <input type="text" name="agiTimonier" placeholder="Agilité" />
+        <input type="text" name="agiSurnatTimonier" placeholder="Agilité Surnaturelle"/><br />
         <h4>Valeur d'Intelligence du Personnage :</h4>
         <input type="text" name="int" placeholder="Intelligence" />
         <input type="text" name="intSurnat" placeholder="Intelligence surnaturelle" /><br />
