@@ -24,6 +24,7 @@ if (isset($_SESSION['pseudo'])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- CSS style -->
     <link rel="stylesheet" href="./../Warhammer-Helping/assets/css/style.css">
+    <link rel="stylesheet" href="./../Warhammer-Helping/assets/css/styleconnexion.css">
 </head>
 
 <body>

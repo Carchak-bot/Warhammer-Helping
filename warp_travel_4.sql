@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 08 fév. 2024 à 19:01
--- Version du serveur : 10.4.32-MariaDB
--- Version de PHP : 8.2.12
+-- Généré le : lun. 19 fév. 2024 à 00:03
+-- Version du serveur : 10.4.28-MariaDB
+-- Version de PHP : 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -45,6 +45,13 @@ CREATE TABLE `compte` (
   `Mot_de_passe` varchar(100) DEFAULT NULL,
   `Mail` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `compte`
+--
+
+INSERT INTO `compte` (`Id`, `Nom_de_compte`, `Mot_de_passe`, `Mail`) VALUES
+(1, 'testeur', 'test123', 'test@test.com');
 
 -- --------------------------------------------------------
 
@@ -134,6 +141,8 @@ INSERT INTO `incursion_warp` (`Id`, `Designation`, `Description`, `Plage_debut`,
 
 CREATE TABLE `personnage` (
   `Id` int(25) NOT NULL,
+  `Nom` varchar(250) DEFAULT NULL,
+  `Role` varchar(250) DEFAULT NULL,
   `Stat_force` int(25) DEFAULT NULL,
   `Force_surnaturelle` int(25) DEFAULT NULL,
   `Stat_endurance` int(25) DEFAULT NULL,
@@ -148,9 +157,11 @@ CREATE TABLE `personnage` (
   `force_mentale_surnaturelle` int(25) DEFAULT NULL,
   `Stat_social` int(25) DEFAULT NULL,
   `social_surnaturelle` int(25) DEFAULT NULL,
-  `Navigation_warp` int(25) DEFAULT NULL,
-  `Commandement` int(25) DEFAULT NULL,
-  `Charisme` int(25) DEFAULT NULL
+  `Navigation_warp` varchar(25) DEFAULT NULL,
+  `Commandement` varchar(25) DEFAULT NULL,
+  `Charisme` varchar(25) DEFAULT NULL,
+  `Pilotage` varchar(25) DEFAULT NULL,
+  `Psyniscience` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
