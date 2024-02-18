@@ -34,7 +34,8 @@ function selectDatabase($request){
 //____________________________________________________________________________________________
 function manipDb($request){
     $PDOinstance = getDatabase();
-    $PDOinstance->exec($request);
+    $query= $PDOinstance->prepare($request);
+    $query->execute();
     $PDOinstance = Null;
 }
 

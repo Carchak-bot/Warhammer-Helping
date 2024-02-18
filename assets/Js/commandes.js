@@ -21,7 +21,7 @@ $(document).ready(function(){
         success: function(data){
             if(data == "Success"){
             // Le membre est connecté.
-            alert("tu as réussi à te connecter");
+            window.location = "./../index.php";
             }else{
             // Le membre n'a pas été connecté. (data vaut ici "failed")
             alert(data);

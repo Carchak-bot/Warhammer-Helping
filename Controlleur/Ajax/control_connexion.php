@@ -1,6 +1,6 @@
 <?php 
-	//Connexion à la base de données
-require "./../../fonctions.php";
+require "./../../Modele/fonctions.php";
+session_start();
 
 $user="";
 $MDP="";
@@ -12,7 +12,7 @@ $MDP="";
      	$request = 'SELECT count(*) FROM compte WHERE Nom_de_compte = "'.$user.'" and Mot_de_passe = "'.$MDP.'";'; 
         $tabUser = selectDatabase($request);
 		if ($tabUser[0]["count(*)"] == '1'){
-            echo 'Connexion réussie';
+            $_SESSION['user'] = $user;
             exit();
         } else {
             echo "Nom d'utilisateur ou mot de passe incorrecte";

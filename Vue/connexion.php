@@ -4,8 +4,6 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="./../assets/css/styleconnexion.css" />
     <title>Warp Travel connexion</title>
-    <script src="./../assets/Js/Jquery.js"></script>
-    <script src="./../assets/Js/commandes.js"></script>
 </head>
     <body>
         <div id="container">
@@ -24,5 +22,7 @@
             <a href="Inscription.php">Pas de compte ? S'inscrire</a>
             </form>
         </div>
+        <script src="./../assets/Js/Jquery.js"></script>
+        <script src="./../assets/Js/commandes.js"></script>
     </body>
 </html>
