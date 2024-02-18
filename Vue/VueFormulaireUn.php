@@ -3,31 +3,31 @@ ob_start();
 ?>
 
 <header>
-    <h1>Générateur de Voyage Warp pour la gamme FFG</h1>
+    <h1 class="text-center my-4">Générateur de Voyage Warp pour la gamme FFG</h1>
 </header>
 <article>
-    <form class="wrapper" action="./../Warhammer-Helping/Modele/voyage.php" method="POST">
-        <div>
+    <form class="wrapper container" action="./../Warhammer-Helping/Modele/voyage.php" method="POST">
+        <div class="mb-3">
             <h4>Valeur de Force du Navigateur :</h4>
             <input type="text" name="s" placeholder="Force" />
-            <input type="text" name="sSurnat" placeholder="Force surnaturelle" value="0"/><br />
+            <input type="text" name="sSurnat" placeholder="Force surnaturelle" value="0" /><br />
             <h4>Valeur d'Endurance du Navigateur :</h4>
             <input type="text" name="t" placeholder="Endurance" />
-            <input type="text" name="tSurnat" placeholder="Endurance surnaturelle" value="0"/><br />
+            <input type="text" name="tSurnat" placeholder="Endurance surnaturelle" value="0" /><br />
             <h4>Valeur d'Intelligence du Navigateur :</h4>
             <input type="text" name="int" placeholder="Intelligence" />
-            <input type="text" name="intSurnat" placeholder="Intelligence surnaturelle" value="0"/><br />
+            <input type="text" name="intSurnat" placeholder="Intelligence surnaturelle" value="0" /><br />
             <h4>Valeur de Perception du Navigateur :</h4>
             <input type="text" name="per" placeholder="Perception" />
-            <input type="text" name="perSurnat" placeholder="Perception surnaturelle" value="0"/><br />
+            <input type="text" name="perSurnat" placeholder="Perception surnaturelle" value="0" /><br />
             <h4>Valeur de Force mentale du Navigateur :</h4>
             <input type="text" name="wp" placeholder="Force-mentale" />
-            <input type="text" name="wpSurnat" placeholder="Force-mentale surnaturelle" value="0"/><br />
+            <input type="text" name="wpSurnat" placeholder="Force-mentale surnaturelle" value="0" /><br />
             <h4>Valeur de Sociabilité du Navigateur :</h4>
             <input type="text" name="soc" placeholder="Sociabilité" />
-            <input type="text" name="socSurnat" placeholder="Sociabilité surnaturelle" value="0"/><br />
+            <input type="text" name="socSurnat" placeholder="Sociabilité surnaturelle" value="0" /><br />
         </div>
-        <div>
+        <div class="mb-3">
             <h4>Compétence de navigation Warp du Navigateur :</h4>
             <label for="navWarpT"></label>
             <input name="navWarp" type="radio" value="navWarpT" required />
@@ -96,16 +96,16 @@ ob_start();
             <input name="illTidings" type="checkbox" value="yes" />
             Oui<br />
         </div>
-        <div>
+        <div class="mb-3">
             <h4>Valeur de Moral actuel du Vaisseau : </h4>
-            <input type="text" name="moral" placeholder="Moral actuel" value="100"/>
+            <input type="text" name="moral" placeholder="Moral actuel" value="100" />
             <h4>Valeur de caractéristique de l'équipage : </h4>
             <input type="text" name="crewRating" placeholder="Niveau moyen de l'équipage" /><br />
             <h4>Nombre de PNJ importants : </h4>
-            <input type="text" name="nombrePNJImportant" placeholder="Nombre de PNJ nommés et importants" value="0"/><br />
+            <input type="text" name="nombrePNJImportant" placeholder="Nombre de PNJ nommés et importants" value="0" /><br />
             <h4>Valeur de Sociabilité du Capitaine/Missionnaire :</h4>
             <input type="text" name="socCptn" placeholder="Sociabilité" />
-            <input type="text" name="socSurnatCptn" placeholder="Sociabilité surnaturelle" value="0"/><br />
+            <input type="text" name="socSurnatCptn" placeholder="Sociabilité surnaturelle" value="0" /><br />
             <h4>Sa compétence (Command / Charm):</h4>
             <label for="leadershipT"></label>
             <input name="leadership" type="radio" value="leadershipT" required />
@@ -121,7 +121,7 @@ ob_start();
             +30<br />
             <h4>Valeur de l'Agilité du Maître Timonier :</h4>
             <input type="text" name="agiTimonier" placeholder="Agilité" />
-            <input type="text" name="agiSurnatTimonier" placeholder="Agilité Surnaturelle" value="0"/><br />
+            <input type="text" name="agiSurnatTimonier" placeholder="Agilité Surnaturelle" value="0" /><br />
             <h4>Sa compétence Pilotage (Vaisseaux spatiaux):</h4>
             <label for="pilotT"></label>
             <input name="pilot" type="radio" value="pilotT" required />
@@ -141,7 +141,7 @@ ob_start();
 </article>
 <br />
 
-<?php 
+<?php
 $contenu = ob_get_clean();
 require 'gabarit.php';
 ?>

@@ -14,7 +14,10 @@ if (isset($pseudo)) {
     echo "<h1>Bienvenue $pseudo</h1>";
     try {
         if (isset($_GET['action'])) {
-            if ($_GET['action'] = 'Campagne') {
+            if ($_GET['action'] = 'CreationCampagne') {
+                //..
+            }
+            if ($_GET['action'] = 'DetailsCampagne') {
                 campagneIn();
             }
             if ($_GET['action'] = 'CreationPerso') {
@@ -22,6 +25,9 @@ if (isset($pseudo)) {
             }
             if ($_GET['action'] = 'DetailsPerso') {
                 detailsPerso();
+            }
+            if ($_GET['action'] = 'updatePerso') {
+                creationPerso();
             }
         } else {
             acceuilInscrit();
