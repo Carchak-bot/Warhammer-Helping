@@ -25,3 +25,8 @@ function detailsPerso()
 {
     require './../Warhammer-Helping/Vue/VuePersoDetails.php';    
 }
+
+function connexion()
+{
+    require './../Warhammer-Helping/Vue/connexion.php'; 
+}

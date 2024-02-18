@@ -44,7 +44,7 @@ if (isset($_SESSION['pseudo'])) {
                             if ($pseudo) {
                                 echo ' ';
                             } else {
-                                echo '<a class="nav-link" href="../Warhammer-Helping/inscription.php">Inscription</a>';
+                                echo '<a class="nav-link" href="../Warhammer-Helping/index.php">Inscription</a>';
                             }
                             ?>
                         </li>
@@ -53,7 +53,7 @@ if (isset($_SESSION['pseudo'])) {
                             if ($pseudo) {
                                 echo ' ';
                             } else {
-                                echo '<a class="nav-link" href="../Warhammer-Helping/connexion.php">Se connecter</a>';
+                                echo '<a class="nav-link" href="../Warhammer-Helping/index.php?action=Connexion">Se connecter</a>';
                             }
                             ?>
                         </li>
@@ -70,11 +70,11 @@ if (isset($_SESSION['pseudo'])) {
         </nav>
     </header>
     <?php
-        if ($pseudo) {
-            echo " ";
-        } else {
-            echo "<H1>Vous ne vous êtes pas encore authentifié</H1> <br><br>";
-        }
+    if ($pseudo) {
+        echo " ";
+    } else {
+        echo "<H1>Vous ne vous êtes pas encore authentifié</H1> <br><br>";
+    }
     ?>
     <main class="global">
         <?= $contenu ?>
@@ -85,6 +85,8 @@ if (isset($_SESSION['pseudo'])) {
         </article>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="./../assets/Js/Jquery.js"></script>
+    <script src="./../assets/Js/commandes.js"></script>
 </body>
 
 </html>

@@ -36,5 +36,10 @@ if (isset($pseudo)) {
       echo 'Erreur : ' . $e->getMessage();
     }
 } else {
-    acceuilNonInscrit();
+    if ($_GET['action'] == 'Connexion') {
+        connexion();
+    } else {
+        acceuilNonInscrit();
+    }
+    
 }
