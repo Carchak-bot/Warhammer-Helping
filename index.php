@@ -1,12 +1,12 @@
 <?php
 session_start();
 require './../Warhammer-Helping/Controlleur/controlleur.php';
-      
+
 if (isset($_SESSION['pseudo'])) {
     $pseudo = $_SESSION['pseudo'];
-  } else {
+} else {
     $pseudo = null;
-  }
+}
 
 
 
@@ -33,13 +33,14 @@ if (isset($pseudo)) {
             acceuilInscrit();
         }
     } catch (PDOException $e) {
-      echo 'Erreur : ' . $e->getMessage();
+        echo 'Erreur : ' . $e->getMessage();
     }
 } else {
-    if ($_GET['action'] == 'Connexion') {
-        connexion();
+    if (isset($_GET['action'])) {
+        if ($_GET['action'] == 'Connexion') {
+            connexion();
+        }
     } else {
         acceuilNonInscrit();
     }
-    
 }
