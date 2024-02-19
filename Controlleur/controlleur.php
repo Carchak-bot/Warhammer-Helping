@@ -28,5 +28,5 @@ function detailsPerso()
 
 function connexion()
 {
-    require './../Warhammer-Helping/Vue/connexion.php'; 
+    require './../Warhammer-Helping/Vue/testconnexion.php'; 
 }

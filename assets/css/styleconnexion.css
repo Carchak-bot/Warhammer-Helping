@@ -31,7 +31,7 @@ body{
    }
    
    /* Set a style for all buttons */
-   button {
+   button, input[type="submit"] {
     background-color: #53af57;
     color: white;
     padding: 14px 20px;
@@ -40,7 +40,8 @@ body{
     cursor: pointer;
     width: 100%;
    }
-   input[type=submit]:hover {
+
+   button, input[type=submit]:hover {
     background-color: white;
     color: #53af57;
     border: 1px solid #53af57;

@@ -1,11 +1,16 @@
 <?php $titre = 'Le Navigatron';
 ob_start();
 
-try {
-    $request = "SELECT * FROM compte WHERE Nom_de_compte = $pseudo";
-    $res = selectDatabase($request);
+if (isset($_SESSION['pseudo'])) {
+    $pseudo = $_SESSION['pseudo'];
+}
 
-    $id_compte = $res[0];
+try {
+    $request = "SELECT * FROM compte WHERE Nom_de_compte = '" . $pseudo . "'";
+    $res = selectDatabase($request);
+    
+    $id_compte = $res[0][0];
+    
 } catch (PDOException $e) {
     echo 'Erreur : ' . $e->getMessage();
 }

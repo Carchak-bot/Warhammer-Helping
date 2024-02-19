@@ -1,6 +1,8 @@
-<?php 
-require "./../../Modele/modele.php";
+<?php
 session_start();
+$json = [];
+
+require "./../../Modele/modele.php";
 
 $user="";
 $MDP="";
@@ -19,3 +21,5 @@ $MDP="";
             exit();
         }
     }
+
+echo json_encode($json);
