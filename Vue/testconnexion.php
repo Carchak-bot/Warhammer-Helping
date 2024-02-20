@@ -3,7 +3,7 @@ ob_start();
 ?>
 
 <div id="container">
-    <form action="./../Warhammer-Helping/Controlleur/testconnexion.php" method="post">
+    <form action="../Warhammer-Helping/Controlleur/testconnexion.php" method="post">
         <h1>Connexion</h1>
  
         <label><b>Nom d'utilisateur</b></label>

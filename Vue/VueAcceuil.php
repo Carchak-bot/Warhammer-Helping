@@ -19,7 +19,7 @@ try {
 
 
 <div>
-    <a href="./../Warhammer-Helping/index.php?action=CreationCampagne"><button>Créer une Campagne</button></a>
+    <a href="../Warhammer-Helping/index.php?action=CreationCampagne"><button>Créer une Campagne</button></a>
     <?php
     try {
         $request = "SELECT * FROM campagne WHERE Id = $id_compte";
@@ -31,7 +31,7 @@ try {
     <main class="PersoUnite">
     <figure>
     <h3>' . $value[1] . '</h3>
-    <button><a href="./../Warhammer-Helping/Controlleur/index.php?action=DetailsCampagne&id=' . $value[0] . '">Details Perso</a></button>
+    <button><a href="../Warhammer-Helping/Controlleur/index.php?action=DetailsCampagne&id=' . $value[0] . '">Details Perso</a></button>
     </main>';
         }
     } catch (PDOException $e) {

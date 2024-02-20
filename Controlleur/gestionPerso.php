@@ -76,7 +76,7 @@ if ($_GET['action'] == 'creaPerso') {
 
         $requete->execute();
 
-        header('Location: ./../Warhammer-Helping/index.php?action=listePerso');
+        header('Location: ../Warhammer-Helping/index.php?action=listePerso');
     } catch (Exception $e) {
         echo ('Erreur : ' . $e->getMessage());
     }
@@ -134,7 +134,7 @@ if ($_GET['action'] == 'updatePerso') {
 
         $requete->execute();
 
-        header('Location: ./../Warhammer-Helping/index.php?action=listePerso');
+        header('Location: ../Warhammer-Helping/index.php?action=listePerso');
     } catch (Exception $e) {
         echo ('Erreur : ' . $e->getMessage());
     }

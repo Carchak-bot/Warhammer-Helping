@@ -15,7 +15,7 @@ ob_start();
     <figure>
     <h3>' . $value[1] . '</h3>
     <h5>' . $value[2] . '</h5>
-    <button><a href="./../Warhammer-Helping/index.php?action=DetailsPerso&id=' . $value[0] . '">Details Perso</a></button>
+    <button><a href="../Warhammer-Helping/index.php?action=DetailsPerso&id=' . $value[0] . '">Details Perso</a></button>
     </main>';
         }
     } catch (PDOException $e) {

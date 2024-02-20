@@ -1,6 +1,6 @@
 <?php
 session_start();
-require './../Warhammer-Helping/Controlleur/controlleur.php';
+require '../Warhammer-Helping/Controlleur/controlleur.php';
 
 if (isset($_SESSION['pseudo'])) {
     $pseudo = $_SESSION['pseudo'];

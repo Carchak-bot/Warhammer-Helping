@@ -4,7 +4,7 @@ ob_start();
 try {
     if ($_GET['action'] == 'creationPerso') {
         echo '
-<form form class="wrapper" action="./../Warhammer-Helping/Controlleur/gestionPerso.php?action=creaPerso" method="POST">
+<form form class="wrapper" action="../Warhammer-Helping/Controlleur/gestionPerso.php?action=creaPerso" method="POST">
     <div>
         <h4>Nom du Personnage :</h4>
         <input type="text" name="nom" placeholder="Nom"><br>
@@ -102,7 +102,7 @@ try {
         $res = selectDatabase($request);
         foreach ($res as $key => $value) {
             echo '
-<form form class="wrapper" action="./../Warhammer-Helping/Controlleur/gestionPerso.php?action=updatePerso&id=' . $value[0] . '" method="POST">
+<form form class="wrapper" action="../Warhammer-Helping/Controlleur/gestionPerso.php?action=updatePerso&id=' . $value[0] . '" method="POST">
     <div>
         <h4>Nom du Personnage :</h4>
         <input type="text" name="nom" placeholder="Nom" value='.$value[1].'><br>

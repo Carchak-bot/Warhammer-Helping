@@ -34,8 +34,8 @@ try {
     <p> Pilotage : <b>' . $value[20] . '</b></p>
     <p> Psyniscience : <b>' . $value[21] . '</b></p>
     </figure>
-    <button><a href="./../Warhammer-Helping/Controlleur/index.php?action=updatePerso&id=' . $value[0] . '">Modifier Perso</a></button>
-    <button><a href="./../Warhammer-Helping/Controlleur/gestionPerso.php?action=deletePerso&id=' . $value[0] . '">Supprimer Perso</a></button>
+    <button><a href="../Warhammer-Helping/Controlleur/index.php?action=updatePerso&id=' . $value[0] . '">Modifier Perso</a></button>
+    <button><a href="../Warhammer-Helping/Controlleur/gestionPerso.php?action=deletePerso&id=' . $value[0] . '">Supprimer Perso</a></button>
     </main>';
     }
 } catch (PDOException $e) {
