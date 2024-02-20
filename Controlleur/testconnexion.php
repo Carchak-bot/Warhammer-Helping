@@ -17,8 +17,8 @@ if(isset($_POST['connexion'])){
             header('Location: ./../index.php');
             exit();
         } else {
-            echo "Nom d'utilisateur ou mot de passe incorrecte";
-            header('Location: ./../Vue/testconnexion.php?erreur=1');
+            echo "Nom d'utilisateur ou mot de passe incorrects";
+            header('Location: ./../index.php?action=Connexion&erreur=1');
             exit();
         }
     } catch (Exception $e) {

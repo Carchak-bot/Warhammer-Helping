@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 // Fichiers PHP inclus
 
 require "variables.php";
@@ -9,7 +9,7 @@ require "fonctions.php";
  ********************************************************************************************************/
 
 // Début Programme
-
+echo '<div class="voyage">';
 echo "<b>Coté MJ :</b> <br>";
 
 // echo $_POST["gellarFieldDamaged"];
@@ -199,7 +199,6 @@ if (
                 $chartsFinished = $charts + 10;
             }
     }
-
     //Psyniscience pour les augures
     echo "[";
     echo $psyniscienceCheck1;
@@ -213,7 +212,6 @@ if (
         $tempstrajettheorique
     );
     echo "<br>";
-
     while (
         ($psyniscienceCheck1 == 9) | ($psyniscienceCheck1 == 19) | ($psyniscienceCheck1 == 29) | ($psyniscienceCheck1 == 39) |
         ($psyniscienceCheck1 == 49) | ($psyniscienceCheck1 == 59) | ($psyniscienceCheck1 == 69) | ($psyniscienceCheck1 == 79) |
@@ -240,9 +238,7 @@ if (
             $tempstrajettheorique
         );
     }
-
     //Se protéger des mauvaises marées
-
     if (
         isset($_POST["illTidings"]) &&
         ($_POST["illTidings"] == true)
@@ -251,20 +247,15 @@ if (
     } else {
         $badTidings = 1;
     }
-
     //La chasse de la mauvaise chance
     echo badOmens($_POST["moral"], $_POST["leadership"], $_POST["socCptn"], $_POST["socSurnatCptn"]);
-
     //Hallucinations
     echo hallucinations($_POST["nombrePNJImportant"], $_POST["crewRating"]);
-
     //Localiser l'astronomican
     $psyniscienceCheck2 = rand(1, 100);
-
     echo "[";
     echo $psyniscienceCheck2;
     echo "] ! <br>";
-
     switch ($route) {
         case 1:
         case 2:
@@ -415,3 +406,7 @@ if (
     }
     echo reEntry($reEntry);
 }
+echo '</div>';
+
+$contenu = ob_get_clean();
+require '../Vue/gabarit.php';

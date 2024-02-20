@@ -37,7 +37,7 @@ if (isset($pseudo)) {
     }
 } else {
     if (isset($_GET['action'])) {
-        if ($_GET['action'] == 'Connexion') {
+        if ($_GET['action'] == 'Connexion' && $pseudo == null) {
             connexion();
         }
     } else {

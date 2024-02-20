@@ -28,59 +28,59 @@ if (isset($_SESSION['pseudo'])) {
 </head>
 
 <body>
-    <header id="entete">
-        <nav class="navbar">
-            <div class="container">
-                <a href="" class="navbar-brand"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="../Warhammer-Helping/index.php">Acceuil</a>
-                        </li>
-                        <li class="nav-item">
-                            <?php
-                            if ($pseudo) {
-                                echo ' ';
-                            } else {
-                                echo '<a class="nav-link" href="../Warhammer-Helping/inscription.php">Inscription</a>';
-                            }
-                            ?>
-                        </li>
-                        <li class="nav-item">
-                            <?php
-                            if ($pseudo) {
-                                echo ' ';
-                            } else {
-                                echo '<a class="nav-link" href="../Warhammer-Helping/index.php?action=Connexion">Se connecter</a>';
-                            }
-                            ?>
-                        </li>
-                        <li class="nav-item">
-                            <?php
-                            if ($pseudo) {
-                                echo '<a class="nav-link" href="../Warhammer-Helping/deconnexion.php">Deconnexion</a>';
-                            }
-                            ?>
-                        </li>
-                    </ul>
-                </div>
+<header id="entete" class="bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a href="" class="navbar-brand"></a>
+            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page" href="../Warhammer-Helping/index.php">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <?php
+                        if ($pseudo) {
+                            echo ' ';
+                        } else {
+                            echo '<a class="nav-link text-white" href="../Warhammer-Helping/inscription.php">Inscription</a>';
+                        }
+                        ?>
+                    </li>
+                    <li class="nav-item">
+                        <?php
+                        if ($pseudo) {
+                            echo ' ';
+                        } else {
+                            echo '<a class="nav-link text-white" href="../Warhammer-Helping/index.php?action=Connexion">Se connecter</a>';
+                        }
+                        ?>
+                    </li>
+                    <li class="nav-item">
+                        <?php
+                        if ($pseudo) {
+                            echo '<a class="nav-link text-white" href="../Warhammer-Helping/Controlleur/deconnexion.php">Déconnexion</a>';
+                        }
+                        ?>
+                    </li>
+                </ul>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
     <?php
         if ($pseudo) {
             echo " ";
         } else {
-            echo "<H1>Vous ne vous êtes pas encore authentifié</H1> <br><br>";
+            echo '<H1 class="text-white">Vous ne vous êtes pas encore authentifié</H1> <br><br>';
         }
     ?>
     <main class="global">
         <?= $contenu ?>
     </main>
-    <footer>
+    <footer class="bg-dark text-white">
         <article>
             <h4>Fait par Carchak & Kerabrim</h4>
         </article>
