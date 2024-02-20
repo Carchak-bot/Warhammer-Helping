@@ -1,5 +1,6 @@
 <?php
 // on vérifie que la variable de session pseudo existe
+
 if (isset($_SESSION['pseudo'])) {
     $pseudo = $_SESSION['pseudo'];
 } else {
@@ -23,8 +24,8 @@ if (isset($_SESSION['pseudo'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> <!-- Bootstrap icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- CSS style -->
-    <link rel="stylesheet" href="../Warhammer-Helping/assets/css/style.css">
-    <link rel="stylesheet" href="../Warhammer-Helping/assets/css/styleconnexion.css" />
+    <link rel="stylesheet" href="/Warhammer-Helping/assets/css/style.css">
+    <link rel="stylesheet" href="/Warhammer-Helping/assets/css/styleconnexion.css" />
 </head>
 
 <body>
@@ -38,14 +39,14 @@ if (isset($_SESSION['pseudo'])) {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page" href="../Warhammer-Helping/index.php">Accueil</a>
+                        <a class="nav-link active text-white" aria-current="page" href="/Warhammer-Helping/index.php">Accueil</a>
                     </li>
                     <li class="nav-item">
                         <?php
                         if ($pseudo) {
                             echo ' ';
                         } else {
-                            echo '<a class="nav-link text-white" href="../Warhammer-Helping/inscription.php">Inscription</a>';
+                            echo '<a class="nav-link text-white" href="inscription.php">Inscription</a>';
                         }
                         ?>
                     </li>
@@ -54,14 +55,14 @@ if (isset($_SESSION['pseudo'])) {
                         if ($pseudo) {
                             echo ' ';
                         } else {
-                            echo '<a class="nav-link text-white" href="../Warhammer-Helping/index.php?action=Connexion">Se connecter</a>';
+                            echo '<a class="nav-link text-white" href="/Warhammer-Helping/index.php?action=Connexion">Se connecter</a>';
                         }
                         ?>
                     </li>
                     <li class="nav-item">
                         <?php
                         if ($pseudo) {
-                            echo '<a class="nav-link text-white" href="../Warhammer-Helping/Controlleur/deconnexion.php">Déconnexion</a>';
+                            echo '<a class="nav-link text-white" href="/Warhammer-Helping/Controlleur/deconnexion.php">Déconnexion</a>';
                         }
                         ?>
                     </li>
