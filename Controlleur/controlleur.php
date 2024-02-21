@@ -30,3 +30,7 @@ function connexion()
 {
     require '../Warhammer-Helping/Vue/testconnexion.php'; 
 }
+function inscription()
+{
+    require '../Warhammer-Helping/Vue/inscription.php'; 
+}

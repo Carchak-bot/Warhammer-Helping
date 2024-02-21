@@ -13,7 +13,7 @@ ob_start();
         <input type="password" placeholder="Entrer le mot de passe" name="mdp" required />
         <br />
     <input type="submit" name="connexion" value="Connexion" />
-    <a href="Inscription.php">Pas de compte ? S'inscrire</a>
+    <a href="/Warhammer-Helping/index.php?action=Inscription">Pas de compte ? S'inscrire</a>
 
     <?php
         if(isset($_GET['erreur'])){

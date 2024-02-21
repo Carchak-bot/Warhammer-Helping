@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../Warhammer-Helping/Controlleur/controlleur.php';
+require 'Controlleur/controlleur.php';
 
 if (isset($_SESSION['pseudo'])) {
     $pseudo = $_SESSION['pseudo'];
@@ -40,7 +40,10 @@ if (isset($pseudo)) {
         if ($_GET['action'] == 'Connexion' && $pseudo == null) {
             connexion();
         }
+        if ($_GET['action'] == 'Inscription' && $pseudo == null) {
+            inscription();
+        }
     } else {
         acceuilNonInscrit();
-    }
+    } 
 }

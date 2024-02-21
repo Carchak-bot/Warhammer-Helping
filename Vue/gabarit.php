@@ -46,7 +46,7 @@ if (isset($_SESSION['pseudo'])) {
                         if ($pseudo) {
                             echo ' ';
                         } else {
-                            echo '<a class="nav-link text-white" href="inscription.php">Inscription</a>';
+                            echo '<a class="nav-link text-white" href="/Warhammer-Helping/index.php?action=Inscription">Inscription</a>';
                         }
                         ?>
                     </li>
